@@ -1,18 +1,19 @@
-# Extended version of original bcomp
+# Extended BCOMP
 
-Сборка через maven:
+Скачать jar: https://github.com/AppLoidx/bcomp-extended/releases
 
-```cmd
-mvn clean compile assembly:single
-```
 ### Assembler с подсветкой синтаксиса
 ![](https://github.com/AppLoidx/bcomp-extended/blob/master/report/res/assembler.png)
 
-### Новые обои :)
+### Две новые вкладки 
 ![](https://github.com/AppLoidx/bcomp-extended/blob/master/report/res/basic-view.png)
 
 ### Шпаргалка
 ![](https://github.com/AppLoidx/bcomp-extended/blob/master/report/res/cheat-sheet.png)
 
-### Прямой доступ к памяти без всяких регистров (пока пишется)
+### Прямой доступ к памяти без всяких регистров
 ![](https://github.com/AppLoidx/bcomp-extended/blob/master/report/res/memory.png)
+
+Введите адрес памяти (в radix 16) и нажмите `Найти`, чтобы получить данные. Также вы можете изменить данные прямо в таблице и нажать `применить`, тогда введенны данные перезапишутся в память (за исключением тех значений, у которых неверный формат).
+
+Также можно изменить количество показываемых ячеек с помощью соответствующего поля внизу таблицы.
