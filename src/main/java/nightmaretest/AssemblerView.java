@@ -44,9 +44,9 @@ public class AssemblerView extends ActivateblePanel {
 
     {
         try {
-            String backgroundPath = "/klimenkov2.png";
+            String backgroundPath = "/klimenkov.png";
             InputStream in = getClass().getResourceAsStream(backgroundPath);
-            img = ImageIO.read(in);
+            if (in!=null) img = ImageIO.read(in);
         } catch (IOException e) {
             e.printStackTrace();
         }
