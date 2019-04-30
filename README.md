@@ -1,4 +1,4 @@
-# Extended version of original bcomp
+# Extended BCOMP
 
 Скачать jar: https://github.com/AppLoidx/bcomp-extended/releases
 
