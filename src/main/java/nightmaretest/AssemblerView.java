@@ -44,7 +44,7 @@ public class AssemblerView extends ActivateblePanel {
 
     {
         try {
-            String backgroundPath = "/sad.jpg";
+            String backgroundPath = "/klimenkov2.png";
             InputStream in = getClass().getResourceAsStream(backgroundPath);
             img = ImageIO.read(in);
         } catch (IOException e) {
@@ -64,7 +64,7 @@ public class AssemblerView extends ActivateblePanel {
         this.text.setBackground(Color.white);
         this.text.setForeground(Color.black);
 
-        ((RSyntaxTextArea) this.text).setSyntaxScheme(new SyntaxScheme(new Font("Blogger Sana", Font.PLAIN, 14)));
+//        ((RSyntaxTextArea) this.text).setSyntaxScheme(new SyntaxScheme(new Font("Blogger Sans", Font.PLAIN, 14)));
 
         ((RSyntaxTextArea) this.text).setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_ASSEMBLER_X86);
         ((RSyntaxTextArea) this.text).setCurrentLineHighlightColor(new Color(50, 50 ,50, 50));
@@ -74,12 +74,11 @@ public class AssemblerView extends ActivateblePanel {
         scroll.setForeground(Color.WHITE);
 
         this.add(scroll);
-        JButton button = new JButton("RUN");
+        JButton button = new JButton("Компилировать");
 
-        button.setForeground(Color.WHITE);
-        button.setBackground(Color.darkGray);
+//        button.setForeground(Color.WHITE);
+//        button.setBackground(Color.darkGray);
 
-        button.setFont(DisplayStyles.FONT_COURIER_PLAIN_12);
         button.setBounds(640, 40, 200, 30);
         button.setFocusable(false);
         button.addActionListener(e -> {
@@ -103,35 +102,8 @@ public class AssemblerView extends ActivateblePanel {
             }
         });
 
-        button.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                button.setBackground(Color.RED);
-                button.setForeground(Color.WHITE);
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                button.setForeground(Color.WHITE);
-                button.setBackground(Color.darkGray);
-            }
-        });
         this.add(button);
+
     }
 
     public void panelActivate() {
@@ -151,9 +123,9 @@ public class AssemblerView extends ActivateblePanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        this.setBackground(Color.BLUE);
-        g.setColor(Color.RED);
-        g.fillRect(0, 0, this.getWidth(), this.getHeight());
+//        this.setBackground(Color.BLUE);
+//        g.setColor(Color.DARK_GRAY);
+//        g.fillRect(0, 0, this.getWidth(), this.getHeight());
         if (img !=null) g.drawImage(img, 0, 0, this);
         super.paintComponent(g);
     }

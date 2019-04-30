@@ -8,7 +8,8 @@ import window.Console;
 
 
 /**
- * From original bcomp edited by Arthur Kupriyanov
+ * From original bcomp edited by
+ * @author Arthur Kupriyanov
  *
  */
 public class Nightmare {
