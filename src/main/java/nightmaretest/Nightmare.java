@@ -37,8 +37,8 @@ public class Nightmare {
                 gui.gui();
                 break;
             case "cli":
-                Console console = new Console();
-                console.start();
+                CLI cli = new CLI(mp);
+                cli.cli();
                 break;
             case "decoder":
                 MPDecoder mpdecoder = new MPDecoder(mp);
