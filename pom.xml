@@ -6,19 +6,12 @@
 
     <groupId>com.apploidxxx</groupId>
     <artifactId>bcomp-extended</artifactId>
-    <version>1.2</version>
+    <version>1.2-light
+    </version>
     <packaging>jar</packaging>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>8</source>
-                    <target>8</target>
-                </configuration>
-            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -69,7 +62,7 @@
 
     <dependencies>
 
-        <!--original bcomp-->
+        <!--original bcomp from local repository-->
         <dependency>
             <groupId>com.se.ifmo</groupId>
             <artifactId>bcomp</artifactId>
@@ -77,18 +70,18 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>4.0.1</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.poi</groupId>-->
+            <!--<artifactId>poi</artifactId>-->
+            <!--<version>4.0.1</version>-->
+        <!--</dependency>-->
 
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>4.0.1</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.poi</groupId>-->
+            <!--<artifactId>poi-ooxml</artifactId>-->
+            <!--<version>4.0.1</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>com.fifesoft</groupId>
             <artifactId>rsyntaxtextarea</artifactId>

@@ -1,8 +1,6 @@
 package nightmaretest;
 
-/**
- * @author Arthur Kupriyanov
- */
+
 //
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by Fernflower decompiler)
@@ -22,21 +20,19 @@ import ru.ifmo.cs.bcomp.ui.components.ComponentManager;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.File;
+
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 
+/**
+ * @author Arthur Kupriyanov
+ */
 public class AssemblerView extends ActivateblePanel {
     private final GUI gui;
     private final CPU cpu;
     private final ComponentManager cmanager;
     private final Assembler asm;
-    private final JTextArea text;
+    private final RSyntaxTextArea text;
     private SyntaxScheme scheme;
 
 
@@ -52,7 +48,7 @@ public class AssemblerView extends ActivateblePanel {
         }
     }
 
-    public AssemblerView(GUI gui) {
+    AssemblerView(GUI gui) {
         this.gui = gui;
         this.cpu = gui.getCPU();
         this.cmanager = gui.getComponentManager();
@@ -66,8 +62,8 @@ public class AssemblerView extends ActivateblePanel {
 
 //        ((RSyntaxTextArea) this.text).setSyntaxScheme(new SyntaxScheme(new Font("Blogger Sans", Font.PLAIN, 14)));
 
-        ((RSyntaxTextArea) this.text).setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_ASSEMBLER_X86);
-        ((RSyntaxTextArea) this.text).setCurrentLineHighlightColor(new Color(50, 50 ,50, 50));
+        this.text.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_ASSEMBLER_X86);
+        this.text.setCurrentLineHighlightColor(new Color(50, 50 ,50, 50));
 
         RTextScrollPane scroll = new RTextScrollPane(this.text);
         scroll.setBounds(10, 10, 600, 540);
@@ -118,7 +114,7 @@ public class AssemblerView extends ActivateblePanel {
     }
 
     private void showError(String msg) {
-        JOptionPane.showMessageDialog(this.gui, msg, "Ошибка", 0);
+        JOptionPane.showMessageDialog(this.gui, msg, "Ошибка", JOptionPane.ERROR_MESSAGE);
     }
 
     @Override

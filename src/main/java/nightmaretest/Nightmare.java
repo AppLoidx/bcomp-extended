@@ -4,7 +4,6 @@ import ru.ifmo.cs.bcomp.MicroProgram;
 import ru.ifmo.cs.bcomp.MicroPrograms;
 import ru.ifmo.cs.bcomp.ui.CLI;
 import ru.ifmo.cs.bcomp.ui.MPDecoder;
-import window.Console;
 
 
 /**

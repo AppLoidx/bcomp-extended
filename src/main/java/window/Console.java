@@ -96,9 +96,11 @@ public class Console {
             if (regs.length > 1){
                 if (regs[0].matches("[0-9a-fA-F]{3}")){
                     int emptyFieldsCount = 10 - regs.length;
-                    for (int i=0; i< emptyFieldsCount; i++){
-                        line += " -";
+                    StringBuilder lineBuilder = new StringBuilder(line);
+                    for (int i = 0; i< emptyFieldsCount; i++){
+                        lineBuilder.append(" -");
                     }
+                    line = lineBuilder.toString();
                     response.append("\n").append(line).append(" ").append(MnemonicInterpreter.interpret(regs[1]));
                 } else {
                     response.append("\n").append(line);
@@ -121,7 +123,7 @@ public class Console {
     }
 
     private void generateDoc(String response, String name){
-        File file = new TraceGenerator().generate(response, name);
+//        File file = new TraceGenerator().generate(response, name);
     }
 
     private String getUserInput(){

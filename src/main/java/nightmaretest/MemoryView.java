@@ -6,10 +6,7 @@ import ru.ifmo.cs.elements.Memory;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.util.*;
 
 
@@ -36,6 +33,7 @@ public class MemoryView extends ActivateblePanel {
     private final int MEMORY_PANE_Y = 20;
     private final int MEMORY_PANE_DEFAULT_WIDTH = 130;
     private final int MEMORY_PANE_Y_DEFAULT_HEIGHT = 500;
+    private final Color memoryAddrValueColor;
 
     private final Font monoFont = new Font("Courier New", Font.BOLD, 14);
     private JTextField memoryCapacityArea = new JTextField();
@@ -43,6 +41,7 @@ public class MemoryView extends ActivateblePanel {
     MemoryView(GUI gui){
 //        CPU cpu = gui.getCPU();
         memory = gui.getCPU().getMemory();
+        memoryAddrValueColor = new JTextPane().getBackground();
 
         this.gui = gui;
         this.memoryInnerPane.setLayout(new BoxLayout(this.memoryInnerPane, BoxLayout.Y_AXIS));
@@ -64,6 +63,7 @@ public class MemoryView extends ActivateblePanel {
         output.setBounds(SEARCH_BOX_X + 100, SEARCH_BOX_Y + 25, 100, 25);
         labelVal.setBounds(SEARCH_BOX_X, SEARCH_BOX_Y + 25, 100, 25);
         output.setEditable(false);
+
         panel.add(addr);
         panel.add(labelAddr);
         panel.add(output);
@@ -82,14 +82,13 @@ public class MemoryView extends ActivateblePanel {
         memoryCapacityArea.setBounds(memoryPane.getX() + 50, memoryPane.getHeight()+ 20, 80, 18);
         JLabel capacityAreaLabel = new JLabel();
         capacityAreaLabel.setText("Кол-во:");
-        capacityAreaLabel.setBounds(memoryPane.getX(), memoryPane.getHeight() + 20, memoryPane.getWidth() - memoryCapacityArea.getWidth(), 18);
+        capacityAreaLabel.setBounds(memoryPane.getX(), memoryPane.getHeight() + 20,
+                memoryPane.getWidth() - memoryCapacityArea.getWidth(), 18);
         this.add(memoryPane);
         this.add(memoryCapacityArea);
         this.add(capacityAreaLabel);
-
-
-
     }
+
     @Override
     public void panelActivate() {
 
@@ -149,9 +148,23 @@ public class MemoryView extends ActivateblePanel {
                         l.setFont(monoFont);
 
                         JTextPane textP = new JTextPane();
+
                         textP.setText(memoryTextEdit(fieldValue(i)));
 
                         textP.setFont(monoFont);
+
+                        textP.addFocusListener(new FocusListener() {
+                            @Override
+                            public void focusGained(FocusEvent e) {
+                                textP.setBackground(Color.ORANGE);
+                                textP.selectAll();
+                            }
+
+                            @Override
+                            public void focusLost(FocusEvent e) {
+                                textP.setBackground(memoryAddrValueColor);
+                            }
+                        });
 
                         textP.addKeyListener(new KeyListener() {
                             @Override
@@ -161,6 +174,10 @@ public class MemoryView extends ActivateblePanel {
 
                             @Override
                             public void keyPressed(KeyEvent e) {
+
+                                if (e.getKeyCode() != KeyEvent.VK_DOWN && e.getKeyCode() != KeyEvent.VK_UP)
+                                textP.setBackground(memoryAddrValueColor);
+
                                 if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_UP) {
                                     boolean focusAddrFound = false;
                                     boolean focusAddrIsNotSetted = true;
@@ -266,7 +283,7 @@ public class MemoryView extends ActivateblePanel {
                         int value = Integer.parseInt(memoryMap.get(label).getText(), 16);
                         memory.setValue(addr, value);
                     } catch (NumberFormatException formatE){
-                        formatE.printStackTrace();
+                        memoryMap.get(label).setBackground(Color.RED);
                     }
 
                 }
