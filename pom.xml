@@ -6,9 +6,13 @@
 
     <groupId>com.apploidxxx</groupId>
     <artifactId>bcomp-extended</artifactId>
-    <version>1.2-light
+    <version>1.3
     </version>
     <packaging>jar</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <build>
         <plugins>
@@ -23,6 +27,7 @@
                     <executable>C:/Program Files/Java/jdk1.8.0_171/bin/javac</executable>
                     <encoding>utf-8</encoding>
                 </configuration>
+                <version>3.8.0</version>
             </plugin>
 
             <plugin>
