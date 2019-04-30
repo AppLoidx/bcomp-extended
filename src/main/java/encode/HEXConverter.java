@@ -1,43 +1,66 @@
 package encode;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 /**
  * @author Arthur Kupriyanov
  */
 public class HEXConverter {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        String line;
-        while(!(line=sc.nextLine()).equals("exit")){
-            String newLine = line
-                    .replace("п", "D0 ")
-                    .replace("о", "CF ")
-                    .replace("м", "CD ")
-                    .replace("щ", "DD ")
-                    .replace("ь","D8 ")
-                    .replace("ю", "C0 ")
-                    .replace("д", "C4 ")
-                    .replace("р","D2 ")
-                    .replace("а", "C1 ")
-                    .replace("г", "C7 ")
-                    .replace("ы", "D9")
-                    .replace(" ", "9A");
 
 
-            System.out.println(newLine);
+    public static String getUTF16HexCode(String context){
+        byte[] bytes = context.getBytes(StandardCharsets.UTF_16);
+        return getHEX(bytes).substring(6);  // excluding marker
+    }
+    public static String getKOI8RHexCode(String context){
+        try {
+            byte[] bytes = context.getBytes("KOI8");
+            return getHEX(bytes);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
         }
-//        WORD D0CF
-//        WORD CDCF
-//        WORD DDD8
-//        WORD C09A
-//        WORD D0CF
-//        WORD C4D0
-//        WORD D2CF
-//        WORD C7D2
-//        WORD C1CD
-//        WORD CDD9
+    }
+
+    public static String getASCIIHexCode(String context){
+        byte[] bytes = context.getBytes(StandardCharsets.US_ASCII);
+        return getHEX(bytes);
+    }
+
+    public static String getISO8859_5HexCode(String context){
+        try {
+            byte[] bytes = context.getBytes("ISO-8859-5");
+            return getHEX(bytes);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static String getWindows1251HexCode(String context){
+        try {
+            byte[] bytes = context.getBytes("WINDOWS-1251");
+            return getHEX(bytes);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public static String getUTF8HexCode(String context){
+        byte[] bytes = context.getBytes(StandardCharsets.UTF_8);
+        return getHEX(bytes);
 
     }
+
+    private static String getHEX(byte[] bytes){
+        StringBuilder sb = new StringBuilder();
+        for (byte b : bytes){
+            sb.append(UnicodeFormatter.byteToHex(b)).append(" ");
+        }
+
+        return sb.toString();
+    }
+
 }

@@ -1,5 +1,6 @@
 package nightmaretest;
 
+import fx.gui.EncodeApplication;
 import javafx.scene.input.KeyCode;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
 import ru.ifmo.cs.elements.Memory;
@@ -24,6 +25,7 @@ public class MemoryView extends ActivateblePanel {
     private JScrollPane memoryPane = new JScrollPane(memoryInnerPane);
     private JButton searchButton = new JButton("Найти");
     private JButton acceptButton = new JButton("Применить");
+    private JButton encodeButton = new JButton("HEX конвертер");
     private TextField addr = new TextField();           // поле адреса
     private TextField output = new TextField();         // поле значения ячейки
     private final int SEARCH_BOX_X = 50;
@@ -78,6 +80,8 @@ public class MemoryView extends ActivateblePanel {
         panel.setBounds(0, 0, 544, 600);
         this.add(panel);
 
+
+
         memoryPane.setBounds(MEMORY_PANE_X, MEMORY_PANE_Y, MEMORY_PANE_DEFAULT_WIDTH, MEMORY_PANE_Y_DEFAULT_HEIGHT);
         memoryCapacityArea.setBounds(memoryPane.getX() + 50, memoryPane.getHeight()+ 20, 80, 18);
         JLabel capacityAreaLabel = new JLabel();
@@ -87,6 +91,9 @@ public class MemoryView extends ActivateblePanel {
         this.add(memoryPane);
         this.add(memoryCapacityArea);
         this.add(capacityAreaLabel);
+
+        encodeButton.setBounds(MEMORY_PANE_X+ memoryPane.getWidth() + 50, MEMORY_PANE_Y, 200, 30);
+        this.add(encodeButton);
     }
 
     @Override
@@ -287,6 +294,37 @@ public class MemoryView extends ActivateblePanel {
                     }
 
                 }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+
+        encodeButton.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new Thread(() -> {
+                    EncodeApplication app = new EncodeApplication();
+                    app.run();
+                }).start();
+
             }
 
             @Override
