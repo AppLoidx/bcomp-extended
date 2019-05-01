@@ -1,4 +1,4 @@
-package nightmaretest;
+package application;
 
 /**
  * @author Arthur Kupriyanov

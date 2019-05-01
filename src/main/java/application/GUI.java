@@ -1,21 +1,16 @@
-package nightmaretest;
-
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
+package application;
 
 
+import application.views.*;
 import ru.ifmo.cs.bcomp.*;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
 import ru.ifmo.cs.bcomp.ui.components.ComponentManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
-//import ru.ifmo.cs.bcomp.ui.components.AssemblerView;
-//import ru.ifmo.cs.bcomp.ui.components.IOView;
-//import ru.ifmo.cs.bcomp.ui.components.MPView;
 
 /**
  * From original bcomp edited by Arthur Kupriyanov
@@ -28,6 +23,10 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
     private final BasicComp bcomp;
     private final CPU cpu;
     private final GUI pairgui;
+    private ActivateblePanel[] panes;
+
+    private BasicView basicView;
+    private IOView ioView;
 
     public GUI(MicroProgram mp, GUI pairgui) throws Exception {
         this.activePanel = null;
@@ -51,14 +50,18 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
     public void init() {
         this.cmanager = new ComponentManager(GUI.this);
         this.bcomp.startTimer();
-
-        ActivateblePanel[] panes = new ActivateblePanel[]{
-                new BasicView(this),
-                new IOView(this, this.pairgui),
+        basicView = new BasicView(this);
+        ioView = new IOView(this, this.pairgui);
+        panes = new ActivateblePanel[]{
+                basicView,
+                ioView,
                 new MPView(this),
                 new AssemblerView(this),
                 new CheatSheetView(this),
-                new MemoryView(this)};
+                new MemoryView(this),
+                new ConsoleView(this),
+                new SettingsView(this)
+        };
 
 
         // Верхние вкладки
@@ -72,11 +75,8 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
             GUI.this.activePanel = (ActivateblePanel) GUI.this.tabs.getSelectedComponent();
             GUI.this.activePanel.panelActivate();
         });
-        ActivateblePanel[] arr$ = panes;
-        int len$ = panes.length;
 
-        for(int i$ = 0; i$ < len$; ++i$) {
-            ActivateblePanel pane = arr$[i$];
+        for (ActivateblePanel pane : panes) {
             pane.setPreferredSize(DisplayStyles.PANE_SIZE);
 
             this.tabs.addTab(pane.getPanelName(), pane);
@@ -90,17 +90,53 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
         this.cmanager.switchFocus();
     }
 
-    public void gui() throws Exception {
-        JFrame frame = new JFrame("БЭВМ");
+    public void gui() {
+        JFrame mainFrame = new JFrame("БЭВМ");
         if (this.pairgui == null) {
-            frame.setDefaultCloseOperation(3);
+            mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
-        this.setBackground(Color.RED);
-        frame.getContentPane().add(this);
+        mainFrame.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                Settings.save();
+                System.exit(0);
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+
+            }
+        });
+        mainFrame.getContentPane().add(this);
         this.init();
-        frame.pack();
-        frame.setResizable(false);
-        frame.setVisible(true);
+        mainFrame.pack();
+        mainFrame.setResizable(false);
+        mainFrame.setVisible(true);
         this.start();
     }
 
@@ -123,4 +159,20 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
     public String getMicroProgramName() {
         return this.cpu.getMicroProgramName();
     }
+
+    /**
+     * Нужно чтобы отрисовывать активные стрелки
+     *
+     * Вызывается, при срабатывании метода в setTickFinishListener {@link CPU}
+     */
+    public void stepFinishViewElements() {
+        basicView.stepFinish();
+        ioView.stepFinish();
+    }
+
+    public void updateBus() {
+
+    }
+
+
 }

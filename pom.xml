@@ -6,8 +6,7 @@
 
     <groupId>com.apploidxxx</groupId>
     <artifactId>bcomp-extended</artifactId>
-    <version>1.3
-    </version>
+    <version>1.4</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -35,8 +34,9 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>nightmaretest.Nightmare</mainClass>
+                            <mainClass>application.Nightmare</mainClass>
                         </manifest>
+
 
                     </archive>
                     <descriptorRefs>
@@ -74,6 +74,14 @@
             <version>1.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.5</version>
+        </dependency>
+
+
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <!--<dependency>-->
             <!--<groupId>org.apache.poi</groupId>-->
@@ -91,6 +99,12 @@
             <groupId>com.fifesoft</groupId>
             <artifactId>rsyntaxtextarea</artifactId>
             <version>2.5.8</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>13.0</version>
         </dependency>
 
         <!--&lt;!&ndash; https://mvnrepository.com/artifact/com.fifesoft/rsyntaxtextarea &ndash;&gt;-->

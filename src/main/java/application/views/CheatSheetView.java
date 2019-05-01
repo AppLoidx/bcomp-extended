@@ -1,10 +1,10 @@
-package nightmaretest;
+package application.views;
 
+import application.GUI;
 import ru.ifmo.cs.bcomp.CPU;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +16,7 @@ public class CheatSheetView extends ActivateblePanel {
     GUI gui;
     CPU cpu;
     Image img;
-    CheatSheetView(GUI gui){
+    public CheatSheetView(GUI gui){
         this.gui = gui;
         try {
             String backgroundPath = "/command-sheet.png";

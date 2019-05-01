@@ -1,4 +1,4 @@
-package nightmaretest;
+package application;
 
 
 //
@@ -16,6 +16,7 @@ import ru.ifmo.cs.bcomp.ui.components.RegisterView;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -28,13 +29,18 @@ public abstract class BCompPanel extends ru.ifmo.cs.bcomp.ui.components.BCompPan
     private final BusView[] buses;
     private SignalListener[] listeners;
 
-    private Image img;
+    public static Image img;
 
     {
         try {
-            String backgroundPath = "/zero-two.jpg";
-            InputStream in = getClass().getResourceAsStream(backgroundPath);
-            img = ImageIO.read(in).getScaledInstance(866, 554, Image.SCALE_DEFAULT);
+
+            String backgroundPath;
+            InputStream in = null;
+            if (Settings.getBackgroundPath() !=null){
+                backgroundPath = Settings.getBackgroundPath();
+                in = new FileInputStream(new File(backgroundPath));
+            }
+            if (in!=null) img = ImageIO.read(in).getScaledInstance(DisplayStyles.SCALED_BACKGROUND_IMG_WIDTH, DisplayStyles.SCALED_BACKGROUND_IMG_HEIGHT, Image.SCALE_DEFAULT);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -56,7 +62,7 @@ public abstract class BCompPanel extends ru.ifmo.cs.bcomp.ui.components.BCompPan
         return this.listeners;
     }
 
-    private void drawBuses(Graphics g) {
+    public void drawBuses(Graphics g) {
         ArrayList<BusView> openbuses = new ArrayList();
         ArrayList<ControlSignal> signals = this.cmanager.getActiveSignals();
         BusView[] arr$ = this.buses;
@@ -135,9 +141,9 @@ public abstract class BCompPanel extends ru.ifmo.cs.bcomp.ui.components.BCompPan
     }
 
     public void paintComponent(Graphics g) {
-        this.setBackground(DisplayStyles.COLOR_BACKGROUND_STYLE);
-        g.setColor(this.getBackground());
-        g.fillRect(0, 0, this.getWidth(), this.getHeight());
+//        this.setBackground(DisplayStyles.COLOR_BACKGROUND_STYLE);
+//        g.setColor(this.getBackground());
+//        g.fillRect(0, 0, this.getWidth(), this.getHeight());
 
         if (img !=null)  g.drawImage(img, 0, 0, this);
 

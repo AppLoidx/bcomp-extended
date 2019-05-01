@@ -1,4 +1,4 @@
-package nightmaretest;
+package application.views;
 
 //
 // Source code recreated from a .class file by IntelliJ IDEA
@@ -6,6 +6,8 @@ package nightmaretest;
 //
 
 
+import application.BCompPanel;
+import application.DisplayStyles;
 import ru.ifmo.cs.bcomp.CPU;
 import ru.ifmo.cs.bcomp.CPU.Reg;
 import ru.ifmo.cs.bcomp.ControlSignal;
@@ -24,7 +26,7 @@ public class BasicView extends BCompPanel {
     private final CPU cpu;
     private final RunningCycleView cycleview;
 
-    BasicView(GUI gui) {
+    public BasicView(GUI gui) {
         super(gui.getComponentManager(),
                 // Регистры
                 new RegisterProperties[]{

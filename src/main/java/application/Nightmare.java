@@ -1,5 +1,6 @@
-package nightmaretest;
+package application;
 
+import fx.gui.EncodeApplication;
 import ru.ifmo.cs.bcomp.MicroProgram;
 import ru.ifmo.cs.bcomp.MicroPrograms;
 import ru.ifmo.cs.bcomp.ui.CLI;
@@ -17,7 +18,7 @@ public class Nightmare {
         String app;
         try {
             mpname = System.getProperty("mp", "base");
-            app = System.getProperty("mode", "gui");
+            app = System.getProperty("mode", "extended");
         } catch (Exception var5) {
             mpname = "base";
             app = "gui";
@@ -32,7 +33,8 @@ public class Nightmare {
 
         switch (app) {
             case "gui":
-                GUI gui = new GUI(mp);
+                // original bcomp
+                ru.ifmo.cs.bcomp.ui.GUI gui = new ru.ifmo.cs.bcomp.ui.GUI(mp);
                 gui.gui();
                 break;
             case "cli":
@@ -46,9 +48,22 @@ public class Nightmare {
             case "nightmare":
                 new ru.ifmo.cs.bcomp.ui.Nightmare(mp);
                 break;
+            case "encoder":
+                //encoder run
+                new EncodeApplication().run();
+                break;
+            case "extended":
+                Settings.init();
+                // extended version
+                GUI extendedGUI = new GUI(mp);
+                extendedGUI.gui();
+
+                break;
             default:
                 System.err.println("Invalid mode selected");
                 break;
         }
+
+
     }
 }

@@ -1,4 +1,4 @@
-package nightmaretest;
+package application;
 
 
 //
@@ -32,8 +32,10 @@ public class DisplayStyles {
     public static final int FONT_COURIER_BOLD_25_WIDTH;
     public static final Font FONT_COURIER_BOLD_45;
     public static final Color COLOR_TEXT;
-    public static final Color COLOR_ACTIVE;
-    public static final Color COLOR_BUS;
+
+    public static Color COLOR_ACTIVE = Color.RED;
+    public static Color COLOR_BUS = Color.GRAY;
+
     public static final Color COLOR_TITLE;
     public static final Color COLOR_VALUE;
     public static final Color COLOR_INPUT_TITLE;
@@ -176,6 +178,9 @@ public class DisplayStyles {
     public static final int TEXTAREA_WIDTH = 600;
     public static final int TEXTAREA_HEIGHT = 542;
 
+    public static final int SCALED_BACKGROUND_IMG_WIDTH = 866;
+    public static final int SCALED_BACKGROUND_IMG_HEIGHT = 554;
+
     // CUSTOM FIELDS
     public static final Color COLOR_BACKGROUND_STYLE;
 
@@ -194,7 +199,7 @@ public class DisplayStyles {
         FONT_COURIER_BOLD_45 = new Font("Courier New", Font.BOLD, 45);
         COLOR_TEXT = Color.red;
         COLOR_ACTIVE = Color.RED;
-        COLOR_BUS = Color.WHITE;
+        COLOR_BUS = Color.GRAY;
         COLOR_TITLE = new Color(157, 189, 165);
         COLOR_VALUE = new Color(219, 249, 235);
         COLOR_INPUT_TITLE = new Color(207, 239, 215);
@@ -263,5 +268,6 @@ public class DisplayStyles {
         REG_STATE_X = CU_X_IO + (MP_REGS_WIDTH - REG_9_WIDTH) / 2;
         LEFT_X = IO_X + 3 * IO_DELIM - 1;
         MICROMEM_X = LEFT_X - MEM_WIDTH;
+
     }
 }

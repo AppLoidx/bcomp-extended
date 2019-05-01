@@ -28,9 +28,10 @@ public class CustomCLI {
     private UserIOStream outputStream;
     private boolean exitStatus = false;
 
-    public CustomCLI(MicroProgram mp, UserIOStream outputStream) throws Exception {
+    public CustomCLI(MicroProgram mp, UserIOStream outputStream, BasicComp bc){
         this.outputStream = outputStream;
-        this.bcomp = new BasicComp(this.mp = mp);
+        this.bcomp = bc;
+        this.mp = mp;
         this.cpu = this.bcomp.getCPU();
         this.bcomp.addDestination(ControlSignal.MEMORY_WRITE, value -> {
             int addr = CustomCLI.this.cpu.getRegValue(CPU.Reg.ADDR);
@@ -66,7 +67,15 @@ public class CustomCLI {
             }
 
         });
-        this.cpu.setTickFinishListener(() -> {
+
+        this.asm = new Assembler(this.cpu.getInstructionSet());
+        this.ioctrls = this.bcomp.getIOCtrls();
+    }
+
+    public CustomCLI(MicroProgram mp, UserIOStream outputStream) throws Exception {
+        this(mp, outputStream, new BasicComp(mp));
+        CPU cpu = this.bcomp.getCPU();
+        cpu.setTickFinishListener(() -> {
             if (CustomCLI.this.sleep > 0) {
                 try {
                     Thread.sleep((long) CustomCLI.this.sleep);
@@ -75,8 +84,6 @@ public class CustomCLI {
             }
 
         });
-        this.asm = new Assembler(this.cpu.getInstructionSet());
-        this.ioctrls = this.bcomp.getIOCtrls();
     }
 
 
@@ -94,7 +101,7 @@ public class CustomCLI {
 
     private void printRegsTitle() {
         if (this.printRegsTitle) {
-            outputStream.writeln(this.cpu.getClockState() ? "Адр Знчн СК РА  РК  РД  А  C Адр Знчн" : "Адр МК СК РА РК РД  А  C БР N Z СчМК");
+            outputStream.writeln(this.cpu.getClockState() ? "Адр Знчн СК РА  РК  РД  А  C Адр Знчн\n" : "Адр МК СК РА РК РД  А  C БР N Z СчМК\n");
             this.printRegsTitle = false;
         }
 
@@ -150,7 +157,6 @@ public class CustomCLI {
     public void cli(UserIOStream inputStream) {
         this.bcomp.startTimer();
         outputStream.writeln("Эмулятор Базовой ЭВМ." + "\n" + "Загружена " + this.cpu.getMicroProgramName() + " микропрограмма\n" + "Цикл прерывания начинается с адреса " + Utils.toHex(this.cpu.getIntrCycleStartAddr(), 8) + "\n" + "БЭВМ готова к работе.\n" + "Используйте ? или help для получения справки\n\n");
-
         do {
             String line;
             String[] cmds;
@@ -170,7 +176,8 @@ public class CustomCLI {
                     }
 
                 } catch (Exception var11) {
-                    System.exit(0);
+//                    var11.printStackTrace();
+//                    //System.exit(0);
                     return;
                 }
                 outputStream.writeln("");
@@ -364,6 +371,10 @@ public class CustomCLI {
                 }
             }
         } while (!exitStatus);
+    }
+
+    public int getSleep(){
+        return this.sleep;
     }
 
 

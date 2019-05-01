@@ -35,7 +35,7 @@ public class EncodeMenuController {
     private TextField asciiLabel;
 
     @FXML
-    private TextField originalLabel;
+    public TextField originalLabel;
 
     @FXML
     void convert(ActionEvent event) {

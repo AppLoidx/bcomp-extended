@@ -1,14 +1,14 @@
-package nightmaretest;
+package application.views;
 
-import fx.gui.EncodeApplication;
-import javafx.scene.input.KeyCode;
+import application.GUI;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
 import ru.ifmo.cs.elements.Memory;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 
 
 /**
@@ -25,7 +25,9 @@ public class MemoryView extends ActivateblePanel {
     private JScrollPane memoryPane = new JScrollPane(memoryInnerPane);
     private JButton searchButton = new JButton("Найти");
     private JButton acceptButton = new JButton("Применить");
-    private JButton encodeButton = new JButton("HEX конвертер");
+
+//    private JButton encodeButton = new JButton("HEX конвертер");
+
     private TextField addr = new TextField();           // поле адреса
     private TextField output = new TextField();         // поле значения ячейки
     private final int SEARCH_BOX_X = 50;
@@ -40,10 +42,13 @@ public class MemoryView extends ActivateblePanel {
     private final Font monoFont = new Font("Courier New", Font.BOLD, 14);
     private JTextField memoryCapacityArea = new JTextField();
 
-    MemoryView(GUI gui){
+    public MemoryView(GUI gui){
+
 //        CPU cpu = gui.getCPU();
         memory = gui.getCPU().getMemory();
         memoryAddrValueColor = new JTextPane().getBackground();
+
+
 
         this.gui = gui;
         this.memoryInnerPane.setLayout(new BoxLayout(this.memoryInnerPane, BoxLayout.Y_AXIS));
@@ -92,8 +97,8 @@ public class MemoryView extends ActivateblePanel {
         this.add(memoryCapacityArea);
         this.add(capacityAreaLabel);
 
-        encodeButton.setBounds(MEMORY_PANE_X+ memoryPane.getWidth() + 50, MEMORY_PANE_Y, 200, 30);
-        this.add(encodeButton);
+//        encodeButton.setBounds(MEMORY_PANE_X+ memoryPane.getWidth() + 50, MEMORY_PANE_Y, 200, 30);
+//        this.add(encodeButton);
     }
 
     @Override
@@ -317,36 +322,6 @@ public class MemoryView extends ActivateblePanel {
             }
         });
 
-        encodeButton.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                new Thread(() -> {
-                    EncodeApplication app = new EncodeApplication();
-                    app.run();
-                }).start();
-
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
-            }
-        });
     }
 
     private void updateMemoryPane(){

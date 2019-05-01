@@ -2,13 +2,15 @@ package window;
 
 import core.cli.CustomCLI;
 import core.cli.MnemonicInterpreter;
-import core.cli.TraceGenerator;
 import core.cli.interpretator.CLIInterpreter;
 import ru.ifmo.cs.bcomp.MicroPrograms;
 import util.TextDecorations;
 import util.UserIOStream;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

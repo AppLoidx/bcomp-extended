@@ -1,4 +1,4 @@
-package nightmaretest;
+package application.views;
 
 
 //
@@ -7,6 +7,7 @@ package nightmaretest;
 //
 
 
+import application.DisplayStyles;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rsyntaxtextarea.SyntaxScheme;
@@ -20,7 +21,6 @@ import ru.ifmo.cs.bcomp.ui.components.ComponentManager;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -41,6 +41,7 @@ public class AssemblerView extends ActivateblePanel {
     {
         try {
             String backgroundPath = "/klimenkov.png";
+
             InputStream in = getClass().getResourceAsStream(backgroundPath);
             if (in!=null) img = ImageIO.read(in);
         } catch (IOException e) {
@@ -48,7 +49,7 @@ public class AssemblerView extends ActivateblePanel {
         }
     }
 
-    AssemblerView(GUI gui) {
+    public AssemblerView(GUI gui) {
         this.gui = gui;
         this.cpu = gui.getCPU();
         this.cmanager = gui.getComponentManager();

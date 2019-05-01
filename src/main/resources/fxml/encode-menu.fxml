@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-
 <AnchorPane prefHeight="415.0" prefWidth="346.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fx.gui.EncodeMenuController">
    <children>
       <VBox prefHeight="370.0" prefWidth="346.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
