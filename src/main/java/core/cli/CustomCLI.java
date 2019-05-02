@@ -27,6 +27,7 @@ public class CustomCLI {
     private volatile int sleep = 0;
     private UserIOStream outputStream;
     private boolean exitStatus = false;
+    private boolean fromGui = true;
 
     public CustomCLI(MicroProgram mp, UserIOStream outputStream, BasicComp bc){
         this.outputStream = outputStream;
@@ -74,6 +75,7 @@ public class CustomCLI {
 
     public CustomCLI(MicroProgram mp, UserIOStream outputStream) throws Exception {
         this(mp, outputStream, new BasicComp(mp));
+        this.fromGui = false;
         CPU cpu = this.bcomp.getCPU();
         cpu.setTickFinishListener(() -> {
             if (CustomCLI.this.sleep > 0) {
@@ -196,8 +198,8 @@ public class CustomCLI {
 
 
                     if (this.checkCmd(cmd, "exit") || this.checkCmd(cmd, "quit")) {
-                        exitStatus = true;
-                        outputStream.writeln("!exit");
+                        if (!fromGui) exitStatus = true;
+                        else outputStream.writeln("Команда exit недоступна для GUI режима");
                         break;
                     }
 
