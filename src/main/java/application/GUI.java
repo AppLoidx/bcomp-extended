@@ -6,10 +6,14 @@ import ru.ifmo.cs.bcomp.*;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
 import ru.ifmo.cs.bcomp.ui.components.ComponentManager;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 
 
 /**
@@ -91,20 +95,34 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
     }
 
     public void gui() {
-        JFrame mainFrame = new JFrame("БЭВМ");
+        JFrame mainFrame = new JFrame("БЭВМ"){
+
+        };
+        try {
+            InputStream in = GUI.class.getClassLoader().getResourceAsStream("app-icon.png");
+            if (in!=null){
+                Image img = ImageIO.read(in);
+                if (img!=null) mainFrame.setIconImage(img);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         if (this.pairgui == null) {
             mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         }
+
+
+
         mainFrame.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-
-            }
-
             @Override
             public void windowClosing(WindowEvent e) {
                 Settings.save();
                 System.exit(0);
+            }
+
+            @Override
+            public void windowOpened(WindowEvent e) {
+
             }
 
             @Override

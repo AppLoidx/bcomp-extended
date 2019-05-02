@@ -131,7 +131,7 @@ public class ConsoleView extends ActivateblePanel {
                 }
             }
             if (!initializedOnce) {
-                newLine(outputStream.readString());
+                //newLine(outputStream.readString());
                 initializedOnce = true;
             } else outputStream.readString();
         }
