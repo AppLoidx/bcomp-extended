@@ -41,10 +41,10 @@ public class BasicView extends BCompPanel {
 public abstract class BCompPanel extends ActivateblePanel 
 ```
 
-Можно либо наследоваться от **BcompPanel** или же сразу от **ActivateblePanel**, так как все элементы добавляются в общий массив **Activateble[]**.
+Можно либо наследоваться от **BcompPanel** или же сразу от **ActivateblePanel**, так как все элементы добавляются в общий массив **ActivateblePanel[]**.
 
-Из оригинальной БЭВМ от **BcompPanel** наследуются: BasicView(первое окно), IOView(окно ввода\вывода), MPView(МПУ)<hr>
-А от **ActivateblePanel** напрямую: AssemblerView
+Из оригинальной БЭВМ от **BcompPanel** наследуются: **BasicView**(первое окно), **IOView**(окно ввода\вывода), **MPView(МПУ)**<br>
+А от **ActivateblePanel** напрямую: **AssemblerView**
 
 Для добавления кастомных окон используется ActivateblePanel.
 
