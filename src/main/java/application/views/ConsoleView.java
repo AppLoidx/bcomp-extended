@@ -113,6 +113,7 @@ public class ConsoleView extends ActivateblePanel {
             cliThreadIsActive = true;
 
             this.gui.getCPU().setTickFinishListener(() -> {
+
                 if (cli.getSleep() > 0) {
                     try {
                         Thread.sleep((long) cli.getSleep());
@@ -149,7 +150,7 @@ public class ConsoleView extends ActivateblePanel {
         cliThreadIsActive = false;
 
         this.gui.getCPU().setTickFinishListener(() -> {
-
+            this.gui.stepFinishViewElements();
                 try {
                     Thread.sleep(Settings.getTickFinishSleepTime());
                 } catch (InterruptedException e) {
