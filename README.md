@@ -1,8 +1,13 @@
-# Extended BCOMP
+# Расширенный эмулятор БЭВМ
 
 Данное приложение является неофициальным расширением для [оригинального эмулятора БЭВМ](https://se.ifmo.ru/bcomp/)
 
 #### Скачать jar: https://github.com/AppLoidx/bcomp-extended/releases
+
+<hr>
+<br><br>
+
+## Ключевые особенности
 
 ### Assembler с подсветкой синтаксиса
 ![](https://github.com/AppLoidx/bcomp-extended/blob/master/report/res/assembler.png)
