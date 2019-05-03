@@ -2,6 +2,16 @@
 
 Данное приложение является неофициальным расширением для [оригинального эмулятора БЭВМ](https://se.ifmo.ru/bcomp/)
 
+Приложение поддерживает также и оригинальной эмулятор, который запускается командой:
+```cmd
+java -jar -Dmode=cli bcomp-extended-[version].jar
+```
+
+Для вызова HEXConverter для представления строковых значений в различных кодировках:
+```
+java -jar -Dmode=encoder bcomp-extended-[version].jar
+```
+
   
 #### Скачать jar: https://github.com/AppLoidx/bcomp-extended/releases
 #### Документация: [wiki](https://github.com/AppLoidx/bcomp-extended/wiki)
