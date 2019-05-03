@@ -7,6 +7,9 @@ import com.google.gson.annotations.SerializedName;
 import java.awt.*;
 import java.io.*;
 import java.lang.reflect.Modifier;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Arthur Kupriyanov
@@ -18,6 +21,8 @@ public class SettingsData implements Serializable {
     public Color busActiveColor;
     @SerializedName("bus_color")
     public Color busColor;
+    @SerializedName("debug_marks")
+    public List<Integer> markedAddrs;
 
     public void save(){
         File file = new File("bcomp_data/settings.json");
