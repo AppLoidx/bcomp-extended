@@ -1,7 +1,6 @@
 package application.views;
 
 import application.GUI;
-import ru.ifmo.cs.bcomp.CPU;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
 
 import javax.imageio.ImageIO;
@@ -14,8 +13,8 @@ import java.io.InputStream;
  */
 public class CheatSheetView extends ActivateblePanel {
     GUI gui;
-    CPU cpu;
     Image img;
+
     public CheatSheetView(GUI gui){
         this.gui = gui;
         try {
@@ -26,8 +25,6 @@ public class CheatSheetView extends ActivateblePanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override

@@ -9,7 +9,6 @@ import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
@@ -21,6 +20,10 @@ import java.io.InputStream;
  */
 public class SettingsView extends ActivateblePanel {
     private final GUI gui;
+    private final int MARGIN_X = 20;
+    private final int MARGIN_Y = 30;
+    private final int BUTTON1_WIDTH = 250;
+    private final int BUTTON1_HEIGHT = 30;
     Image img ;
 
     public SettingsView(GUI aGui){
@@ -37,10 +40,10 @@ public class SettingsView extends ActivateblePanel {
         JButton setDefaultBtn = new JButton("Установить настройки по умолчанию");
         setDefaultBtn.addActionListener(a -> Settings.setDefault());
 
-        activeBusColorChooserBtn.setBounds(20, 30, 250, 30);
-        busColorChooserBtn.setBounds(20 + 250, 30, 250, 30);
-        backgroundSelectBtn.setBounds(20, 60, 500, 30);
-        setDefaultBtn.setBounds(20, 100, 500 , 30);
+        activeBusColorChooserBtn.setBounds(MARGIN_X, MARGIN_Y, BUTTON1_WIDTH, BUTTON1_HEIGHT);
+        busColorChooserBtn.setBounds(MARGIN_X + BUTTON1_WIDTH, MARGIN_Y, BUTTON1_WIDTH, BUTTON1_HEIGHT);
+        backgroundSelectBtn.setBounds(MARGIN_X, MARGIN_Y + BUTTON1_HEIGHT, BUTTON1_WIDTH * 2, BUTTON1_HEIGHT);
+        setDefaultBtn.setBounds(MARGIN_X, MARGIN_Y + 70, BUTTON1_WIDTH * 2 , BUTTON1_HEIGHT);
 
         this.add(activeBusColorChooserBtn);
         this.add(busColorChooserBtn);
