@@ -15,6 +15,8 @@ public final class Settings {
     private static Color busColor = DisplayStyles.COLOR_BUS;
     private static Color activeBusColor = DisplayStyles.COLOR_ACTIVE;
 
+    private static boolean saveDebugMarks = false;
+
     public static int getTickFinishSleepTime() {
         return tickFinishSleepTime;
     }
@@ -59,12 +61,18 @@ public final class Settings {
         data.backgroundPath = Settings.backgroundPath;
         data.busActiveColor = Settings.activeBusColor;
         data.busColor = Settings.busColor;
+        if (saveDebugMarks) saveDebugMarks(data);
         data.save();
+    }
+
+    private static void saveDebugMarks(SettingsData data){
+        data.markedAddrs = Debugger.markedAddrs;
     }
     private static void init(SettingsData data){
         Settings.setBackgroundPath(data.backgroundPath);
         Settings.setActiveBusColor(data.busActiveColor==null?Color.RED:data.busActiveColor);
         Settings.setBusColor(data.busColor==null?Color.GRAY:data.busColor);
+        if (data.markedAddrs!=null) Debugger.markedAddrs = data.markedAddrs;
     }
     public static void init(){
         SettingsData data = SettingsData.load();
