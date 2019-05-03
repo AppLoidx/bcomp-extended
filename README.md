@@ -2,7 +2,9 @@
 
 Данное приложение является неофициальным расширением для [оригинального эмулятора БЭВМ](https://se.ifmo.ru/bcomp/)
 
+  
 #### Скачать jar: https://github.com/AppLoidx/bcomp-extended/releases
+#### Документация: [wiki](https://github.com/AppLoidx/bcomp-extended/wiki)
 
 <hr>
 <br><br>
