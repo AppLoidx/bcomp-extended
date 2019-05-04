@@ -8,8 +8,7 @@ package application;
 // (powered by Fernflower decompiler)
 //
 
-import java.awt.Color;
-import java.awt.event.ActionEvent;
+import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.KeyAdapter;
@@ -252,8 +251,16 @@ public class ComponentManager extends ru.ifmo.cs.bcomp.ui.components.ComponentMa
             }
 
         });
-        this.cucheckbox = new JCheckBox("Ввод в Устройство управления");
-        this.cucheckbox.setBackground(DisplayStyles.COLOR_INPUT_TITLE);
+        this.cucheckbox = new JCheckBox("Ввод в Устройство управления"){
+            @Override
+            protected void paintComponent(Graphics g)
+            {
+                g.setColor( getBackground() );
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        this.cucheckbox.setBackground(new Color(255, 255, 255, 0));
         this.cucheckbox.setOpaque(false);
         this.cucheckbox.addKeyListener(this.keyListener);
         this.cucheckbox.addItemListener(e -> ComponentManager.this.cuswitch = e.getStateChange() == ItemEvent.SELECTED);
