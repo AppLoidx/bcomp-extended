@@ -1,29 +1,27 @@
 package application;
 
-/**
- * @author Arthur Kupriyanov
- */
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by Fernflower decompiler)
-//
 
-
-
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import ru.ifmo.cs.bcomp.CPU;
 import ru.ifmo.cs.bcomp.Instruction;
 import ru.ifmo.cs.bcomp.Utils;
 
+import javax.swing.text.BadLocationException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * @author Arthur Kupriyanov
+ */
 public class Assembler {
     private ArrayList<Assembler.Label> labels;
     private ArrayList<Assembler.Command> cmds;
     private Instruction[] instrset;
+    private final RSyntaxTextArea textArea;
 
-    public Assembler(Instruction[] instrset) {
+    public Assembler(Instruction[] instrset, RSyntaxTextArea textArea) {
         this.instrset = instrset;
+        this.textArea = textArea;
     }
 
     public void compileProgram(String program) throws Exception {
@@ -163,10 +161,16 @@ public class Assembler {
 
             throw new Exception("Ссылка на неопределённую метку " + label.label);
         } catch (Exception var17) {
+            setErrorLine(lineno);
             throw new Exception("Строка " + lineno + ": " + var17.getMessage());
         }
     }
-
+    private void setErrorLine(int line){
+        try {
+            this.textArea.addLineHighlight(line - 1, DisplayStyles.ERROR_COLOR);
+        } catch (BadLocationException ignored) {
+        }
+    }
     private Assembler.Label findLabel(String labelname) {
         Iterator i$ = this.labels.iterator();
 
