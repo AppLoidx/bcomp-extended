@@ -159,6 +159,8 @@ public class AssemblerView extends ActivateblePanel {
                             return false;
                         }
                     }else {
+                        if (line[0].matches(".+:.*")) continue;
+                        System.out.println(line[0]);
                         if (reservedAddrs.contains(currentAddr)){
                             if (showErrorMessage) showErrorMessage("Программа перекрывает себя");
                             setErrorLine(lineno);
