@@ -20,7 +20,7 @@ import java.awt.geom.AffineTransform;
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class DisplayStyles {
     private static final FontRenderContext fr = new FontRenderContext((AffineTransform)null, true, true);
-    public static final Font FONT_COURIER_PLAIN_12 = new Font("Arial Nova", Font.BOLD, 14);
+    public static Font FONT_BUTTONS_PANEL_TEXT;
     public static final Font FONT_COURIER_BOLD_18 = new Font("Courier New", Font.BOLD, 18);
     public static final int FONT_COURIER_BOLD_18_WIDTH;
     public static final Font FONT_COURIER_BOLD_20;
@@ -31,11 +31,16 @@ public class DisplayStyles {
     public static final Font FONT_COURIER_BOLD_25;
     public static final int FONT_COURIER_BOLD_25_WIDTH;
     public static final Font FONT_COURIER_BOLD_45;
-    public static final Color COLOR_TEXT;
 
-    public static Color COLOR_ACTIVE = Color.RED;
-    public static Color COLOR_BUS = Color.GRAY;
+    public static Color COLOR_TEXT;
+    public static Color COLOR_ACTIVE_TEXT;
 
+    public static Color COLOR_ACTIVE;
+    public static Color COLOR_BUS;
+
+    public static Color COLOR_INPUT_REGISTER_ACTIVE_BIT;
+
+    public static final Color ERROR_COLOR = new Color(227, 35, 35, 95);
     public static final Color COLOR_TITLE;
     public static final Color COLOR_VALUE;
     public static final Color COLOR_INPUT_TITLE;
@@ -197,9 +202,15 @@ public class DisplayStyles {
         FONT_COURIER_BOLD_25 = new Font("Courier New", Font.BOLD, 25);
         FONT_COURIER_BOLD_25_WIDTH = (int)Math.round(FONT_COURIER_BOLD_25.getStringBounds("0", fr).getWidth());
         FONT_COURIER_BOLD_45 = new Font("Courier New", Font.BOLD, 45);
-        COLOR_TEXT = Color.red;
+
+        FONT_BUTTONS_PANEL_TEXT = new Font("Arial Nova", Font.BOLD, 12);
+        COLOR_INPUT_REGISTER_ACTIVE_BIT = Color.RED;
+        COLOR_TEXT = Color.BLACK;
+        COLOR_ACTIVE_TEXT = Color.RED;
+
         COLOR_ACTIVE = Color.RED;
         COLOR_BUS = Color.GRAY;
+
         COLOR_TITLE = new Color(157, 189, 165);
         COLOR_VALUE = new Color(219, 249, 235);
         COLOR_INPUT_TITLE = new Color(207, 239, 215);

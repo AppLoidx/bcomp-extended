@@ -4,7 +4,6 @@ package application;
 import application.views.*;
 import ru.ifmo.cs.bcomp.*;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
-import ru.ifmo.cs.bcomp.ui.components.ComponentManager;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -13,7 +12,6 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 
 
 /**
@@ -187,10 +185,5 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
         basicView.stepFinish();
         ioView.stepFinish();
     }
-
-    public void updateBus() {
-
-    }
-
 
 }
