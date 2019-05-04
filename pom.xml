@@ -6,7 +6,7 @@
 
     <groupId>com.apploidxxx</groupId>
     <artifactId>bcomp-extended</artifactId>
-    <version>1.4.3-alpha</version>
+    <version>1.4.3</version>
     <packaging>jar</packaging>
 
     <properties>
