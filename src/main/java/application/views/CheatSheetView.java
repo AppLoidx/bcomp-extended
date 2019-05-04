@@ -34,8 +34,6 @@ public class CheatSheetView extends ActivateblePanel {
 
         g.drawImage(img, 150 ,0 ,Color.WHITE, this);
 
-//        g.fillRect(0, 0, this.getWidth(), this.getHeight());
-
     }
 
     @Override
@@ -50,6 +48,6 @@ public class CheatSheetView extends ActivateblePanel {
 
     @Override
     public String getPanelName() {
-        return "Cheat sheet";
+        return "Список команд";
     }
 }
