@@ -8,11 +8,11 @@ package application.views;
 
 
 import application.DisplayStyles;
+import application.Assembler;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rsyntaxtextarea.SyntaxScheme;
 import org.fife.ui.rtextarea.RTextScrollPane;
-import ru.ifmo.cs.bcomp.Assembler;
 import ru.ifmo.cs.bcomp.CPU;
 import ru.ifmo.cs.bcomp.ui.GUI;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
@@ -38,7 +38,7 @@ public class AssemblerView extends ActivateblePanel {
     private final ComponentManager cmanager;
     private final Assembler asm;
     private final RSyntaxTextArea text;
-    private final Color ERROR_COLOR = new Color(227, 35, 35, 95);
+
     private SyntaxScheme scheme;
 
 
@@ -59,37 +59,33 @@ public class AssemblerView extends ActivateblePanel {
         this.gui = gui;
         this.cpu = gui.getCPU();
         this.cmanager = gui.getComponentManager();
-        this.asm = new Assembler(this.cpu.getInstructionSet());
-
         this.text = new RSyntaxTextArea();
+        this.asm = new Assembler(this.cpu.getInstructionSet(), this.text);
         setTextArea();
 
         JButton button = new JButton("Компилировать");
 
-//        button.setForeground(Color.WHITE);
-//        button.setBackground(Color.darkGray);
-
         button.setBounds(640, 40, 200, 30);
         button.setFocusable(false);
         button.addActionListener(e -> {
-            if (AssemblerView.this.cpu.isRunning()) {
-                AssemblerView.this.showError("Для компиляции остановите выполняющуюся программу");
+            if (this.cpu.isRunning()) {
+                this.showError("Для компиляции остановите выполняющуюся программу");
             } else {
-                AssemblerView.this.cmanager.saveDelay();
+                this.cmanager.saveDelay();
                 boolean clock = AssemblerView.this.cpu.getClockState();
-                AssemblerView.this.cpu.setClockState(true);
+                this.cpu.setClockState(true);
 
                 try {
                     if (!checkORG()) return;
-                    AssemblerView.this.asm.compileProgram(AssemblerView.this.text.getText());
-                    AssemblerView.this.asm.loadProgram(AssemblerView.this.cpu);
+                    asm.compileProgram(text.getText());
+                    asm.loadProgram(cpu);
                 } catch (Exception var4) {
                     AssemblerView.this.showError(var4.getMessage());
                 }
 
-                AssemblerView.this.cpu.setClockState(clock);
-                AssemblerView.this.cmanager.clearActiveSignals();
-                AssemblerView.this.cmanager.restoreDelay();
+                this.cpu.setClockState(clock);
+                this.cmanager.clearActiveSignals();
+                this.cmanager.restoreDelay();
             }
         });
 
@@ -182,7 +178,7 @@ public class AssemblerView extends ActivateblePanel {
     private void setErrorLine(int line){
         try {
             System.out.println("1211");
-            text.addLineHighlight(line - 1, ERROR_COLOR);
+            text.addLineHighlight(line - 1, DisplayStyles.ERROR_COLOR);
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
