@@ -186,4 +186,17 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
         ioView.stepFinish();
     }
 
+    public void setSettingsTickTime(){
+        cpu.setTickFinishListener(() -> {
+            stepFinishViewElements();  // строго до вызова метода sleep
+            try {
+                Thread.sleep(Settings.getTickFinishSleepTime());
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        });
+    }
+
 }

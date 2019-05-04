@@ -170,16 +170,7 @@ public class SettingsView extends ActivateblePanel {
             }
             Settings.setTickFinishSleepTime(sleepTime);
 
-            this.gui.getCPU().setTickFinishListener(() -> {
-                this.gui.stepFinishViewElements();  // строго до вызова метода sleep
-                try {
-                    Thread.sleep(6);
-
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-            });
+            this.gui.setSettingsTickTime();
         });
 
         label.setBounds(x , y , 300, 20);

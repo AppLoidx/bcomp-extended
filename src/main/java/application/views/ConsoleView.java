@@ -134,7 +134,8 @@ public class ConsoleView extends ActivateblePanel {
             if (!initializedOnce) {
                 //newLine(outputStream.readString());
                 initializedOnce = true;
-            } else outputStream.readString();
+            }
+            outputStream.readString();
         }
     }
 
@@ -149,15 +150,7 @@ public class ConsoleView extends ActivateblePanel {
         cliThread.interrupt();
         cliThreadIsActive = false;
 
-        this.gui.getCPU().setTickFinishListener(() -> {
-            this.gui.stepFinishViewElements();
-                try {
-                    Thread.sleep(Settings.getTickFinishSleepTime());
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-        });
+        this.gui.setSettingsTickTime();
     }
 
     @Override
