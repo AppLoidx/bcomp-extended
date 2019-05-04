@@ -9,7 +9,6 @@ package application;
 import ru.ifmo.cs.bcomp.ControlSignal;
 import ru.ifmo.cs.bcomp.SignalListener;
 import ru.ifmo.cs.bcomp.ui.components.BusView;
-import ru.ifmo.cs.bcomp.ui.components.ComponentManager;
 import ru.ifmo.cs.bcomp.ui.components.RegisterProperties;
 import ru.ifmo.cs.bcomp.ui.components.RegisterView;
 
@@ -21,7 +20,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
-//import ru.ifmo.cs.bcomp.ui.components.DisplayStyles;
 
 public abstract class BCompPanel extends ru.ifmo.cs.bcomp.ui.components.BCompPanel {
     protected final ComponentManager cmanager;
@@ -63,7 +61,7 @@ public abstract class BCompPanel extends ru.ifmo.cs.bcomp.ui.components.BCompPan
     }
 
     public void drawBuses(Graphics g) {
-        ArrayList<BusView> openbuses = new ArrayList();
+        ArrayList<BusView> openbuses = new ArrayList<>();
         ArrayList<ControlSignal> signals = this.cmanager.getActiveSignals();
         BusView[] arr$ = this.buses;
         int len$ = arr$.length;
@@ -141,10 +139,6 @@ public abstract class BCompPanel extends ru.ifmo.cs.bcomp.ui.components.BCompPan
     }
 
     public void paintComponent(Graphics g) {
-//        this.setBackground(DisplayStyles.COLOR_BACKGROUND_STYLE);
-//        g.setColor(this.getBackground());
-//        g.fillRect(0, 0, this.getWidth(), this.getHeight());
-
         if (img !=null)  g.drawImage(img, 0, 0, this);
 
         this.drawBuses(g);
