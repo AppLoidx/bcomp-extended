@@ -12,8 +12,8 @@ java -jar -Dmode=cli bcomp-extended-[version].jar
 java -jar -Dmode=encoder bcomp-extended-[version].jar
 ```
 
-  
-#### Скачать jar: https://github.com/AppLoidx/bcomp-extended/releases
+#### Последний релиз: https://github.com/AppLoidx/bcomp-extended/releases/latest
+#### Все jar: https://github.com/AppLoidx/bcomp-extended/releases
 #### Документация: [wiki](https://github.com/AppLoidx/bcomp-extended/wiki)
 
 <hr>
