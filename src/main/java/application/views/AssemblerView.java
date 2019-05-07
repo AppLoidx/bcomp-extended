@@ -46,7 +46,7 @@ public class AssemblerView extends ActivateblePanel {
 
     {
         try {
-            String backgroundPath = "/klimenkov.png";
+            String backgroundPath = "/assembler-icon.png";
 
             InputStream in = getClass().getResourceAsStream(backgroundPath);
             if (in != null) img = ImageIO.read(in);
@@ -113,7 +113,7 @@ public class AssemblerView extends ActivateblePanel {
 //        this.setBackground(Color.BLUE);
 //        g.setColor(Color.DARK_GRAY);
 //        g.fillRect(0, 0, this.getWidth(), this.getHeight());
-        if (img != null) g.drawImage(img, 0, 0, this);
+        if (img != null) g.drawImage(img, this.getWidth() - 225,  190, this);
         super.paintComponent(g);
     }
     private boolean checkORG(){

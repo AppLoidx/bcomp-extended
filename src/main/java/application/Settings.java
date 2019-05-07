@@ -82,8 +82,4 @@ public final class Settings {
         init(SettingsData.getDefault());
     }
 
-    public static void main(String[] args) {
-        save();
-        init();
-    }
 }
