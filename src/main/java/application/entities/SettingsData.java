@@ -23,6 +23,7 @@ public class SettingsData implements Serializable {
     public Color busColor;
     @SerializedName("debug_marks")
     public List<Integer> markedAddrs;
+    public transient Image backgroundImage;
 
     public void save(){
         File file = new File("bcomp_data/settings.json");
@@ -63,7 +64,7 @@ public class SettingsData implements Serializable {
         data.busColor = Color.GRAY;
         data.busActiveColor = Color.RED;
         data.backgroundPath = null;
-
+        data.backgroundImage = null;
         return data;
     }
 }

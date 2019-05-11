@@ -91,6 +91,7 @@ public class MemoryView extends ActivateblePanel {
 
         memoryPane.setBounds(MEMORY_PANE_X, MEMORY_PANE_Y, MEMORY_PANE_DEFAULT_WIDTH, MEMORY_PANE_Y_DEFAULT_HEIGHT);
         memoryCapacityArea.setBounds(memoryPane.getX() + 50, memoryPane.getHeight()+ 20, 80, 18);
+        memoryCapacityAreaListenersSet();
         JLabel capacityAreaLabel = new JLabel();
         capacityAreaLabel.setText("Кол-во:");
         capacityAreaLabel.setBounds(memoryPane.getX(), memoryPane.getHeight() + 20,
@@ -114,7 +115,26 @@ public class MemoryView extends ActivateblePanel {
     public void panelDeactivate() {
 
     }
+    private void memoryCapacityAreaListenersSet(){
+        memoryCapacityArea.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
 
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER){
+                    onSearchButtonClick();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
+    }
     @Override
     public String getPanelName() {
         return "Memory";
@@ -142,159 +162,8 @@ public class MemoryView extends ActivateblePanel {
         searchButton.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                String text = addr.getText();
-                if (!text.matches("[0-9a-fA-F]+")) return;
-
-                int addr = Integer.parseInt(text, 16);
-                int passed = 0;     // если будет exception - необходимо сделать кат для pane
-                try {
-                    output.setText(fieldValue(addr));
-                    cleanData();
-
-                    if (memoryCapacityArea.getText().matches("[0-9]+")){
-                        memoryPaneCapacity = Integer.parseInt(memoryCapacityArea.getText());
-                    }
-
-                    for (int i = addr; i < addr + memoryPaneCapacity; i++) {
-                        JPanel pane = new JPanel();
-                        pane.setLayout(new BoxLayout(pane, BoxLayout.X_AXIS));
-                        JLabel l = new JLabel();
-                        l.setText(memoryTextEdit(Integer.toHexString(i)));
-
-                        l.setFont(monoFont);
-
-                        JTextPane textP = new JTextPane();
-
-                        textP.setText(memoryTextEdit(fieldValue(i)));
-
-                        textP.setFont(monoFont);
-
-                        textP.addFocusListener(new FocusListener() {
-                            @Override
-                            public void focusGained(FocusEvent e) {
-                                textP.setBackground(Color.ORANGE);
-                                textP.selectAll();
+                onSearchButtonClick();
                             }
-
-                            @Override
-                            public void focusLost(FocusEvent e) {
-                                textP.setBackground(memoryAddrValueColor);
-                            }
-                        });
-
-                        textP.addKeyListener(new KeyListener() {
-                            @Override
-                            public void keyTyped(KeyEvent e) {
-                                if (textP.getText().length() > 3){
-                                    if (textP.getSelectedText() == null || textP.getSelectedText().isEmpty()) {
-                                        e.consume();
-                                        return;
-                                    }
-
-                                    if (!(textP.getText().length() - textP.getSelectedText().length() < 5)){
-                                        e.consume();
-                                    }
-                                }
-
-                                char keyChar = e.getKeyChar();
-                                for (char c : supportedChars){
-                                    if (keyChar == c){
-
-                                        return;
-                                    }
-                                }
-                                if (e.getKeyCode() != KeyEvent.VK_BACK_SPACE){
-                                    e.consume();
-                                }
-
-                            }
-
-                            @Override
-                            public void keyPressed(KeyEvent e) {
-
-                                if (e.getKeyCode() != KeyEvent.VK_DOWN && e.getKeyCode() != KeyEvent.VK_UP)
-                                textP.setBackground(memoryAddrValueColor);
-
-                                if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_UP) {
-                                    e.consume();
-                                    boolean focusAddrFound = false;
-                                    boolean focusAddrIsNotSet = true;
-
-                                    JTextPane lastAddr = null;
-
-                                    for (JTextPane text : memoryMap.values()) {
-                                        if (focusAddrFound) {
-                                            if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_ENTER) {
-                                                text.requestFocus();
-                                                focusAddrIsNotSet = false;
-                                                break;
-                                            } else {
-                                                if (lastAddr != null) {
-                                                    lastAddr.requestFocus();
-                                                    focusAddrIsNotSet = false;
-                                                    break;
-                                                } else {
-                                                    if (!memoryMap.isEmpty()) {
-                                                        Iterator<JTextPane> i = memoryMap.values().iterator();
-                                                        JTextPane last = text;
-                                                        while (i.hasNext()) last = i.next();
-                                                        if (last != null) last.requestFocus();
-                                                    }
-                                                    break;
-                                                }
-                                            }
-                                        }
-                                        if (text.isFocusOwner()) {
-                                            focusAddrFound = true;
-                                            continue;   // чтобы не заполнять lastAddr
-                                        }
-
-                                        lastAddr = text;
-                                    }
-                                    if (focusAddrIsNotSet) {
-                                        if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_ENTER) {
-                                            if (!memoryMap.isEmpty()) {
-                                                memoryMap.values().iterator().next().requestFocus();
-                                            }
-                                        } else {
-                                        /*
-                                            На последнем элементе, если не было обработки last item
-                                            т.к. цикл foreach обрывается при окончании keySet()
-                                         */
-                                            if (lastAddr != null) {
-                                                lastAddr.requestFocus();
-                                            }
-                                        }
-                                    }
-
-                                    if (textP.getText().isEmpty()) textP.setText("0000");
-                                }
-
-
-
-                            }
-
-                            @Override
-                            public void keyReleased(KeyEvent e) {
-
-                            }
-                        });
-
-
-                        pane.add(l);
-                        pane.add(textP);
-
-                        memoryMap.put(l, textP);
-
-                        memoryInnerPane.add(pane);
-                        passed++;
-                    }
-                    updateMemoryPane();
-
-                }catch (ArrayIndexOutOfBoundsException exp){
-                    updateMemoryPane(passed);
-                }
-            }
 
 
             @Override
@@ -356,7 +225,161 @@ public class MemoryView extends ActivateblePanel {
         });
 
     }
+    private void onSearchButtonClick(){
+        String text = addr.getText();
+        if (!text.matches("[0-9a-fA-F]+")) return;
 
+        int addr = Integer.parseInt(text, 16);
+        int passed = 0;     // если будет exception - необходимо сделать кат для pane
+        try {
+            output.setText(fieldValue(addr));
+            cleanData();
+
+            if (memoryCapacityArea.getText().matches("[0-9]+")){
+                memoryPaneCapacity = Integer.parseInt(memoryCapacityArea.getText());
+            }
+
+            for (int i = addr; i < addr + memoryPaneCapacity; i++) {
+                JPanel pane = new JPanel();
+                pane.setLayout(new BoxLayout(pane, BoxLayout.X_AXIS));
+                JLabel l = new JLabel();
+                l.setText(memoryTextEdit(Integer.toHexString(i)));
+
+                l.setFont(monoFont);
+
+                JTextPane textP = new JTextPane();
+
+                textP.setText(memoryTextEdit(fieldValue(i)));
+
+                textP.setFont(monoFont);
+
+                textP.addFocusListener(new FocusListener() {
+                    @Override
+                    public void focusGained(FocusEvent e) {
+                        textP.setBackground(Color.ORANGE);
+                        textP.selectAll();
+                    }
+
+                    @Override
+                    public void focusLost(FocusEvent e) {
+                        textP.setBackground(memoryAddrValueColor);
+                    }
+                });
+
+                textP.addKeyListener(new KeyListener() {
+                    @Override
+                    public void keyTyped(KeyEvent e) {
+                        if (textP.getText().length() > 3){
+                            if (textP.getSelectedText() == null || textP.getSelectedText().isEmpty()) {
+                                e.consume();
+                                return;
+                            }
+
+                            if (!(textP.getText().length() - textP.getSelectedText().length() < 5)){
+                                e.consume();
+                            }
+                        }
+
+                        char keyChar = e.getKeyChar();
+                        for (char c : supportedChars){
+                            if (keyChar == c){
+
+                                return;
+                            }
+                        }
+                        if (e.getKeyCode() != KeyEvent.VK_BACK_SPACE){
+                            e.consume();
+                        }
+
+                    }
+
+                    @Override
+                    public void keyPressed(KeyEvent e) {
+
+                        if (e.getKeyCode() != KeyEvent.VK_DOWN && e.getKeyCode() != KeyEvent.VK_UP)
+                            textP.setBackground(memoryAddrValueColor);
+
+                        if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_ENTER || e.getKeyCode() == KeyEvent.VK_UP) {
+                            e.consume();
+                            boolean focusAddrFound = false;
+                            boolean focusAddrIsNotSet = true;
+
+                            JTextPane lastAddr = null;
+
+                            for (JTextPane text : memoryMap.values()) {
+                                if (focusAddrFound) {
+                                    if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_ENTER) {
+                                        text.requestFocus();
+                                        focusAddrIsNotSet = false;
+                                        break;
+                                    } else {
+                                        if (lastAddr != null) {
+                                            lastAddr.requestFocus();
+                                            focusAddrIsNotSet = false;
+                                            break;
+                                        } else {
+                                            if (!memoryMap.isEmpty()) {
+                                                Iterator<JTextPane> i = memoryMap.values().iterator();
+                                                JTextPane last = text;
+                                                while (i.hasNext()) last = i.next();
+                                                if (last != null) last.requestFocus();
+                                            }
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (text.isFocusOwner()) {
+                                    focusAddrFound = true;
+                                    continue;   // чтобы не заполнять lastAddr
+                                }
+
+                                lastAddr = text;
+                            }
+                            if (focusAddrIsNotSet) {
+                                if (e.getKeyCode() == KeyEvent.VK_DOWN || e.getKeyCode() == KeyEvent.VK_ENTER) {
+                                    if (!memoryMap.isEmpty()) {
+                                        memoryMap.values().iterator().next().requestFocus();
+                                    }
+                                } else {
+                                        /*
+                                            На последнем элементе, если не было обработки last item
+                                            т.к. цикл foreach обрывается при окончании keySet()
+                                         */
+                                    if (lastAddr != null) {
+                                        lastAddr.requestFocus();
+                                    }
+                                }
+                            }
+
+                            if (textP.getText().isEmpty()) textP.setText("0000");
+                        }
+
+
+
+                    }
+
+                    @Override
+                    public void keyReleased(KeyEvent e) {
+
+                    }
+                });
+
+
+                pane.add(l);
+                pane.add(textP);
+
+                memoryMap.put(l, textP);
+
+                memoryInnerPane.add(pane);
+                passed++;
+            }
+            updateMemoryPane();
+
+        }catch (ArrayIndexOutOfBoundsException exp){
+            updateMemoryPane(passed);
+        }
+
+    }
     private void updateMemoryPane(){
         setMemoryPaneBounds(memoryPaneCapacity);
     }

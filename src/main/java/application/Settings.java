@@ -65,7 +65,9 @@ public final class Settings {
         init(data);
     }
     public static void setDefault(){
-        init(SettingsData.getDefault());
+        SettingsData data = SettingsData.getDefault();
+        init(data);
+        backgroundImage = data.backgroundImage;
     }
     private static void downloadImage(){
         try {
