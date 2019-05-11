@@ -393,6 +393,13 @@ public class MemoryView extends ActivateblePanel {
         declineBtn.setBounds(MARGIN_X + BUTTON_WIDTH, MARGIN_Y + 50, BUTTON_WIDTH, DEFAULT_HEIGHT);
         showMarkedAddrBtn.setBounds(MARGIN_X, MARGIN_Y + 50 + DEFAULT_HEIGHT, BUTTON_WIDTH*2, DEFAULT_HEIGHT);
 
+        // BETA VERSION =======================
+        acceptBtn.setEnabled(false);
+        declineBtn.setEnabled(false);
+        addrField.setEnabled(false);
+        showMarkedAddrBtn.setEnabled(false);
+        // ====================================
+
         this.add(label);
         this.add(addrField);
         this.add(acceptBtn);
