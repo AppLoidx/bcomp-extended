@@ -27,24 +27,6 @@ public abstract class BCompPanel extends ru.ifmo.cs.bcomp.ui.components.BCompPan
     private final BusView[] buses;
     private SignalListener[] listeners;
 
-    public static Image img;
-
-    {
-        try {
-
-            String backgroundPath;
-            InputStream in = null;
-            if (Settings.getBackgroundPath() !=null){
-                backgroundPath = Settings.getBackgroundPath();
-                in = new FileInputStream(new File(backgroundPath));
-            }
-            if (in!=null) img = ImageIO.read(in).getScaledInstance(DisplayStyles.SCALED_BACKGROUND_IMG_WIDTH, DisplayStyles.SCALED_BACKGROUND_IMG_HEIGHT, Image.SCALE_DEFAULT);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     public BCompPanel(ComponentManager cmanager, RegisterProperties[] regProps, BusView[] buses) {
         super(cmanager, regProps, buses);
         this.cmanager = cmanager;
@@ -139,7 +121,7 @@ public abstract class BCompPanel extends ru.ifmo.cs.bcomp.ui.components.BCompPan
     }
 
     public void paintComponent(Graphics g) {
-        if (img !=null)  g.drawImage(img, 0, 0, this);
+        if (Settings.getBackgroundImage() !=null)  g.drawImage(Settings.getBackgroundImage(), 0, 0, this);
 
         this.drawBuses(g);
 
