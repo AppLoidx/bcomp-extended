@@ -460,4 +460,8 @@ public class ComponentManager extends ru.ifmo.cs.bcomp.ui.components.ComponentMa
     public void setCuswitch(boolean cuswitch) {
         this.cuswitch = cuswitch;
     }
+
+    public BCompPanel getActivePanel(){
+        return this.activePanel;
+    }
 }
