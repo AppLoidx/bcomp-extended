@@ -10,10 +10,7 @@ import javax.swing.filechooser.FileFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 
 /**
  * @author Arthur Kupriyanov
@@ -103,15 +100,17 @@ public class SettingsView extends ActivateblePanel {
 
             String backgroundPath = "/zero-two.jpg";
             InputStream in;
-            if (Settings.getBackgroundPath() !=null){
+            if (Settings.getBackgroundPath() != null) {
                 backgroundPath = Settings.getBackgroundPath();
                 in = new FileInputStream(new File(backgroundPath));
             } else {
                 in = getClass().getResourceAsStream(backgroundPath);
             }
-            if (in!=null){
+            if (in != null) {
                 img = ImageIO.read(in).getScaledInstance(650, 450, Image.SCALE_DEFAULT);
             }
+        }catch (FileNotFoundException e){
+            System.err.println("Файл не найден по пути " + Settings.getBackgroundPath());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -141,7 +140,7 @@ public class SettingsView extends ActivateblePanel {
             if (bus==0) Settings.setBusColor(colorChooser.getColor());
             else Settings.setActiveBusColor(colorChooser.getColor());
 
-            JOptionPane.showMessageDialog(this, "Перезапустите приложение, чтобы изменения вступили в силу");
+            // JOptionPane.showMessageDialog(this, "Перезапустите приложение, чтобы изменения вступили в силу");
             frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
         });
 
