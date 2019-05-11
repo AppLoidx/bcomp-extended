@@ -14,7 +14,7 @@ public final class Settings {
     private static String backgroundPath;
     private static Color busColor = DisplayStyles.COLOR_BUS;
     private static Color activeBusColor = DisplayStyles.COLOR_ACTIVE;
-
+    private static Image backgroundImage;
     private static boolean saveDebugMarks = false;
 
     public static int getTickFinishSleepTime() {
@@ -31,21 +31,7 @@ public final class Settings {
 
     public static void setBackgroundPath(String backgroundPath) {
         Settings.backgroundPath = backgroundPath;
-        try {
-            if (backgroundPath==null){
-                BCompPanel.img = null;
-                return;
-            }
-            BCompPanel.img = ImageIO.read(
-                    new FileInputStream(new File(backgroundPath)))
-                    .getScaledInstance(
-                            DisplayStyles.SCALED_BACKGROUND_IMG_WIDTH,
-                            DisplayStyles.SCALED_BACKGROUND_IMG_HEIGHT,
-                            Image.SCALE_DEFAULT);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        downloadImage();    // перезагрузка фонового изображения
     }
 
     public static void setBusColor(@NotNull Color busColor) {
@@ -81,5 +67,22 @@ public final class Settings {
     public static void setDefault(){
         init(SettingsData.getDefault());
     }
+    private static void downloadImage(){
+        try {
 
+            String backgroundPath;
+            InputStream in = null;
+            if (Settings.getBackgroundPath() !=null){
+                backgroundPath = Settings.getBackgroundPath();
+                in = new FileInputStream(new File(backgroundPath));
+            }
+            if (in!=null) backgroundImage = ImageIO.read(in).getScaledInstance(DisplayStyles.SCALED_BACKGROUND_IMG_WIDTH, DisplayStyles.SCALED_BACKGROUND_IMG_HEIGHT, Image.SCALE_DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Image getBackgroundImage() {
+        return backgroundImage;
+    }
 }
