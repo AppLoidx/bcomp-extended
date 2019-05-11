@@ -203,16 +203,14 @@ public class IOView extends application.BCompPanel {
 
     public void stepFinish() {
         super.stepFinish();
-        Iterator i$ = this.cmanager.getActiveSignals().iterator();
 
-        while(i$.hasNext()) {
-            ControlSignal signal = (ControlSignal)i$.next();
-            switch(signal) {
-            case IO1_OUT:
-                this.ioregs[0].setValue();
-                break;
-            case IO3_OUT:
-                this.ioregs[2].setValue();
+        for (ControlSignal signal : this.cmanager.getActiveSignals()) {
+            switch (signal) {
+                case IO1_OUT:
+                    this.ioregs[0].setValue();
+                    break;
+                case IO3_OUT:
+                    this.ioregs[2].setValue();
             }
         }
 
@@ -221,7 +219,7 @@ public class IOView extends application.BCompPanel {
     private class FlagListener implements DataDestination {
         private final JButton flag;
 
-        public FlagListener(JButton flag) {
+        FlagListener(JButton flag) {
             this.flag = flag;
         }
 
