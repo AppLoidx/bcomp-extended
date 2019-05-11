@@ -181,14 +181,16 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
      *
      * Вызывается, при срабатывании метода в setTickFinishListener {@link CPU}
      */
-    public void stepFinishViewElements() {
+    private void stepFinishViewElements() {
         basicView.stepFinish();
         ioView.stepFinish();
     }
 
     public void setSettingsTickTime(){
+        reDrawBuses();
         cpu.setTickFinishListener(() -> {
-            stepFinishViewElements();  // строго до вызова метода sleep
+            BCompPanel panel  = cmanager.getActivePanel();
+            if (panel!=null) panel.stepFinish();
             try {
                 Thread.sleep(Settings.getTickFinishSleepTime());
 
@@ -197,6 +199,10 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
             }
 
         });
+    }
+
+    private synchronized void reDrawBuses(){
+        stepFinishViewElements();  // строго до вызова метода sleep
     }
 
 }
