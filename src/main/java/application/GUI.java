@@ -26,9 +26,12 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
     private final CPU cpu;
     private final GUI pairgui;
     private ActivateblePanel[] panes;
-
+    private Runnable onTickFinishAction;
     private BasicView basicView;
     private IOView ioView;
+    private ConsoleView consoleView;
+    private boolean traceLogging = false;
+    public boolean IOAlwaysReady = false;
 
     public GUI(MicroProgram mp, GUI pairgui) throws Exception {
         this.activePanel = null;
@@ -54,6 +57,7 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
         this.bcomp.startTimer();
         basicView = new BasicView(this);
         ioView = new IOView(this, this.pairgui);
+        consoleView = new ConsoleView(this);
         panes = new ActivateblePanel[]{
                 basicView,
                 ioView,
@@ -61,7 +65,7 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
                 new AssemblerView(this),
                 new CheatSheetView(this),
                 new MemoryView(this),
-                new ConsoleView(this),
+                consoleView,
                 new SettingsView(this)
         };
 
@@ -189,6 +193,8 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
     public void setSettingsTickTime(){
         reDrawBuses();
         cpu.setTickFinishListener(() -> {
+            if (IOAlwaysReady) this.ioView.getIoctrls()[3].setFlag();
+            if (onTickFinishAction!=null) onTickFinishAction.run();
             BCompPanel panel  = cmanager.getActivePanel();
             if (panel!=null) panel.stepFinish();
             try {
@@ -201,8 +207,32 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
         });
     }
 
+    public Runnable setOnTickFinishAction(Runnable r){
+        Runnable oldRunnable = null;
+        if (onTickFinishAction!=null) {
+            oldRunnable = onTickFinishAction;
+        }
+
+        onTickFinishAction = r;
+        return oldRunnable;
+
+    }
+
     private synchronized void reDrawBuses(){
         stepFinishViewElements();  // строго до вызова метода sleep
     }
 
+    public void traceLog(String log){
+        consoleView.addConsoleText(log);
+    }
+
+
+
+    public void setTraceLogging(boolean value){
+        traceLogging = value;
+    }
+
+    public IOView getIoView() {
+        return ioView;
+    }
 }
