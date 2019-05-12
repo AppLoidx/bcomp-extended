@@ -12,7 +12,7 @@ java -jar -Dmode=gui bcomp-extended-[version].jar
 java -jar -Dmode=encoder bcomp-extended-[version].jar
 ```
 
-#### Последний релиз: https://github.com/AppLoidx/bcomp-extended/releases/latest
+### Скачать JAR: https://github.com/AppLoidx/bcomp-extended/releases/latest
 #### Все jar: https://github.com/AppLoidx/bcomp-extended/releases
 #### Документация: [wiki](https://github.com/AppLoidx/bcomp-extended/wiki)
 
