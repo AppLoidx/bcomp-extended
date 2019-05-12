@@ -103,7 +103,7 @@ public class CustomCLI {
 
     private void printRegsTitle() {
         if (this.printRegsTitle) {
-            outputStream.writeln(this.cpu.getClockState() ? "Адр Знчн СК РА  РК  РД  А  C Адр Знчн\n" : "Адр МК СК РА РК РД  А  C БР N Z СчМК\n");
+            outputStream.writeln(this.cpu.getClockState() ? "Адр\t Знчн\t  СК\t  РА\t  РК\t  РД\t     А\t C\t  Адр\tЗнчн\n" : "Адр\t МК\t   СК\t  РА\t  РК\t  РД\t     А\t C\t   БР\t  N\t Z\t СчМК\n");
             this.printRegsTitle = false;
         }
 
@@ -131,7 +131,7 @@ public class CustomCLI {
     }
 
     private void printRegs(String add) {
-        outputStream.writeln(this.cpu.getClockState() ? this.getMemory(this.addr) + " " + this.getRegs() + add : this.getMicroMemory(this.addr) + " " + this.getRegs() + " " + this.getReg(CPU.Reg.BUF) + " " + this.getFormattedState(2) + " " + this.getFormattedState(1) + "  " + this.getReg(CPU.Reg.MIP));
+        outputStream.writeln((this.cpu.getClockState() ? this.getMemory(this.addr) + " " + this.getRegs() + add : this.getMicroMemory(this.addr) + " " + this.getRegs() + " " + this.getReg(CPU.Reg.BUF) + " " + this.getFormattedState(2) + " " + this.getFormattedState(1) + "  " + this.getReg(CPU.Reg.MIP)).replace(" ", "\t"));
     }
 
     private void printIO(int ioaddr) {
