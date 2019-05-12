@@ -1,5 +1,6 @@
 package application.entities;
 
+import application.DisplayStyles;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 
@@ -57,7 +58,7 @@ public class SettingsData implements Serializable {
 
     public static SettingsData getDefault(){
         SettingsData data = new SettingsData();
-        data.busColor = Color.GRAY;
+        data.busColor = Color.lightGray;
         data.busActiveColor = Color.RED;
         data.backgroundPath = null;
         data.backgroundImage = null;
