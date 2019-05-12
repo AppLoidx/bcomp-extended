@@ -1,7 +1,6 @@
 package application;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
@@ -11,8 +10,7 @@ public class Debugger {
     public static List<Integer> markedAddrs = new ArrayList<>();
 
     public static boolean checkIsMarked(int addr){
-        int markedAddr = Collections.binarySearch(markedAddrs, addr);
-        return markedAddr > 0;
+        return markedAddrs.contains(addr);
     }
     public static void add(int addr){
         if (!markedAddrs.contains(addr)){
@@ -22,4 +20,5 @@ public class Debugger {
     public static void delete(int addr){
         markedAddrs.remove(new Integer(addr));
     }
+
 }

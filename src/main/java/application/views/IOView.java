@@ -129,7 +129,7 @@ public class IOView extends application.BCompPanel {
 
         for(int i = 0; i < this.ioregs.length; ++i) {
             int x = application.DisplayStyles.IO_X + i * application.DisplayStyles.IO_DELIM;
-            this.ioregs[i] = (RegisterView)(i == 0 ? new RegisterView(this.ioctrls[i + 1].getRegData()) : new InputRegisterView(this.cmanager, this.ioctrls[i + 1].getRegData()));
+            this.ioregs[i] = i == 0 ? new RegisterView(this.ioctrls[i + 1].getRegData()) : new InputRegisterView(this.cmanager, this.ioctrls[i + 1].getRegData());
             this.ioregs[i].setProperties(x, 328, false);
             this.add(this.ioregs[i]);
             this.flags[i].setFont(application.DisplayStyles.FONT_BUTTONS_PANEL_TEXT);
@@ -154,6 +154,7 @@ public class IOView extends application.BCompPanel {
             }
         };
         this.setSignalListeners(new SignalListener[]{new SignalListener(this.ioregs[0], ControlSignal.IO1_OUT), new SignalListener(this.ioregs[2], new ControlSignal[]{ControlSignal.IO3_OUT}), new SignalListener(intrListener, new ControlSignal[]{ControlSignal.IO1_SETFLAG}), new SignalListener(intrListener, new ControlSignal[]{ControlSignal.IO2_SETFLAG}), new SignalListener(intrListener, new ControlSignal[]{ControlSignal.IO3_SETFLAG})});
+
     }
 
     private void addLabel(String text, int y) {

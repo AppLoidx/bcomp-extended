@@ -9,6 +9,7 @@ package application.views;
 import application.BCompPanel;
 import application.DisplayStyles;
 import application.GUI;
+import application.views.nonvisible.RunningCycleView;
 import ru.ifmo.cs.bcomp.CPU;
 import ru.ifmo.cs.bcomp.CPU.Reg;
 import ru.ifmo.cs.bcomp.ControlSignal;
@@ -16,7 +17,7 @@ import ru.ifmo.cs.bcomp.SignalListener;
 import ru.ifmo.cs.bcomp.ui.components.ALUView;
 import ru.ifmo.cs.bcomp.ui.components.BusView;
 import ru.ifmo.cs.bcomp.ui.components.RegisterProperties;
-import ru.ifmo.cs.bcomp.ui.components.RunningCycleView;
+
 
 /**
  * From original bcomp edited by Arthur Kupriyanov

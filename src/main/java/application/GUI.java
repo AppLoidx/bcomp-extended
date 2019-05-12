@@ -53,6 +53,7 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
     }
 
     public void init() {
+        CycleActionManager.setGui(this);
         this.cmanager = new ComponentManager(GUI.this);
         this.bcomp.startTimer();
         basicView = new BasicView(this);

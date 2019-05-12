@@ -8,8 +8,10 @@ import ru.ifmo.cs.elements.Memory;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 
 /**
@@ -42,18 +44,22 @@ public class MemoryView extends ActivateblePanel {
     private final Color memoryAddrValueColor;
 
     private final Font monoFont = new Font("Courier New", Font.BOLD, 14);
+    private final Font markFont = new Font("Courier New", Font.PLAIN, 12);
     private JTextField memoryCapacityArea = new JTextField();
+    private JPanel markedAddrPane = new JPanel();
+    private JScrollPane markedAddrScroll = new JScrollPane(markedAddrPane);
 
     public MemoryView(GUI gui){
 
 //        CPU cpu = gui.getCPU();
         memory = gui.getCPU().getMemory();
         memoryAddrValueColor = new JTextPane().getBackground();
-
+        markedAddrScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 
         this.gui = gui;
         this.memoryInnerPane.setLayout(new BoxLayout(this.memoryInnerPane, BoxLayout.Y_AXIS));
+        this.markedAddrPane.setLayout(new BoxLayout(this.markedAddrPane, BoxLayout.Y_AXIS));
 
         JLabel panel = new JLabel();
 
@@ -101,6 +107,7 @@ public class MemoryView extends ActivateblePanel {
         this.add(capacityAreaLabel);
 
         drawDebugger();
+        showMarkedAddresses();
 
 //        encodeButton.setBounds(MEMORY_PANE_X+ memoryPane.getWidth() + 50, MEMORY_PANE_Y, 200, 30);
 //        this.add(encodeButton);
@@ -108,7 +115,7 @@ public class MemoryView extends ActivateblePanel {
 
     @Override
     public void panelActivate() {
-
+        updateMarkedAddresses();
     }
 
     @Override
@@ -201,6 +208,7 @@ public class MemoryView extends ActivateblePanel {
                     }
 
                 }
+                updateMarkedAddresses();
             }
 
             @Override
@@ -408,27 +416,43 @@ public class MemoryView extends ActivateblePanel {
         JTextField addrField = new JTextField();
         JButton acceptBtn = new JButton("Поставить метку");
         JButton declineBtn = new JButton("Убрать метку");
-        JButton showMarkedAddrBtn = new JButton("Показать помеченные адреса");
 
         label.setBounds(MARGIN_X, MARGIN_Y, 150, 50);
         addrField.setBounds(MARGIN_X + 150, MARGIN_Y + 10, 100, 30);
         acceptBtn.setBounds(MARGIN_X, MARGIN_Y + 50, BUTTON_WIDTH, DEFAULT_HEIGHT);
         declineBtn.setBounds(MARGIN_X + BUTTON_WIDTH, MARGIN_Y + 50, BUTTON_WIDTH, DEFAULT_HEIGHT);
-        showMarkedAddrBtn.setBounds(MARGIN_X, MARGIN_Y + 50 + DEFAULT_HEIGHT, BUTTON_WIDTH*2, DEFAULT_HEIGHT);
-
-        // BETA VERSION =======================
-        acceptBtn.setEnabled(false);
-        declineBtn.setEnabled(false);
-        addrField.setEnabled(false);
-        showMarkedAddrBtn.setEnabled(false);
-        // ====================================
 
         this.add(label);
         this.add(addrField);
         this.add(acceptBtn);
         this.add(declineBtn);
-        this.add(showMarkedAddrBtn);
 
+        addrField.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                addrField.selectAll();
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
         acceptBtn.addActionListener( a-> {
             String addr = addrField.getText();
             if (addr==null) return;
@@ -440,6 +464,7 @@ public class MemoryView extends ActivateblePanel {
                 }
                 Debugger.add(addrValue);
                 System.out.println(Debugger.markedAddrs);
+                updateMarkedAddresses();
             } else {
                 showErrorMsg( "Введите числовое значение в 16 radix");
             }
@@ -452,21 +477,49 @@ public class MemoryView extends ActivateblePanel {
                 int addrValue = Integer.parseInt(addr, 16);
                 Debugger.delete(addrValue);
                 System.out.println(Debugger.markedAddrs);
+                updateMarkedAddresses();
             } else {
                 JOptionPane.showMessageDialog(this, "Введите числовое значение в 16 radix");
             }
         });
 
-
-
-
-    }
-    private void createMarkedAddrWindow(){
-        JFrame frame = new JFrame();
-
     }
 
     private void showErrorMsg(String msg){
         JOptionPane.showMessageDialog(this, msg, "Ошибка", JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void showMarkedAddresses() {
+        final int MARGIN_X = MEMORY_PANE_X + MEMORY_PANE_DEFAULT_WIDTH + 20;
+
+
+        List<Integer> mAddresses = Debugger.markedAddrs;
+        for (int a : mAddresses) {
+            JTextField field = new JTextField();
+            field.setText( "   " +a + "\t------\t" + this.memory.getValue(a) + "   ");
+
+            markedAddrPane.add(field);
+        }
+//        markedAddrPane.setBounds(MARGIN_X, SEARCH_BOX_Y + 100, 200, 400);
+        markedAddrScroll.setBounds(MARGIN_X, SEARCH_BOX_Y + 100, 100, 400);
+        this.add(markedAddrScroll);
+    }
+
+    private void updateMarkedAddresses(){
+        List<Integer> mAddresses = Debugger.markedAddrs;
+        markedAddrPane.removeAll();
+        int count = 0;
+        for (int a : mAddresses) {
+            JTextField field = new JTextField();
+            StringBuilder hex = new StringBuilder(Integer.toHexString(a));
+            while (hex.length() < 4) hex.insert(0, "0");
+            field.setText(hex + ": " + Integer.toHexString(this.memory.getValue(a)));
+            field.setFont(markFont);
+            field.setEditable(false);
+            markedAddrPane.add(field);
+            count++;
+        }
+        markedAddrScroll.revalidate();
+
     }
 }
