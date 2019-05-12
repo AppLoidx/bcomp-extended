@@ -34,7 +34,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>application.Nightmare</mainClass>
+                            <mainClass>application.Main</mainClass>
                         </manifest>
 
 

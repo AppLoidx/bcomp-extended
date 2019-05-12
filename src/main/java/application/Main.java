@@ -12,7 +12,7 @@ import ru.ifmo.cs.bcomp.ui.MPDecoder;
  * @author Arthur Kupriyanov
  *
  */
-public class Nightmare {
+public class Main {
     public static void main(String[] args) throws Exception {
         String mpname;
         String app;
