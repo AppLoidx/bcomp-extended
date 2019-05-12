@@ -9,6 +9,11 @@ package application.views;
 
 import application.DisplayStyles;
 import application.GUI;
+import application.RegisterView;
+import application.MicroMemoryView;
+import application.ALUView;
+
+
 import ru.ifmo.cs.bcomp.CPU.Reg;
 import ru.ifmo.cs.bcomp.ControlSignal;
 import ru.ifmo.cs.bcomp.SignalListener;
@@ -57,7 +62,7 @@ public class MPView extends application.BCompPanel {
         JPanel checkBoxPanel = new JPanel(){
             protected void paintComponent(Graphics g)
             {
-                g.setColor( getBackground() );
+                g.setColor( DisplayStyles.COLOR_INPUT_TITLE );
                 g.fillRect(0, 0, getWidth(), getHeight());
                 super.paintComponent(g);
             }

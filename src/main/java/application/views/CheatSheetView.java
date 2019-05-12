@@ -32,7 +32,7 @@ public class CheatSheetView extends ActivateblePanel {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, this.getWidth(), this.getHeight());
 
-        g.drawImage(img, 150 ,0 ,Color.WHITE, this);
+        g.drawImage(img, 150 ,0 ,new Color(30,39,45), this);
 
     }
 

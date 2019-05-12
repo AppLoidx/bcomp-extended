@@ -1,6 +1,7 @@
 package application.views;
 
 import application.Debugger;
+import application.DisplayStyles;
 import application.GUI;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
 import ru.ifmo.cs.elements.Memory;
@@ -55,21 +56,24 @@ public class MemoryView extends ActivateblePanel {
         memory = gui.getCPU().getMemory();
         memoryAddrValueColor = new JTextPane().getBackground();
         markedAddrScroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
+        markedAddrScroll.setBackground(DisplayStyles.COLOR_INPUT_BODY);
 
         this.gui = gui;
         this.memoryInnerPane.setLayout(new BoxLayout(this.memoryInnerPane, BoxLayout.Y_AXIS));
+        this.memoryInnerPane.setBackground(DisplayStyles.COLOR_INPUT_BODY);
         this.markedAddrPane.setLayout(new BoxLayout(this.markedAddrPane, BoxLayout.Y_AXIS));
+        this.markedAddrPane.setBackground(DisplayStyles.COLOR_INPUT_BODY);
 
         JLabel panel = new JLabel();
 
 
         JLabel labelAddr = new JLabel();
         labelAddr.setText("Адрес: ");
+        labelAddr.setForeground(DisplayStyles.MAIN_TEXT_COLOR);
 
         JLabel labelVal = new JLabel();
         labelVal.setText("Значение: ");
-
+        labelVal.setForeground(DisplayStyles.MAIN_TEXT_COLOR);
 
         searchButton.setBounds(SEARCH_BOX_X  + 100, SEARCH_BOX_Y + 60, 100, 25);
         acceptButton.setBounds(SEARCH_BOX_X  + 100, SEARCH_BOX_Y + 90, 100, 25);
@@ -97,9 +101,12 @@ public class MemoryView extends ActivateblePanel {
 
         memoryPane.setBounds(MEMORY_PANE_X, MEMORY_PANE_Y, MEMORY_PANE_DEFAULT_WIDTH, MEMORY_PANE_Y_DEFAULT_HEIGHT);
         memoryCapacityArea.setBounds(memoryPane.getX() + 50, memoryPane.getHeight()+ 20, 80, 18);
+        memoryCapacityArea.setBackground(DisplayStyles.COLOR_INPUT_BODY);
+        memoryCapacityArea.setForeground(DisplayStyles.MAIN_TEXT_COLOR);
         memoryCapacityAreaListenersSet();
         JLabel capacityAreaLabel = new JLabel();
         capacityAreaLabel.setText("Кол-во:");
+        capacityAreaLabel.setForeground(DisplayStyles.MAIN_TEXT_COLOR);
         capacityAreaLabel.setBounds(memoryPane.getX(), memoryPane.getHeight() + 20,
                 memoryPane.getWidth() - memoryCapacityArea.getWidth(), 18);
         this.add(memoryPane);
@@ -412,6 +419,7 @@ public class MemoryView extends ActivateblePanel {
         final int BUTTON_WIDTH = 180;
         final int DEFAULT_HEIGHT = 30;
         JLabel label = new JLabel("Debugger");
+        label.setForeground(DisplayStyles.MAIN_TEXT_COLOR);
         label.setFont(new Font("Courier New", Font.BOLD, 24));
         JTextField addrField = new JTextField();
         JButton acceptBtn = new JButton("Поставить метку");
@@ -519,5 +527,10 @@ public class MemoryView extends ActivateblePanel {
         }
         markedAddrScroll.revalidate();
 
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        DisplayStyles.setGraphics(g, this);
     }
 }

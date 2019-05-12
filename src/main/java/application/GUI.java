@@ -2,11 +2,13 @@ package application;
 
 
 import application.views.*;
+import application.views.MemoryView;
 import ru.ifmo.cs.bcomp.*;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -19,7 +21,7 @@ import java.util.ArrayList;
  * From original bcomp edited by Arthur Kupriyanov
  *
  */
-public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
+public class GUI extends JApplet {
     private ComponentManager cmanager;
     private JTabbedPane tabs;
     private ActivateblePanel activePanel;
@@ -32,6 +34,7 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
     private IOView ioView;
     private ConsoleView consoleView;
     public boolean IOAlwaysReady = false;
+    private int lastPanelIndex = 0;
 
     public GUI(MicroProgram mp, GUI pairgui) throws Exception {
         this.activePanel = null;
@@ -72,7 +75,18 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
 
 
         // Верхние вкладки
-        this.tabs = new JTabbedPane();
+        this.tabs = new JTabbedPane(){
+            @Override
+            protected void paintComponent(Graphics g) {
+                g.setColor(DisplayStyles.COLOR_BACKGROUND_STYLE);
+                g.fillRect(0 ,0, this.getWidth(), this.getHeight());
+                super.paintComponent(g);
+            }
+
+
+
+        };
+
         this.tabs.addKeyListener(this.cmanager.getKeyListener());
         this.tabs.addChangeListener(e -> {
             if (GUI.this.activePanel != null) {
@@ -81,26 +95,27 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
 
             GUI.this.activePanel = (ActivateblePanel) GUI.this.tabs.getSelectedComponent();
             GUI.this.activePanel.panelActivate();
+            tabs.setForegroundAt(tabs.getSelectedIndex(), new Color(30,39,45));
+            tabs.setForegroundAt(lastPanelIndex, Color.white);
+            lastPanelIndex = tabs.getSelectedIndex();
         });
 
         for (ActivateblePanel pane : panes) {
             pane.setPreferredSize(DisplayStyles.PANE_SIZE);
-
+            pane.setBackground(new Color(43,43,43));
             this.tabs.addTab(pane.getPanelName(), pane);
         }
-
+        this.tabs.setBackground(DisplayStyles.COLOR_INPUT_TITLE);
+        this.tabs.setForeground(Color.white);
         this.add(this.tabs);
-
     }
 
     public void start() {
-        this.cmanager.switchFocus();
+        this.cmanager.switchFocus   ();
     }
 
     public void gui() {
-        JFrame mainFrame = new JFrame("БЭВМ"){
-
-        };
+        JFrame mainFrame = new JFrame("Эмулятор БЭВМ");
         try {
             InputStream in = GUI.class.getClassLoader().getResourceAsStream("app-icon.png");
             if (in!=null){
@@ -154,6 +169,7 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
             }
         });
         mainFrame.getContentPane().add(this);
+
         this.init();
         mainFrame.pack();
         mainFrame.setResizable(false);

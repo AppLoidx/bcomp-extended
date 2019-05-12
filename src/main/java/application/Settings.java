@@ -59,8 +59,8 @@ public final class Settings {
     }
     private static void init(SettingsData data){
         Settings.setBackgroundPath(data.backgroundPath);
-        Settings.setActiveBusColor(data.busActiveColor==null?Color.RED:data.busActiveColor);
-        Settings.setBusColor(data.busColor==null?Color.GRAY:data.busColor);
+        Settings.setActiveBusColor(data.busActiveColor==null?DisplayStyles.COLOR_ACTIVE:data.busActiveColor);
+        Settings.setBusColor(data.busColor==null?DisplayStyles.COLOR_BUS:data.busColor);
         if (data.markedAddrs!=null) Debugger.markedAddrs = data.markedAddrs;
     }
     public static void init(){

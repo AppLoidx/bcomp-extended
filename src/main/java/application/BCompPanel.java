@@ -8,22 +8,21 @@ package application;
 
 import ru.ifmo.cs.bcomp.ControlSignal;
 import ru.ifmo.cs.bcomp.SignalListener;
+import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
 import ru.ifmo.cs.bcomp.ui.components.BusView;
 import ru.ifmo.cs.bcomp.ui.components.RegisterProperties;
-import ru.ifmo.cs.bcomp.ui.components.RegisterView;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public abstract class BCompPanel extends ru.ifmo.cs.bcomp.ui.components.BCompPanel {
+public abstract class BCompPanel extends ActivateblePanel {
     protected final ComponentManager cmanager;
     private final RegisterProperties[] regProps;
     private final BusView[] buses;
     private SignalListener[] listeners;
 
     public BCompPanel(ComponentManager cmanager, RegisterProperties[] regProps, BusView[] buses) {
-        super(cmanager, regProps, buses);
         this.cmanager = cmanager;
         this.regProps = regProps;
         this.buses = buses;
@@ -105,6 +104,7 @@ public abstract class BCompPanel extends ru.ifmo.cs.bcomp.ui.components.BCompPan
             RegisterView reg = this.cmanager.getRegisterView(prop.reg);
 
             reg.setProperties(prop.x, prop.y, prop.hex);
+            reg.setBackground(Color.black);
             this.add(reg);
         }
 
@@ -116,8 +116,10 @@ public abstract class BCompPanel extends ru.ifmo.cs.bcomp.ui.components.BCompPan
     }
 
     public void paintComponent(Graphics g) {
-        if (Settings.getBackgroundImage() !=null)  g.drawImage(Settings.getBackgroundImage(), 0, 0, this);
-
+//        if (Settings.getBackgroundImage() !=null)  g.drawImage(Settings.getBackgroundImage(), 0, 0, this);
+//        g.setColor(new Color(30,39,45));
+//        g.fillRect(0 ,0, this.getWidth(), this.getHeight());
+        DisplayStyles.setGraphics(g, this);
         this.drawBuses(g);
 
     }

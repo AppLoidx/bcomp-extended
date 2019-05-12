@@ -12,6 +12,8 @@ import ru.ifmo.cs.bcomp.Utils;
 import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * From original bcomp edited by Arthur Kupriyanov
@@ -34,9 +36,12 @@ public class DisplayStyles {
 
     public static Color COLOR_TEXT;
     public static Color COLOR_ACTIVE_TEXT;
+    public static Color COLOR_BORDER;
 
     public static Color COLOR_ACTIVE;
     public static Color COLOR_BUS;
+
+    public static Color MAIN_TEXT_COLOR = Color.lightGray;
 
     public static Color COLOR_INPUT_REGISTER_ACTIVE_BIT;
 
@@ -44,6 +49,7 @@ public class DisplayStyles {
     public static final Color COLOR_TITLE;
     public static final Color COLOR_VALUE;
     public static final Color COLOR_INPUT_TITLE;
+    public static final Color COLOR_INPUT_BODY;
     public static final Color COLOR_ACTIVE_INPUT;
     public static final String COLOR_ACTIVE_BIT = "<font color=\"#FF0000\">";
     public static final String COLOR_END = "</font>";
@@ -193,6 +199,14 @@ public class DisplayStyles {
     }
 
     static {
+        try {
+            InputStream is = DisplayStyles.class.getClassLoader().getResourceAsStream("fonts/BS.ttf");
+            Font bloggerSans = Font.createFont(Font.TRUETYPE_FONT, is);
+            GraphicsEnvironment.getLocalGraphicsEnvironment().registerFont(bloggerSans);
+        } catch (FontFormatException | IOException e) {
+            e.printStackTrace();
+        }
+
         FONT_COURIER_BOLD_18_WIDTH = (int)Math.round(FONT_COURIER_BOLD_18.getStringBounds("0", fr).getWidth());
         FONT_COURIER_BOLD_20 = new Font("Courier New", Font.BOLD, 20);
         FONT_COURIER_BOLD_21 = new Font("Blogger Sans", Font.PLAIN, 18);
@@ -201,24 +215,27 @@ public class DisplayStyles {
         FONT_COURIER_BOLD_23_WIDTH = (int)Math.round(FONT_COURIER_BOLD_23.getStringBounds("0", fr).getWidth());
         FONT_COURIER_BOLD_25 = new Font("Courier New", Font.BOLD, 25);
         FONT_COURIER_BOLD_25_WIDTH = (int)Math.round(FONT_COURIER_BOLD_25.getStringBounds("0", fr).getWidth());
-        FONT_COURIER_BOLD_45 = new Font("Courier New", Font.BOLD, 45);
+        FONT_COURIER_BOLD_45 = new Font("Arial Nova", Font.BOLD, 45);
 
         FONT_BUTTONS_PANEL_TEXT = new Font("Arial Nova", Font.BOLD, 12);
         COLOR_INPUT_REGISTER_ACTIVE_BIT = Color.RED;
-        COLOR_TEXT = Color.BLACK;
+        COLOR_TEXT = MAIN_TEXT_COLOR;
+        COLOR_BORDER = new Color(8,141,165);
         COLOR_ACTIVE_TEXT = Color.RED;
 
         COLOR_ACTIVE = Color.RED;
-        COLOR_BUS = Color.GRAY;
+        COLOR_BUS = Color.WHITE;
 
         COLOR_TITLE = new Color(157, 189, 165);
-        COLOR_VALUE = new Color(219, 249, 235);
-        COLOR_INPUT_TITLE = new Color(207, 239, 215);
+        COLOR_VALUE = new Color(255,0,77);  // цвет активных foreground кнопок
+        COLOR_INPUT_TITLE = new Color(0,70,85); // цвет регистров - фон
+        COLOR_INPUT_BODY = new Color(25,88,102); // цвет содержимого регистров - фон
         COLOR_ACTIVE_INPUT = new Color(192, 0, 0);
 
         // CUSTOM
 
-        COLOR_BACKGROUND_STYLE = Color.DARK_GRAY;
+        COLOR_BACKGROUND_STYLE = new Color(30,39,45);
+
 
         // END CUSTOM
 
@@ -280,5 +297,11 @@ public class DisplayStyles {
         LEFT_X = IO_X + 3 * IO_DELIM - 1;
         MICROMEM_X = LEFT_X - MEM_WIDTH;
 
+    }
+
+    public static void setGraphics(Graphics g, Component parent){
+        if (Settings.getBackgroundImage() !=null)  g.drawImage(Settings.getBackgroundImage(), 0, 0, parent);
+        g.setColor(COLOR_BACKGROUND_STYLE);
+        g.fillRect(0 ,0, parent.getWidth(), parent.getHeight());
     }
 }

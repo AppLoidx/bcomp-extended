@@ -9,6 +9,10 @@ package application.views;
 
 import application.DisplayStyles;
 import application.GUI;
+import application.RegisterView;
+import application.InputRegisterView;
+import application.BCompLabel;
+
 import ru.ifmo.cs.bcomp.CPU.Reg;
 import ru.ifmo.cs.bcomp.ControlSignal;
 import ru.ifmo.cs.bcomp.IOCtrl;
@@ -160,6 +164,7 @@ public class IOView extends application.BCompPanel {
     private void addLabel(String text, int y) {
         JLabel l = new JLabel(text, 0);
         l.setFont(application.DisplayStyles.FONT_COURIER_BOLD_18);
+        l.setForeground(new Color(80,122,117));
         l.setBounds(application.DisplayStyles.IO1_CENTER, y, application.DisplayStyles.IO3_CENTER - application.DisplayStyles.IO1_CENTER, 16);
         this.add(l);
     }

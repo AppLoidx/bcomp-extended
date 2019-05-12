@@ -1,5 +1,6 @@
 package application.views;
 
+import application.DisplayStyles;
 import application.GUI;
 import core.cli.CustomCLI;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
@@ -34,6 +35,9 @@ public class ConsoleView extends ActivateblePanel {
         inputStream = new UserIOStream();
         outputStream = new UserIOStream();
         console = new TextArea();
+        console.setBackground(DisplayStyles.COLOR_INPUT_TITLE);
+        console.setForeground(DisplayStyles.MAIN_TEXT_COLOR);
+        console.setFont(new Font("Blogger Sans", Font.PLAIN, 12));
         pane = new JScrollPane(console);
         pane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -41,6 +45,8 @@ public class ConsoleView extends ActivateblePanel {
 
 
         this.consoleInputField = new JTextField();
+        consoleInputField.setBackground(DisplayStyles.COLOR_INPUT_BODY);
+        consoleInputField.setForeground(DisplayStyles.MAIN_TEXT_COLOR);
         consoleInputField.setBounds(0, 524, 866, 30);
         setConsoleListener();
 

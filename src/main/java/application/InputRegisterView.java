@@ -9,8 +9,6 @@ package application;
 //
 
 import ru.ifmo.cs.bcomp.Utils;
-import ru.ifmo.cs.bcomp.ui.components.ActiveBitView;
-import ru.ifmo.cs.bcomp.ui.components.RegisterView;
 import ru.ifmo.cs.elements.Register;
 
 import java.awt.event.*;

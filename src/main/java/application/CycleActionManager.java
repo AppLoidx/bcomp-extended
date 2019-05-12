@@ -15,8 +15,6 @@ public class CycleActionManager {
         CPU cpu = gui.getCPU();
         gui.getComponentManager().getRegisterView(CPU.Reg.ADDR);
         int addr = cpu.getRegister(CPU.Reg.IP).getValue();
-//        int addr = cpu.getMemory().getAddrValue();
-        System.out.println(Integer.toHexString(addr));
         if (Debugger.checkIsMarked(addr)){
             if (1== cpu.getStateValue(7)){      // если активный инвертируем
                 gui.getComponentManager().cmdInvertRunState();

@@ -1,10 +1,8 @@
-package application.views.nonvisible;
+package application;
 
-import application.CycleActionManager;
-import application.DisplayStyles;
+
 import ru.ifmo.cs.bcomp.CPU;
 import ru.ifmo.cs.bcomp.RunningCycle;
-import ru.ifmo.cs.bcomp.ui.components.BCompComponent;
 
 import javax.swing.*;
 

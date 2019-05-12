@@ -8,7 +8,6 @@ package application;
 
 import ru.ifmo.cs.bcomp.*;
 import ru.ifmo.cs.bcomp.CPU.Reg;
-import ru.ifmo.cs.bcomp.ui.GUI;
 import ru.ifmo.cs.bcomp.ui.components.*;
 import ru.ifmo.cs.elements.DataDestination;
 
@@ -22,7 +21,7 @@ import java.util.EnumMap;
  * @author se.ifmo
  * @author Arthur Kupriyanov
  */
-public class ComponentManager extends ru.ifmo.cs.bcomp.ui.components.ComponentManager {
+public class ComponentManager {
     private Color[] buttonColors;
     private ComponentManager.ButtonProperties[] buttonProperties;
     private final KeyAdapter keyListener;
@@ -50,7 +49,7 @@ public class ComponentManager extends ru.ifmo.cs.bcomp.ui.components.ComponentMa
     private static final ControlSignal[] busSignals;
 
     public ComponentManager(GUI gui) {
-        super(gui);
+//        super(gui);
         this.buttonColors = new Color[]{DisplayStyles.COLOR_TEXT, DisplayStyles.COLOR_ACTIVE};
         this.buttonProperties = new ComponentManager.ButtonProperties[]{
                 new ComponentManager.ButtonProperties(135, new String[]{"F4 Ввод адреса"},
@@ -253,6 +252,7 @@ public class ComponentManager extends ru.ifmo.cs.bcomp.ui.components.ComponentMa
             }
         };
         this.cucheckbox.setBackground(new Color(255, 255, 255, 0));
+        this.cucheckbox.setForeground(DisplayStyles.MAIN_TEXT_COLOR);
         this.cucheckbox.setOpaque(false);
         this.cucheckbox.addKeyListener(this.keyListener);
         this.cucheckbox.addItemListener(e -> ComponentManager.this.cuswitch = e.getStateChange() == ItemEvent.SELECTED);
@@ -410,6 +410,7 @@ public class ComponentManager extends ru.ifmo.cs.bcomp.ui.components.ComponentMa
             for(int i = 0; i < ComponentManager.this.buttons.length; ++i) {
                 ComponentManager.this.buttons[i] = new JButton(ComponentManager.this.buttonProperties[i].texts[0]);
                 ComponentManager.this.buttons[i].setForeground(ComponentManager.this.buttonColors[0]);
+                ComponentManager.this.buttons[i].setBackground(DisplayStyles.COLOR_INPUT_TITLE);
                 ComponentManager.this.buttons[i].setFont(DisplayStyles.FONT_BUTTONS_PANEL_TEXT);
                 ComponentManager.this.buttons[i].setBounds(buttonsX, 0, ComponentManager.this.buttonProperties[i].width, 30);
                 buttonsX += ComponentManager.this.buttonProperties[i].width + 2;

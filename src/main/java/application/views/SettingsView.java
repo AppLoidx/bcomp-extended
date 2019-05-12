@@ -1,5 +1,6 @@
 package application.views;
 
+import application.DisplayStyles;
 import application.GUI;
 import application.Settings;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
@@ -26,7 +27,7 @@ public class SettingsView extends ActivateblePanel {
 
     public SettingsView(GUI aGui){
         this.gui = aGui;
-        setSleepTimeSettings(0, 0);
+        setSleepTimeSettings(5, 0);
         JButton activeBusColorChooserBtn = new JButton("Выбрать цвет для активной стрелки");
         JButton busColorChooserBtn = new JButton("Выбрать цвет стрелок");
         busColorChooserBtn.addActionListener(a-> createColorChooseWindow(0));
@@ -46,7 +47,9 @@ public class SettingsView extends ActivateblePanel {
         JCheckBox checkBox = new JCheckBox("ВУ всегда активно");
         checkBox.setBounds(MARGIN_X, MARGIN_Y + 120, 200, 20);
         checkBox.addItemListener(e -> gui.IOAlwaysReady = e.getStateChange() == ItemEvent.SELECTED);
-        checkBox.setBackground(this.gui.getBackground());
+        checkBox.setBackground(DisplayStyles.COLOR_BACKGROUND_STYLE);
+        checkBox.setFocusPainted(false);
+        checkBox.setForeground(DisplayStyles.MAIN_TEXT_COLOR);
 
         this.add(checkBox);
         this.add(activeBusColorChooserBtn);
@@ -160,6 +163,7 @@ public class SettingsView extends ActivateblePanel {
 
     private void setSleepTimeSettings(int x, int y){
         JLabel label = new JLabel("Время в мс между тактами(по умолчанию ~6 мс): ");
+        label.setForeground(DisplayStyles.MAIN_TEXT_COLOR);
         JTextField value = new JTextField();
         JButton submit = new JButton("Применить");
         submit.addActionListener( (a) ->{
@@ -208,5 +212,10 @@ public class SettingsView extends ActivateblePanel {
                 msg,
                 "Ошибка",
                 JOptionPane.ERROR_MESSAGE);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        DisplayStyles.setGraphics(g, this);
     }
 }

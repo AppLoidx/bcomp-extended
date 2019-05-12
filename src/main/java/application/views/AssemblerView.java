@@ -7,16 +7,13 @@ package application.views;
 //
 
 
-import application.Assembler;
-import application.DisplayStyles;
+import application.*;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rsyntaxtextarea.SyntaxScheme;
 import org.fife.ui.rtextarea.RTextScrollPane;
 import ru.ifmo.cs.bcomp.CPU;
-import ru.ifmo.cs.bcomp.ui.GUI;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
-import ru.ifmo.cs.bcomp.ui.components.ComponentManager;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -114,6 +111,7 @@ public class AssemblerView extends ActivateblePanel {
 //        this.setBackground(Color.BLUE);
 //        g.setColor(Color.DARK_GRAY);
 //        g.fillRect(0, 0, this.getWidth(), this.getHeight());
+        DisplayStyles.setGraphics(g, this);
         if (img != null) g.drawImage(img, this.getWidth() - 225,  190, this);
         super.paintComponent(g);
     }
