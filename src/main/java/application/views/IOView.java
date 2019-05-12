@@ -239,5 +239,9 @@ public class IOView extends application.BCompPanel {
             this.ioctrl.setFlag();
         }
     }
+
+    public IOCtrl[] getIoctrls() {
+        return ioctrls;
+    }
 }
 
