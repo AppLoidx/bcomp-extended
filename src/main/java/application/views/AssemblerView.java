@@ -39,6 +39,9 @@ public class AssemblerView extends ActivateblePanel {
     private final Assembler asm;
     private final RSyntaxTextArea text;
 
+    private SyntaxScheme scheme;
+
+
     private Image img;
 
     {
