@@ -21,7 +21,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Iterator;
 
 //import ru.ifmo.cs.bcomp.ui.components.DisplayStyles;
 
@@ -54,89 +53,77 @@ public class IOView extends application.BCompPanel {
         button.setFont(application.DisplayStyles.FONT_BUTTONS_PANEL_TEXT);
         button.setBounds(application.DisplayStyles.IO1_CENTER, 445, 100, 25);
         button.setFocusable(false);
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (IOView.this.textPrinter == null) {
-                    IOView.this.textPrinter = new TextPrinter(IOView.this.ioctrls[4]);
-                }
-
-                IOView.this.textPrinter.activate();
+        button.addActionListener(e -> {
+            if (IOView.this.textPrinter == null) {
+                IOView.this.textPrinter = new TextPrinter(IOView.this.ioctrls[4]);
             }
+
+            IOView.this.textPrinter.activate();
         });
         this.add(button);
         button = new JButton("ВУ5");
         button.setFont(application.DisplayStyles.FONT_BUTTONS_PANEL_TEXT);
         button.setBounds(application.DisplayStyles.IO2_CENTER, 445, 100, 25);
         button.setFocusable(false);
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (IOView.this.ticker == null) {
-                    IOView.this.ticker = new Ticker(IOView.this.ioctrls[5]);
-                }
-
-                IOView.this.ticker.activate();
+        button.addActionListener(e -> {
+            if (IOView.this.ticker == null) {
+                IOView.this.ticker = new Ticker(IOView.this.ioctrls[5]);
             }
+
+            IOView.this.ticker.activate();
         });
         this.add(button);
         button = new JButton("ВУ6");
         button.setFont(application.DisplayStyles.FONT_BUTTONS_PANEL_TEXT);
         button.setBounds(application.DisplayStyles.IO3_CENTER - 30, 445, 100, 25);
         button.setFocusable(false);
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (IOView.this.ssd == null) {
-                    IOView.this.ssd = new SevenSegmentDisplay(IOView.this.ioctrls[6]);
-                }
-
-                IOView.this.ssd.activate();
+        button.addActionListener(e -> {
+            if (IOView.this.ssd == null) {
+                IOView.this.ssd = new SevenSegmentDisplay(IOView.this.ioctrls[6]);
             }
+
+            IOView.this.ssd.activate();
         });
         this.add(button);
         button = new JButton("ВУ7");
         button.setFont(application.DisplayStyles.FONT_BUTTONS_PANEL_TEXT);
         button.setBounds(application.DisplayStyles.IO1_CENTER, 475, 100, 25);
         button.setFocusable(false);
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (IOView.this.kbd == null) {
-                    IOView.this.kbd = new Keyboard(IOView.this.ioctrls[7]);
-                }
-
-                IOView.this.kbd.activate();
+        button.addActionListener(e -> {
+            if (IOView.this.kbd == null) {
+                IOView.this.kbd = new Keyboard(IOView.this.ioctrls[7]);
             }
+
+            IOView.this.kbd.activate();
         });
         this.add(button);
         button = new JButton("ВУ8");
         button.setFont(application.DisplayStyles.FONT_BUTTONS_PANEL_TEXT);
         button.setBounds(application.DisplayStyles.IO2_CENTER, 475, 100, 25);
         button.setFocusable(false);
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (IOView.this.numpad == null) {
-                    IOView.this.numpad = new Numpad(IOView.this.ioctrls[8]);
-                }
-
-                IOView.this.numpad.activate();
+        button.addActionListener(e -> {
+            if (IOView.this.numpad == null) {
+                IOView.this.numpad = new Numpad(IOView.this.ioctrls[8]);
             }
+
+            IOView.this.numpad.activate();
         });
         this.add(button);
         button = new JButton("ВУ9");
         button.setFont(application.DisplayStyles.FONT_BUTTONS_PANEL_TEXT);
         button.setBounds(application.DisplayStyles.IO3_CENTER - 30, 475, 100, 25);
         button.setFocusable(false);
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (IOView.this.pairgui == null) {
-                    try {
-                        IOView.this.pairgui = new GUI(gui);
-                        IOView.this.pairgui.gui();
-                        new BComp2BCompIODev(gui.getBasicComp().getIOCtrls()[9], IOView.this.pairgui.getBasicComp().getIOCtrls()[9]);
-                    } catch (Exception var3) {
-                    }
+        button.addActionListener(e -> {
+            if (IOView.this.pairgui == null) {
+                try {
+                    IOView.this.pairgui = new GUI(gui);
+                    IOView.this.pairgui.gui();
+                    new BComp2BCompIODev(gui.getBasicComp().getIOCtrls()[9], IOView.this.pairgui.getBasicComp().getIOCtrls()[9]);
+                } catch (Exception ignored) {
                 }
-
-                gui.requestFocus();
             }
+
+            gui.requestFocus();
         });
         this.add(button);
 
@@ -151,10 +138,10 @@ public class IOView extends application.BCompPanel {
             this.add(this.flags[i]);
             this.flags[i].addActionListener(new IOView.FlagButtonListener(this.ioctrls[i + 1]));
             this.ioctrls[i + 1].addDestination(ru.ifmo.cs.bcomp.IOCtrl.ControlSignal.SETFLAG, new IOView.FlagListener(this.flags[i]));
-            this.add(new BCompLabel(x, 166, application.DisplayStyles.REG_8_WIDTH, new String[]{"Дешифратор", "адреса и", "приказов"}));
+            this.add(new BCompLabel(x, 166, application.DisplayStyles.REG_8_WIDTH, "Дешифратор", "адреса и", "приказов"));
         }
 
-        this.add(new BCompLabel(application.DisplayStyles.CU_X_IO, 17, application.DisplayStyles.REG_8_WIDTH, new String[]{"Устройство", "управления"}));
+        this.add(new BCompLabel(application.DisplayStyles.CU_X_IO, 17, application.DisplayStyles.REG_8_WIDTH, "Устройство", "управления"));
         this.addLabel("Запрос прерывания", 6);
         this.addLabel("Состояние флага ВУ", 104);
         this.addLabel("Адрес ВУ", 124);
@@ -166,7 +153,7 @@ public class IOView extends application.BCompPanel {
                 IOView.this.drawIntrBuses(IOView.this.getGraphics());
             }
         };
-        this.setSignalListeners(new SignalListener[]{new SignalListener(this.ioregs[0], new ControlSignal[]{ControlSignal.IO1_OUT}), new SignalListener(this.ioregs[2], new ControlSignal[]{ControlSignal.IO3_OUT}), new SignalListener(intrListener, new ControlSignal[]{ControlSignal.IO1_SETFLAG}), new SignalListener(intrListener, new ControlSignal[]{ControlSignal.IO2_SETFLAG}), new SignalListener(intrListener, new ControlSignal[]{ControlSignal.IO3_SETFLAG})});
+        this.setSignalListeners(new SignalListener[]{new SignalListener(this.ioregs[0], ControlSignal.IO1_OUT), new SignalListener(this.ioregs[2], new ControlSignal[]{ControlSignal.IO3_OUT}), new SignalListener(intrListener, new ControlSignal[]{ControlSignal.IO1_SETFLAG}), new SignalListener(intrListener, new ControlSignal[]{ControlSignal.IO2_SETFLAG}), new SignalListener(intrListener, new ControlSignal[]{ControlSignal.IO3_SETFLAG})});
     }
 
     private void addLabel(String text, int y) {

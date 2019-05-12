@@ -1,14 +1,10 @@
 package application.entities;
 
-import application.Settings;
 import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.SerializedName;
 
 import java.awt.*;
 import java.io.*;
-import java.lang.reflect.Modifier;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

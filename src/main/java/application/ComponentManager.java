@@ -1,35 +1,27 @@
 package application;
 
-/**
- * @author Arthur Kupriyanov
- */
+
 //
 // Source code recreated from a .class file by IntelliJ IDEA
 // (powered by Fernflower decompiler)
 //
 
-import java.awt.*;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.ArrayList;
-import java.util.EnumMap;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComponent;
-import javax.swing.JOptionPane;
-import ru.ifmo.cs.bcomp.BasicComp;
-import ru.ifmo.cs.bcomp.CPU;
-import ru.ifmo.cs.bcomp.ControlSignal;
-import ru.ifmo.cs.bcomp.IOCtrl;
-import ru.ifmo.cs.bcomp.SignalListener;
+import ru.ifmo.cs.bcomp.*;
 import ru.ifmo.cs.bcomp.CPU.Reg;
 import ru.ifmo.cs.bcomp.ui.GUI;
 import ru.ifmo.cs.bcomp.ui.components.*;
 import ru.ifmo.cs.elements.DataDestination;
 
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.EnumMap;
+
+/**
+ * @author se.ifmo
+ * @author Arthur Kupriyanov
+ */
 public class ComponentManager extends ru.ifmo.cs.bcomp.ui.components.ComponentManager {
     private Color[] buttonColors;
     private ComponentManager.ButtonProperties[] buttonProperties;

@@ -9,6 +9,7 @@ import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
 import java.awt.event.WindowEvent;
 import java.io.*;
 
@@ -42,6 +43,12 @@ public class SettingsView extends ActivateblePanel {
         backgroundSelectBtn.setBounds(MARGIN_X, MARGIN_Y + BUTTON1_HEIGHT, BUTTON1_WIDTH * 2, BUTTON1_HEIGHT);
         setDefaultBtn.setBounds(MARGIN_X, MARGIN_Y + 70, BUTTON1_WIDTH * 2 , BUTTON1_HEIGHT);
 
+        JCheckBox checkBox = new JCheckBox("ВУ всегда активно");
+        checkBox.setBounds(MARGIN_X, MARGIN_Y + 120, 200, 20);
+        checkBox.addItemListener(e -> gui.IOAlwaysReady = e.getStateChange() == ItemEvent.SELECTED);
+        checkBox.setBackground(this.gui.getBackground());
+
+        this.add(checkBox);
         this.add(activeBusColorChooserBtn);
         this.add(busColorChooserBtn);
         this.add(backgroundSelectBtn);

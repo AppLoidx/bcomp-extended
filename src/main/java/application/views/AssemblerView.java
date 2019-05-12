@@ -7,8 +7,8 @@ package application.views;
 //
 
 
-import application.DisplayStyles;
 import application.Assembler;
+import application.DisplayStyles;
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rsyntaxtextarea.SyntaxScheme;
@@ -160,7 +160,6 @@ public class AssemblerView extends ActivateblePanel {
                         }
                     }else {
                         if (line[0].matches(".+:.*")) continue;
-                        System.out.println(line[0]);
                         if (reservedAddrs.contains(currentAddr)){
                             if (showErrorMessage) showErrorMessage("Программа перекрывает себя");
                             setErrorLine(lineno);

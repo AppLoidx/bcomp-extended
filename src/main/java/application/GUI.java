@@ -12,6 +12,7 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 
 /**
@@ -30,7 +31,6 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
     private BasicView basicView;
     private IOView ioView;
     private ConsoleView consoleView;
-    private boolean traceLogging = false;
     public boolean IOAlwaysReady = false;
 
     public GUI(MicroProgram mp, GUI pairgui) throws Exception {
@@ -193,7 +193,7 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
     public void setSettingsTickTime(){
         reDrawBuses();
         cpu.setTickFinishListener(() -> {
-            if (IOAlwaysReady) this.ioView.getIoctrls()[3].setFlag();
+            if (IOAlwaysReady) for (IOCtrl ctrl : this.ioView.getIoctrls()) ctrl.setFlag();
             if (onTickFinishAction!=null) onTickFinishAction.run();
             BCompPanel panel  = cmanager.getActivePanel();
             if (panel!=null) panel.stepFinish();
@@ -224,12 +224,6 @@ public class GUI extends ru.ifmo.cs.bcomp.ui.GUI {
 
     public void traceLog(String log){
         consoleView.addConsoleText(log);
-    }
-
-
-
-    public void setTraceLogging(boolean value){
-        traceLogging = value;
     }
 
     public IOView getIoView() {

@@ -12,12 +12,7 @@ import ru.ifmo.cs.bcomp.ui.components.BusView;
 import ru.ifmo.cs.bcomp.ui.components.RegisterProperties;
 import ru.ifmo.cs.bcomp.ui.components.RegisterView;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Iterator;
 

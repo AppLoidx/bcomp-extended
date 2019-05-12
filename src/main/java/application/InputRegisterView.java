@@ -8,16 +8,12 @@ package application;
 // (powered by Fernflower decompiler)
 //
 
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import ru.ifmo.cs.bcomp.Utils;
 import ru.ifmo.cs.bcomp.ui.components.ActiveBitView;
 import ru.ifmo.cs.bcomp.ui.components.RegisterView;
 import ru.ifmo.cs.elements.Register;
+
+import java.awt.event.*;
 
 public class InputRegisterView extends RegisterView {
     private final ComponentManager cmanager;

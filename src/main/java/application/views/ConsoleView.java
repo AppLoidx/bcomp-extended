@@ -2,7 +2,6 @@ package application.views;
 
 import application.GUI;
 import core.cli.CustomCLI;
-import core.cli.interpretator.CLIInterpreter;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
 import util.UserIOStream;
 
@@ -134,6 +133,7 @@ public class ConsoleView extends ActivateblePanel {
             consoleText = outputStream.readString();
         }
         console.setText(console.getText() + consoleText + "\n");
+
 
 //        console.revalidate();
     }
