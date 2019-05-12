@@ -2,6 +2,7 @@ package application.views;
 
 import application.GUI;
 import core.cli.CustomCLI;
+import core.cli.interpretator.CLIInterpreter;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
 import util.UserIOStream;
 
@@ -9,6 +10,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Arthur Kupriyanov
@@ -24,6 +28,7 @@ public class ConsoleView extends ActivateblePanel {
     private final GUI gui;
     private boolean initializedOnce = false;
     private final JScrollPane pane;
+    private List<String> outputLines = new ArrayList<>();
 
     public ConsoleView(GUI aGui){
         this.gui = aGui;
@@ -64,7 +69,13 @@ public class ConsoleView extends ActivateblePanel {
                     consoleInputField.setText("");
                     if (!cmd.isEmpty()){
                         console.setText(console.getText() + ">> " + cmd + "\n");
+                        if (cmd.equals("clear")){
+                            console.setText("");
+                            return;
+                        }
                     }
+
+                    updateConsole(cmd);
                 }
             }
 
@@ -76,6 +87,11 @@ public class ConsoleView extends ActivateblePanel {
     }
 
     private void updateConsole(String command){
+        boolean cut = false;
+        if (command.matches(".*&cut.*")){
+            cut = true;
+            command = command.replace("&cut", "");
+        }
         // clean old data
         if (outputStream.available()) console.setText(console.getText() + outputStream.readString() + "\n");
 
@@ -86,16 +102,38 @@ public class ConsoleView extends ActivateblePanel {
                 e.printStackTrace();
             }
         }
+
         inputStream.writeln(command);
 
         while(!outputStream.available()){
             try {
                 Thread.sleep(100);
+                if (command.matches(".*&c\\*[0-9]{3,4}.*")){
+                    Thread.sleep(500);                      // additional sleep
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        console.setText(console.getText() + outputStream.readString() + "\n");
+        String consoleText;
+        if (cut) {
+            outputLines.clear();
+            outputLines.addAll(Arrays.asList(outputStream.readString().split("\n")));
+            StringBuilder text = new StringBuilder();
+            for (String line : outputLines) {
+                String[] rows = line.split("\\s");
+
+                if (rows.length > 1 && rows[1].toLowerCase().equals("f000")) {
+                    text.append(line).append("\n");
+                    break;
+                }
+                text.append(line).append("\n");
+            }
+            consoleText = text.toString();
+        } else {
+            consoleText = outputStream.readString();
+        }
+        console.setText(console.getText() + consoleText + "\n");
 
 //        console.revalidate();
     }
@@ -110,7 +148,7 @@ public class ConsoleView extends ActivateblePanel {
             cliThreadIsActive = true;
 
             this.gui.getCPU().setTickFinishListener(() -> {
-
+                if (this.gui.IOAlwaysReady) this.gui.getIoView().getIoctrls()[3].setFlag();
                 if (cli.getSleep() > 0) {
                     try {
                         Thread.sleep((long) cli.getSleep());
@@ -132,6 +170,7 @@ public class ConsoleView extends ActivateblePanel {
                 //newLine(outputStream.readString());
                 initializedOnce = true;
             }
+            inputStream.writeln("");
             outputStream.readString();
         }
     }
@@ -153,5 +192,9 @@ public class ConsoleView extends ActivateblePanel {
     @Override
     public String getPanelName() {
         return "CLI";
+    }
+
+    public void addConsoleText(String text) {
+        console.setText(console.getText() + "\n" + text);
     }
 }
