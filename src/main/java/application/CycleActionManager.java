@@ -7,14 +7,16 @@ import ru.ifmo.cs.bcomp.CPU;
  */
 public class CycleActionManager {
     private static GUI gui;
-    public static void onCommandSelectCycle(){
+    public static void onInterruptCycle(){
         if (gui==null){
             System.err.println("gui не инициализирован [CycleActionManager]");
             return;
         }
         CPU cpu = gui.getCPU();
-        int addr = cpu.getMemory().getAddrValue();
-        System.out.println(addr);
+        gui.getComponentManager().getRegisterView(CPU.Reg.ADDR);
+        int addr = cpu.getRegister(CPU.Reg.IP).getValue();
+//        int addr = cpu.getMemory().getAddrValue();
+        System.out.println(Integer.toHexString(addr));
         if (Debugger.checkIsMarked(addr)){
             if (1== cpu.getStateValue(7)){      // если активный инвертируем
                 gui.getComponentManager().cmdInvertRunState();

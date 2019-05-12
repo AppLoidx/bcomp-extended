@@ -37,6 +37,9 @@ public class RunningCycleView extends BCompComponent {
         RunningCycle newcycle = this.cpu.getRunningCycle();
         int newProgram = this.cpu.getStateValue(8);
         if (newcycle != this.lastcycle) {
+            if (newcycle == RunningCycle.INTERRUPT){
+                CycleActionManager.onInterruptCycle();
+            }
             if (this.lastcycle != RunningCycle.NONE) {
                 this.labels[this.lastcycle.ordinal()].setForeground(DisplayStyles.COLOR_TEXT);
             }
@@ -45,9 +48,7 @@ public class RunningCycleView extends BCompComponent {
                 this.labels[newcycle.ordinal()].setForeground(DisplayStyles.COLOR_ACTIVE);
             }
 
-            if (newcycle == RunningCycle.INSTR_FETCH){
-                CycleActionManager.onCommandSelectCycle();
-            }
+
 
             this.lastcycle = newcycle;
         }
