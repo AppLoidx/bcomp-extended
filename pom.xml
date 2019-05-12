@@ -56,11 +56,17 @@
 
     <developers>
         <developer>
+            <url>se.ifmo.ru</url>
+            <roles>
+                <role>Creator of original bcomp</role>
+            </roles>
+        </developer>
+        <developer>
             <name>Arthur Kupriyanov</name>
             <email>apploidyautsk@gmail.com</email>
             <url>https://vk.com/apploidxxx</url>
             <roles>
-                <role>Creator</role>
+                <role>Developer</role>
             </roles>
         </developer>
     </developers>
