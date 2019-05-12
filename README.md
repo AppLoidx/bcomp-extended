@@ -4,7 +4,7 @@
 
 Приложение поддерживает также и оригинальной эмулятор, который запускается командой:
 ```cmd
-java -jar -Dmode=cli bcomp-extended-[version].jar
+java -jar -Dmode=gui bcomp-extended-[version].jar
 ```
 
 Для вызова HEXConverter для представления строковых значений в различных кодировках:
