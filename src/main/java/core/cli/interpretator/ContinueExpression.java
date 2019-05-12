@@ -22,7 +22,7 @@ class ContinueExpression extends CLIExpression {
 
     @Override
     DoubleTuple<String, String> interpret(String context, DoubleTuple<String, String> dt) {
-        if (context.matches(".*&c[*][0-9]{1,2}.*")){
+        if (context.matches(".*&c[*][0-9]{1,4}.*")){
             String[] strings = context.split("&");
             StringBuilder sb = new StringBuilder();
             boolean first = true;
@@ -32,7 +32,7 @@ class ContinueExpression extends CLIExpression {
                     continue;
                 }
                 boolean added = false;
-                Pattern p = Pattern.compile("c[*][0-9]{1,2}");
+                Pattern p = Pattern.compile("c[*][0-9]{1,4}");
                 Matcher m = p.matcher(sample);
 
                 while (m.find()) {
