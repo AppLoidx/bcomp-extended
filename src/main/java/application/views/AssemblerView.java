@@ -39,9 +39,6 @@ public class AssemblerView extends ActivateblePanel {
     private final Assembler asm;
     private final RSyntaxTextArea text;
 
-    private SyntaxScheme scheme;
-
-
     private Image img;
 
     {
@@ -60,6 +57,7 @@ public class AssemblerView extends ActivateblePanel {
         this.cpu = gui.getCPU();
         this.cmanager = gui.getComponentManager();
         this.text = new RSyntaxTextArea();
+        this.text.setText("ORG ADDR\n\nBEGIN:\n\t");
         this.asm = new Assembler(this.cpu.getInstructionSet(), this.text);
         setTextArea();
 
