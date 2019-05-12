@@ -463,7 +463,6 @@ public class MemoryView extends ActivateblePanel {
                     return;
                 }
                 Debugger.add(addrValue);
-                System.out.println(Debugger.markedAddrs);
                 updateMarkedAddresses();
             } else {
                 showErrorMsg( "Введите числовое значение в 16 radix");
@@ -476,7 +475,6 @@ public class MemoryView extends ActivateblePanel {
             if (addr.matches("[0-9a-fA-F]+")){
                 int addrValue = Integer.parseInt(addr, 16);
                 Debugger.delete(addrValue);
-                System.out.println(Debugger.markedAddrs);
                 updateMarkedAddresses();
             } else {
                 JOptionPane.showMessageDialog(this, "Введите числовое значение в 16 radix");
