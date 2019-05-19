@@ -55,3 +55,8 @@ java -jar -Dmode=encoder bcomp-extended-[version].jar
 ![](https://github.com/AppLoidx/bcomp-extended/blob/master/report/res/assembler-syntax-example.png)
 
 (в оригинальном эмуляторе это бы скомпилировалось)
+
+### ВУ всегда активно
+#### Since: 1.4.4.1+
+
+В настрйокай есть CheckBox где можно ставить автоготовность ВУ
