@@ -1,8 +1,6 @@
 # Расширенный эмулятор БЭВМ
 
-Данное приложение является неофициальным расширением для [оригинального эмулятора БЭВМ](https://se.ifmo.ru/bcomp/)
-
-Приложение поддерживает также и оригинальной эмулятор, который запускается командой:
+Приложение поддерживает также и [оригинальной эмулятор](https://se.ifmo.ru/bcomp/), который запускается командой:
 ```cmd
 java -jar -Dmode=gui bcomp-extended-[version].jar
 ```
@@ -57,3 +55,8 @@ java -jar -Dmode=encoder bcomp-extended-[version].jar
 ![](https://github.com/AppLoidx/bcomp-extended/blob/master/report/res/assembler-syntax-example.png)
 
 (в оригинальном эмуляторе это бы скомпилировалось)
+
+### ВУ всегда активно
+#### Since: 1.4.4.1+
+
+В настрйокай есть CheckBox где можно ставить автоготовность ВУ
