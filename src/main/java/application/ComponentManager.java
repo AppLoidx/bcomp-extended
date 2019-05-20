@@ -50,7 +50,7 @@ public class ComponentManager {
 
     public ComponentManager(GUI gui) {
 //        super(gui);
-        this.buttonColors = new Color[]{DisplayStyles.COLOR_TEXT, DisplayStyles.COLOR_ACTIVE};
+        this.buttonColors = new Color[]{Settings.getMainTextColor(), DisplayStyles.COLOR_ACTIVE};
         this.buttonProperties = new ComponentManager.ButtonProperties[]{
                 new ComponentManager.ButtonProperties(135, new String[]{"F4 Ввод адреса"},
                         e -> ComponentManager.this.cmdEnterAddr()),
@@ -339,6 +339,7 @@ public class ComponentManager {
     public void cmdInvertRunState() {
         this.cpu.invertRunState();
         int state = this.cpu.getStateValue(7);
+
         this.buttons[5].setForeground(this.buttonColors[state]);
         this.buttons[5].setText(this.buttonProperties[5].texts[state]);
     }

@@ -19,15 +19,19 @@ public class ALUView extends JComponent {
         JLabel title = new JLabel("АЛУ", 0);
         title.setFont(DisplayStyles.FONT_COURIER_BOLD_45);
         title.setBounds(offset, offset, width - 2 * offset, height - offset);
-        title.setForeground(DisplayStyles.MAIN_TEXT_COLOR);
+        title.setForeground(Settings.getMainTextColor());
         this.add(title);
         this.setBounds(x, y, width, height);
     }
 
     public void paintComponent(Graphics g) {
-        g.setColor(DisplayStyles.COLOR_INPUT_TITLE);
-        g.fillPolygon(this.xpoints, this.ypoints, this.xpoints.length);
-        g.setColor(DisplayStyles.COLOR_BORDER);
-        g.drawPolygon(this.xpoints, this.ypoints, this.xpoints.length);
+        if (Settings.getInputTitleColor()!=null) {
+            g.setColor(Settings.getInputTitleColor());
+            g.fillPolygon(this.xpoints, this.ypoints, this.xpoints.length);
+        }
+        if (Settings.getBorderColor()!=null) {
+            g.setColor(Color.BLACK); // Settings.getBorderColor());
+            g.drawPolygon(this.xpoints, this.ypoints, this.xpoints.length);
+        }
     }
 }

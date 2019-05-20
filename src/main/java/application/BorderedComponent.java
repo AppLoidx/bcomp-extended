@@ -31,8 +31,10 @@ public class BorderedComponent extends JComponent {
     }
 
     public void paintComponent(Graphics g) {
-        g.setColor(DisplayStyles.COLOR_BORDER);
-        g.drawRect(0, 0, this.width -1, this.height -1);
+        if (Settings.getBorderColor()!=null) {
+            g.setColor(Color.BLACK);// Settings.getBorderColor());
+            g.drawRect(0, 0, this.width - 1, this.height - 1);
+        }
     }
 }
 

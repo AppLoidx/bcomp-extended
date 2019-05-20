@@ -22,6 +22,7 @@ import java.util.ArrayList;
  *
  */
 public class GUI extends JApplet {
+    private static int framesCount = 0;
     private ComponentManager cmanager;
     private JTabbedPane tabs;
     private ActivateblePanel activePanel;
@@ -35,10 +36,19 @@ public class GUI extends JApplet {
     private ConsoleView consoleView;
     public boolean IOAlwaysReady = false;
     private int lastPanelIndex = 0;
+    private JFrame mainFrame;
 
     public GUI(MicroProgram mp, GUI pairgui) throws Exception {
+        Settings.init();
         this.activePanel = null;
         this.bcomp = new BasicComp(mp);
+        this.cpu = this.bcomp.getCPU();
+        this.pairgui = pairgui;
+    }
+    public GUI(BasicComp bcomp, GUI pairgui){
+        Settings.init();
+        this.activePanel = null;
+        this.bcomp = bcomp;
         this.cpu = this.bcomp.getCPU();
         this.pairgui = pairgui;
     }
@@ -96,7 +106,9 @@ public class GUI extends JApplet {
             GUI.this.activePanel = (ActivateblePanel) GUI.this.tabs.getSelectedComponent();
             GUI.this.activePanel.panelActivate();
             tabs.setForegroundAt(tabs.getSelectedIndex(), new Color(30,39,45));
-            tabs.setForegroundAt(lastPanelIndex, Color.white);
+            try {
+                tabs.setForegroundAt(lastPanelIndex, Color.white);
+            } catch (IndexOutOfBoundsException ignored) {}
             lastPanelIndex = tabs.getSelectedIndex();
         });
 
@@ -113,9 +125,13 @@ public class GUI extends JApplet {
     public void start() {
         this.cmanager.switchFocus   ();
     }
-
-    public void gui() {
-        JFrame mainFrame = new JFrame("Эмулятор БЭВМ");
+    public void gui(){
+        this.init();
+        frameInit();
+    }
+    public void frameInit() {
+        framesCount++;                                  // incrementing frames count
+        mainFrame = new JFrame("Эмулятор БЭВМ");
         try {
             InputStream in = GUI.class.getClassLoader().getResourceAsStream("app-icon.png");
             if (in!=null){
@@ -125,17 +141,13 @@ public class GUI extends JApplet {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if (this.pairgui == null) {
-            mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        }
-
-
 
         mainFrame.addWindowListener(new WindowListener() {
             @Override
             public void windowClosing(WindowEvent e) {
                 Settings.save();
-                System.exit(0);
+                if (framesCount == 1) System.exit(0);
+                else framesCount--;
             }
 
             @Override
@@ -169,8 +181,6 @@ public class GUI extends JApplet {
             }
         });
         mainFrame.getContentPane().add(this);
-
-        this.init();
         mainFrame.pack();
         mainFrame.setResizable(false);
         mainFrame.setVisible(true);
@@ -245,5 +255,12 @@ public class GUI extends JApplet {
 
     public IOView getIoView() {
         return ioView;
+    }
+
+    public void reload(){
+        Settings.save();
+        GUI gui = new GUI(bcomp, pairgui);
+        gui.gui();
+        mainFrame.dispatchEvent(new WindowEvent(mainFrame, WindowEvent.WINDOW_CLOSING));
     }
 }

@@ -121,6 +121,5 @@ public abstract class BCompPanel extends ActivateblePanel {
 //        g.fillRect(0 ,0, this.getWidth(), this.getHeight());
         DisplayStyles.setGraphics(g, this);
         this.drawBuses(g);
-
     }
 }

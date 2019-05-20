@@ -73,8 +73,10 @@ public class BCompComponent extends BorderedComponent {
     @Override
     public void paintComponent(Graphics g) {
         g.drawLine(1, 26, this.width - 2, 26);
-        g.setColor(DisplayStyles.COLOR_BACKGROUND_STYLE);
-        g.fillRect(0, 0, this.width, this.height);
+        if (Settings.getBackgroundColor()!=null) {
+            g.setColor(Settings.getBackgroundColor());
+            g.fillRect(0, 0, this.width, this.height);
+        }
         super.paintComponent(g);
     }
 

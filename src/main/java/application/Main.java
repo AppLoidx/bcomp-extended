@@ -53,7 +53,6 @@ public class Main {
                 new EncodeApplication().run();
                 break;
             case "extended":
-                Settings.init();
                 // extended version
                 GUI extendedGUI = new GUI(mp);
                 extendedGUI.gui();
@@ -63,7 +62,5 @@ public class Main {
                 System.err.println("Invalid mode selected");
                 break;
         }
-
-
     }
 }

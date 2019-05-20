@@ -5,6 +5,7 @@ import application.GUI;
 import application.Settings;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
 
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileFilter;
@@ -30,12 +31,20 @@ public class SettingsView extends ActivateblePanel {
         setSleepTimeSettings(5, 0);
         JButton activeBusColorChooserBtn = new JButton("Выбрать цвет для активной стрелки");
         JButton busColorChooserBtn = new JButton("Выбрать цвет стрелок");
-        busColorChooserBtn.addActionListener(a-> createColorChooseWindow(0));
-        activeBusColorChooserBtn.addActionListener(a-> createColorChooseWindow(1));
+        busColorChooserBtn.addActionListener(a-> createColorChooseWindow(Setting.BUS_COLOR));
+        activeBusColorChooserBtn.addActionListener(a-> createColorChooseWindow(Setting.ACTIVE_BUS_COLOR));
 
         JButton backgroundSelectBtn = new JButton("Выбрать фоновое изображение");
         backgroundSelectBtn.addActionListener( a -> createFileChooseWindow());
 
+        JButton mainTextColorSelectBtn = new JButton("Выбрать цвет основного текста");
+        mainTextColorSelectBtn.addActionListener( a-> createColorChooseWindow(Setting.MAIN_TEXT_COLOR));
+        JButton additionalColorSelectBtn = new JButton("Выбрать вспомогательный цвет");
+        additionalColorSelectBtn.addActionListener( a-> createColorChooseWindow(Setting.INPUT_TITLE_COLOR));
+        JButton mainColorSelectBtn = new JButton("Выбрать основной цвет");
+        mainColorSelectBtn.addActionListener( a-> createColorChooseWindow(Setting.INPUT_BODY_COLOR));
+        JButton backgroundColorSelectBtn = new JButton("Выбрать фоновый цвет");
+        backgroundColorSelectBtn.addActionListener( a -> createColorChooseWindow(Setting.BACKGROUND_COLOR));
         JButton setDefaultBtn = new JButton("Установить настройки по умолчанию");
         setDefaultBtn.addActionListener(a -> Settings.setDefault());
 
@@ -43,11 +52,24 @@ public class SettingsView extends ActivateblePanel {
         busColorChooserBtn.setBounds(MARGIN_X + BUTTON1_WIDTH, MARGIN_Y, BUTTON1_WIDTH, BUTTON1_HEIGHT);
         backgroundSelectBtn.setBounds(MARGIN_X, MARGIN_Y + BUTTON1_HEIGHT, BUTTON1_WIDTH * 2, BUTTON1_HEIGHT);
         setDefaultBtn.setBounds(MARGIN_X, MARGIN_Y + 70, BUTTON1_WIDTH * 2 , BUTTON1_HEIGHT);
+        mainTextColorSelectBtn.setBounds(MARGIN_X, MARGIN_Y + 70 + BUTTON1_HEIGHT, BUTTON1_WIDTH , BUTTON1_HEIGHT);
+        backgroundColorSelectBtn.setBounds(MARGIN_X + BUTTON1_WIDTH, MARGIN_Y + 70 + BUTTON1_HEIGHT, BUTTON1_WIDTH, BUTTON1_HEIGHT);
+        additionalColorSelectBtn.setBounds(MARGIN_X, MARGIN_Y + 70 + BUTTON1_HEIGHT * 2, BUTTON1_WIDTH, BUTTON1_HEIGHT);
+        mainColorSelectBtn.setBounds(MARGIN_X + BUTTON1_WIDTH, MARGIN_Y + 70 + BUTTON1_HEIGHT * 2, BUTTON1_WIDTH, BUTTON1_HEIGHT);
 
-        JCheckBox checkBox = new JCheckBox("ВУ всегда активно");
-        checkBox.setBounds(MARGIN_X, MARGIN_Y + 120, 200, 20);
+        JCheckBox checkBox = new JCheckBox("ВУ всегда активно"){
+            @Override
+            protected void paintComponent(Graphics g)
+            {
+                g.setColor( getBackground() );
+                g.fillRect(0, 0, getWidth(), getHeight());
+                super.paintComponent(g);
+            }
+        };
+        checkBox.setBounds(MARGIN_X, MARGIN_Y + 70 + BUTTON1_HEIGHT * 3, 200, 20);
         checkBox.addItemListener(e -> gui.IOAlwaysReady = e.getStateChange() == ItemEvent.SELECTED);
-        checkBox.setBackground(DisplayStyles.COLOR_BACKGROUND_STYLE);
+        checkBox.setOpaque(false);
+        checkBox.setBackground(new Color(255, 255, 255, 0));
         checkBox.setFocusPainted(false);
         checkBox.setForeground(DisplayStyles.MAIN_TEXT_COLOR);
 
@@ -56,6 +78,13 @@ public class SettingsView extends ActivateblePanel {
         this.add(busColorChooserBtn);
         this.add(backgroundSelectBtn);
         this.add(setDefaultBtn);
+
+        this.add(mainColorSelectBtn);
+        this.add(mainTextColorSelectBtn);
+        this.add(backgroundColorSelectBtn);
+        this.add(additionalColorSelectBtn);
+
+        // TODO: Add border color choose
     }
 
     private void createFileChooseWindow(){
@@ -94,17 +123,17 @@ public class SettingsView extends ActivateblePanel {
         frame.setResizable(false);
     }
 
-    private void createColorChooseWindow(int bus) {
+    private void createColorChooseWindow(Setting setting) {
         JFrame frame = new JFrame("Color chooser for BUS");
 //        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        createColorChooseUI(frame, bus);
+        createColorChooseUI(frame, setting);
         frame.setSize(650, 450);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setResizable(false);
     }
 
-    private void createColorChooseUI(final JFrame frame, int bus){
+    private void createColorChooseUI(final JFrame frame, Setting setting){
 
         try {
 
@@ -138,17 +167,53 @@ public class SettingsView extends ActivateblePanel {
         };
         LayoutManager layout = new FlowLayout();
         panel.setLayout(layout);
-        String text;
-        if (bus == 0) text = "ЦВЕТ СТРЕЛОК";
-        else text = "ЦВЕТ АКТИВНЫХ СТРЕЛОК";
+        String text = null;
+        switch (setting) {
+            case BUS_COLOR:
+                text = "ЦВЕТ СТРЕЛОК";
+                break;
+            case ACTIVE_BUS_COLOR:
+                text = "ЦВЕТ АКТИВНЫХ СТРЕЛОК";
+                break;
+            case MAIN_TEXT_COLOR:
+                text = "ЦВЕТ ОСНОВНОГО ТЕКСТА";
+                break;
+            case INPUT_TITLE_COLOR:
+                text = "ВСПОМОГАТЕЛЬНЫЙ ЦВЕТ";
+                break;
+            case INPUT_BODY_COLOR:
+                text = "ОСНОВНОЙ ЦВЕТ";
+                break;
+            case BACKGROUND_COLOR:
+                text = "ФОНОВЫЙ ЦВЕТ";
+        }
 
         final JLabel colorLabel = new JLabel(text);
         colorLabel.setFont(new Font("Courier New", Font.BOLD, 24));
         final JColorChooser colorChooser = new JColorChooser();
         JButton submit = new JButton("Применить");
         submit.addActionListener(a ->{
-            if (bus==0) Settings.setBusColor(colorChooser.getColor());
-            else Settings.setActiveBusColor(colorChooser.getColor());
+            switch (setting) {
+                case BUS_COLOR:
+                    Settings.setBusColor(colorChooser.getColor());
+                    break;
+                case ACTIVE_BUS_COLOR:
+                    Settings.setActiveBusColor(colorChooser.getColor());
+                    break;
+                case MAIN_TEXT_COLOR:
+                    Settings.setMainTextColor(colorChooser.getColor());
+                    break;
+                case INPUT_TITLE_COLOR:
+                    Settings.setInputTitleColor(colorChooser.getColor());
+                    break;
+                case INPUT_BODY_COLOR:
+                    Settings.setInputBodyColor(colorChooser.getColor());
+                    break;
+                case BACKGROUND_COLOR:
+                    Settings.setBackgroundColor(colorChooser.getColor());
+            }
+
+            gui.reload();
 
             // JOptionPane.showMessageDialog(this, "Перезапустите приложение, чтобы изменения вступили в силу");
             frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
@@ -218,4 +283,14 @@ public class SettingsView extends ActivateblePanel {
     protected void paintComponent(Graphics g) {
         DisplayStyles.setGraphics(g, this);
     }
+
+    private enum Setting{
+        BUS_COLOR,
+        ACTIVE_BUS_COLOR,
+        MAIN_TEXT_COLOR,
+        INPUT_BODY_COLOR,
+        INPUT_TITLE_COLOR,
+        BACKGROUND_COLOR
+    }
+
 }

@@ -20,6 +20,12 @@ public final class Settings {
     private static Image backgroundImage;
     private static boolean saveDebugMarks = false;
 
+    private static Color mainTextColor = DisplayStyles.MAIN_TEXT_COLOR;
+    private static Color inputTitleColor = DisplayStyles.COLOR_INPUT_TITLE;
+    private static Color inputBodyColor = DisplayStyles.COLOR_INPUT_BODY;
+    private static Color borderColor = DisplayStyles.COLOR_BORDER;
+    private static Color backgroundColor = DisplayStyles.COLOR_BACKGROUND_STYLE;
+
     public static int getTickFinishSleepTime() {
         return tickFinishSleepTime;
     }
@@ -50,6 +56,11 @@ public final class Settings {
         data.backgroundPath = Settings.backgroundPath;
         data.busActiveColor = Settings.activeBusColor;
         data.busColor = Settings.busColor;
+        data.backgroundColor = Settings.backgroundColor;
+        data.borderColor = Settings.getBorderColor();
+        data.mainTextColor = Settings.getMainTextColor();
+        data.inputTitleColor = Settings.inputTitleColor;
+        data.inputBodyColor = Settings.getInputBodyColor();
         if (saveDebugMarks) saveDebugMarks(data);
         data.save();
     }
@@ -61,6 +72,11 @@ public final class Settings {
         Settings.setBackgroundPath(data.backgroundPath);
         Settings.setActiveBusColor(data.busActiveColor==null?DisplayStyles.COLOR_ACTIVE:data.busActiveColor);
         Settings.setBusColor(data.busColor==null?DisplayStyles.COLOR_BUS:data.busColor);
+        Settings.setInputTitleColor(data.inputTitleColor);
+        Settings.setInputBodyColor(data.inputBodyColor);
+        Settings.setMainTextColor(data.mainTextColor);
+        Settings.setBorderColor(data.borderColor);
+        Settings.setBackgroundColor(data.backgroundColor);
         if (data.markedAddrs!=null) Debugger.markedAddrs = data.markedAddrs;
     }
     public static void init(){
@@ -89,5 +105,50 @@ public final class Settings {
 
     public static Image getBackgroundImage() {
         return backgroundImage;
+    }
+
+    public static Color getMainTextColor() {
+        return mainTextColor;
+    }
+
+    public static void setMainTextColor(Color mainTextColor) {
+        Settings.mainTextColor = mainTextColor;
+        DisplayStyles.MAIN_TEXT_COLOR = mainTextColor;
+    }
+
+    public static Color getInputTitleColor() {
+        return inputTitleColor;
+    }
+
+    public static void setInputTitleColor(Color inputTitleColor) {
+        Settings.inputTitleColor = inputTitleColor;
+        DisplayStyles.COLOR_INPUT_TITLE = inputTitleColor;
+    }
+
+    public static Color getInputBodyColor() {
+        return inputBodyColor;
+    }
+
+    public static void setInputBodyColor(Color inputBodyColor) {
+        Settings.inputBodyColor = inputBodyColor;
+        DisplayStyles.COLOR_INPUT_BODY = inputBodyColor;
+    }
+
+    public static Color getBorderColor() {
+        return borderColor;
+    }
+
+    public static void setBorderColor(Color borderColor) {
+        Settings.borderColor = borderColor;
+        DisplayStyles.COLOR_BORDER = borderColor;
+    }
+
+    public static Color getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public static void setBackgroundColor(Color backgroundColor) {
+        Settings.backgroundColor = backgroundColor;
+        DisplayStyles.COLOR_BACKGROUND_STYLE = backgroundColor;
     }
 }

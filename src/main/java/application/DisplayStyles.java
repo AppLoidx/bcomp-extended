@@ -48,8 +48,8 @@ public class DisplayStyles {
     public static final Color ERROR_COLOR = new Color(227, 35, 35, 95);
     public static final Color COLOR_TITLE;
     public static final Color COLOR_VALUE;
-    public static final Color COLOR_INPUT_TITLE;
-    public static final Color COLOR_INPUT_BODY;
+    public static Color COLOR_INPUT_TITLE;
+    public static Color COLOR_INPUT_BODY;
     public static final Color COLOR_ACTIVE_INPUT;
     public static final String COLOR_ACTIVE_BIT = "<font color=\"#FF0000\">";
     public static final String COLOR_END = "</font>";
@@ -193,7 +193,7 @@ public class DisplayStyles {
     public static final int SCALED_BACKGROUND_IMG_HEIGHT = 554;
 
     // CUSTOM FIELDS
-    public static final Color COLOR_BACKGROUND_STYLE;
+    public static Color COLOR_BACKGROUND_STYLE;
 
     public DisplayStyles() {
     }
@@ -300,8 +300,10 @@ public class DisplayStyles {
     }
 
     public static void setGraphics(Graphics g, Component parent){
+        if (Settings.getBackgroundColor()!=null) {
+            g.setColor(Settings.getBackgroundColor());
+            g.fillRect(0, 0, parent.getWidth(), parent.getHeight());
+        }
         if (Settings.getBackgroundImage() !=null)  g.drawImage(Settings.getBackgroundImage(), 0, 0, parent);
-        g.setColor(COLOR_BACKGROUND_STYLE);
-        g.fillRect(0 ,0, parent.getWidth(), parent.getHeight());
     }
 }

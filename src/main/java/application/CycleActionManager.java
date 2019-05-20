@@ -16,7 +16,7 @@ public class CycleActionManager {
         gui.getComponentManager().getRegisterView(CPU.Reg.ADDR);
         int addr = cpu.getRegister(CPU.Reg.IP).getValue();
         if (Debugger.checkIsMarked(addr)){
-            if (1== cpu.getStateValue(7)){      // если активный инвертируем
+            if (1 == cpu.getStateValue(7)){      // если активный инвертируем
                 gui.getComponentManager().cmdInvertRunState();
             }
         }
