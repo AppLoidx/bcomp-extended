@@ -20,6 +20,18 @@ public class SettingsData implements Serializable {
     public Color busColor;
     @SerializedName("debug_marks")
     public List<Integer> markedAddrs;
+
+    @SerializedName("main_text_color")
+    public Color mainTextColor;
+    @SerializedName("input_title_color")
+    public Color inputTitleColor;
+    @SerializedName("input_body_color")
+    public Color inputBodyColor;
+    @SerializedName("border_color")
+    public Color borderColor;
+    @SerializedName("background_color")
+    public Color backgroundColor;
+
     public transient Image backgroundImage;
 
     public void save(){
@@ -62,6 +74,11 @@ public class SettingsData implements Serializable {
         data.busActiveColor = Color.RED;
         data.backgroundPath = null;
         data.backgroundImage = null;
+        data.inputBodyColor = DisplayStyles.COLOR_INPUT_BODY;
+        data.inputTitleColor = DisplayStyles.COLOR_INPUT_TITLE;
+        data.borderColor = DisplayStyles.COLOR_BORDER;
+        data.mainTextColor = DisplayStyles.MAIN_TEXT_COLOR;
+        data.backgroundColor = DisplayStyles.COLOR_BACKGROUND_STYLE;
         return data;
     }
 }
