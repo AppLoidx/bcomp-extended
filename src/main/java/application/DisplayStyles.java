@@ -41,7 +41,7 @@ public class DisplayStyles {
     public static Color COLOR_ACTIVE;
     public static Color COLOR_BUS;
 
-    public static Color MAIN_TEXT_COLOR = Color.lightGray;
+    public static Color MAIN_TEXT_COLOR = Color.white;
 
     public static Color COLOR_INPUT_REGISTER_ACTIVE_BIT;
 
@@ -228,13 +228,13 @@ public class DisplayStyles {
 
         COLOR_TITLE = new Color(157, 189, 165);
         COLOR_VALUE = new Color(255,0,77);  // цвет активных foreground кнопок
-        COLOR_INPUT_TITLE = new Color(0,70,85); // цвет регистров - фон
-        COLOR_INPUT_BODY = new Color(25,88,102); // цвет содержимого регистров - фон
+        COLOR_INPUT_TITLE = new Color(Integer.valueOf("29434e", 16)); // цвет регистров - фон
+        COLOR_INPUT_BODY = new Color(Integer.valueOf("37464f", 16)); // цвет содержимого регистров - фон
         COLOR_ACTIVE_INPUT = new Color(192, 0, 0);
 
         // CUSTOM
 
-        COLOR_BACKGROUND_STYLE = new Color(30,39,45);
+        COLOR_BACKGROUND_STYLE = new Color(Integer.valueOf("62717b", 16));
 
 
         // END CUSTOM

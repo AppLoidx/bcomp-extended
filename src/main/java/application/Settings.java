@@ -149,6 +149,5 @@ public final class Settings {
 
     public static void setBackgroundColor(Color backgroundColor) {
         Settings.backgroundColor = backgroundColor;
-        DisplayStyles.COLOR_BACKGROUND_STYLE = backgroundColor;
     }
 }

@@ -66,6 +66,7 @@ public class GUI extends JApplet {
     }
 
     public void init() {
+
         CycleActionManager.setGui(this);
         this.cmanager = new ComponentManager(GUI.this);
         this.bcomp.startTimer();
@@ -176,6 +177,7 @@ public class GUI extends JApplet {
             }
 
             @Override
+
             public void windowClosed(WindowEvent e) {
 
             }

@@ -65,7 +65,7 @@ public class SettingsData implements Serializable {
                 e.printStackTrace();
             }
         }
-        return new SettingsData();
+        return SettingsData.getDefault();
     }
 
     public static SettingsData getDefault(){
