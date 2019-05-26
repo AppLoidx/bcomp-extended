@@ -25,6 +25,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -293,7 +294,7 @@ public class AssemblerView extends ActivateblePanel {
 
                         if (file.canRead() && file.canExecute()){
                             try {
-                                BufferedReader br = new BufferedReader(new FileReader(file));
+                                BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8));
                                 StringBuilder sb = new StringBuilder();
                                 String line;
                                 while((line=br.readLine())!=null){
