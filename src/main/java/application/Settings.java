@@ -15,6 +15,7 @@ import java.io.InputStream;
 public final class Settings {
     private static transient volatile int tickFinishSleepTime = 6;
     private static String backgroundPath;
+    private static String assemblerText;
     private static Color busColor = DisplayStyles.COLOR_BUS;
     private static Color activeBusColor = DisplayStyles.COLOR_ACTIVE;
     private static Image backgroundImage;
@@ -61,6 +62,7 @@ public final class Settings {
         data.mainTextColor = Settings.getMainTextColor();
         data.inputTitleColor = Settings.inputTitleColor;
         data.inputBodyColor = Settings.getInputBodyColor();
+        data.assemblerText = Settings.getAssemblerText();
         if (saveDebugMarks) saveDebugMarks(data);
         data.save();
     }
@@ -77,6 +79,7 @@ public final class Settings {
         Settings.setMainTextColor(data.mainTextColor);
         Settings.setBorderColor(data.borderColor);
         Settings.setBackgroundColor(data.backgroundColor);
+        Settings.setAssemblerText(data.assemblerText);
         if (data.markedAddrs!=null) Debugger.markedAddrs = data.markedAddrs;
     }
     public static void init(){
@@ -149,5 +152,13 @@ public final class Settings {
 
     public static void setBackgroundColor(Color backgroundColor) {
         Settings.backgroundColor = backgroundColor;
+    }
+
+    public static String getAssemblerText() {
+        return assemblerText;
+    }
+
+    public static void setAssemblerText(String assemblerText) {
+        Settings.assemblerText = assemblerText;
     }
 }

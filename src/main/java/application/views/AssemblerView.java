@@ -17,12 +17,14 @@ import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileFilter;
 import javax.swing.text.BadLocationException;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.IOException;
-import java.io.InputStream;
+import java.awt.event.WindowEvent;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +59,10 @@ public class AssemblerView extends ActivateblePanel {
         this.cpu = gui.getCPU();
         this.cmanager = gui.getComponentManager();
         this.text = new RSyntaxTextArea();
-        this.text.setText("ORG ADDR\n\nBEGIN:\n\t");
+
+        this.text.setText(Settings.getAssemblerText()!=null?Settings.getAssemblerText():"ORG ADDR\n\nBEGIN:\n\t");
+
+
         this.asm = new Assembler(this.cpu.getInstructionSet(), this.text);
         setTextArea();
 
@@ -88,6 +93,9 @@ public class AssemblerView extends ActivateblePanel {
         });
 
         this.add(button);
+
+        setSaveToFileBtn();
+        setExtractFromFileBtn();
 
     }
 
@@ -207,6 +215,7 @@ public class AssemblerView extends ActivateblePanel {
 
             @Override
             public void keyPressed(KeyEvent e) {
+                Settings.setAssemblerText(text.getText());
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     text.removeAllLineHighlights();
                     try {
@@ -229,6 +238,86 @@ public class AssemblerView extends ActivateblePanel {
         scroll.setForeground(Color.WHITE);
 
         this.add(scroll);
+    }
+
+    private void setSaveToFileBtn(){
+        JButton btn = new JButton("Сохранить в файл");
+        btn.setBounds(650, 430, 170, 40);
+        btn.addActionListener((a) -> createFileChooseWindow(0));
+        this.add(btn);
+    }
+
+    private void setExtractFromFileBtn(){
+        JButton btn = new JButton("Загрузить с файла");
+        btn.setBounds(650, 480, 170, 40);
+        btn.addActionListener((a) -> createFileChooseWindow(1));
+        this.add(btn);
+    }
+
+    private void createFileChooseWindow(int operation){
+        JFrame frame = new JFrame("Choose file");
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JPanel pane = new JPanel();
+
+        JFileChooser fileChooser = new JFileChooser();
+        pane.add(fileChooser);
+        if (operation==0) fileChooser.setApproveButtonText("Сохранить");
+        else fileChooser.setApproveButtonText("Загрузить");
+        fileChooser.addActionListener(a -> {
+            if (a.getID() == ActionEvent.ACTION_PERFORMED && fileChooser.getSelectedFile()!=null) {
+
+                File file = fileChooser.getSelectedFile();
+                boolean status = false;
+                switch (operation){
+                    case 0:
+                        try {
+                            if (!file.exists()) file.createNewFile();
+                            if (file.canWrite() && file.canExecute()){
+
+                                    BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+                                    String data = text.getText();
+                                    for (String l : data.split("\n")) {
+                                        bw.write(l);
+                                        bw.newLine();
+                                    }
+                                    bw.close();
+                                    status = true;
+
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } finally {
+                            if (status) frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                        }
+                    case 1:
+
+                        if (file.canRead() && file.canExecute()){
+                            try {
+                                BufferedReader br = new BufferedReader(new FileReader(file));
+                                StringBuilder sb = new StringBuilder();
+                                String line;
+                                while((line=br.readLine())!=null){
+                                    sb.append(line).append("\n");
+                                }
+                                text.setText(sb.toString());
+                                status = true;
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            } finally {
+                                if (status) frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+                            }
+                        }
+                }
+
+            }
+        });
+
+        frame.getContentPane().add(pane, BorderLayout.CENTER);
+
+        frame.setSize(650, 450);
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setResizable(false);
     }
 
 }

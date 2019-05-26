@@ -31,6 +31,8 @@ public class SettingsData implements Serializable {
     public Color borderColor;
     @SerializedName("background_color")
     public Color backgroundColor;
+    @SerializedName("assembler_text")
+    public String assemblerText;
 
     public transient Image backgroundImage;
 
