@@ -1,57 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>БЭВМ</title>
-    <script
-            src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-            integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="page/style.css">
-</head>
-<body>
-    <div class="block-con">
-        <div class="logo-name">
-            <h1>Эмулятор БЭВМ</h1>
-        </div>
-        <div class="logo-description">
-            <p>
-                Расширенный эмулятор с новым функционалом
-                и возможностью кастомизации фона и цветов
-            </p>
-        </div>
-        <div class="ghost-list"></div>
-        <div class="images-logo">
+<!-- saved from url=(0050)https://getbootstrap.com/docs/4.3/examples/cover/# -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Cover Template · Bootstrap</title>
 
-            <div class="preview-img">
-                <img src="page/img/pr1.png" alt ="">
-            </div>
-            <div class="preview-img">
-                <img src="page/img/pr2.png" alt="">
-            </div>
-            <div class="preview-img">
-                <img src="page/img/pr3.png" alt="">
-            </div>
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/cover/">
 
-        </div>
+    <!-- Bootstrap core CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type="text/javascript" src="page/react.js"></script>
+    <script type="text/javascript" src="page/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/4.3.1/react-router-dom.min.js"></script>
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="./page/style.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+
+    
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+  <header class="masthead mb-auto">
+    <div class="inner">
+      <h3 class="masthead-brand">Эмулятор БЭВМ</h3>
+      <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link header-auto-active active " href="#/">Main</a>
+        <a class="nav-link header-auto-active" href="#/features">Features</a>
+        <a class="nav-link header-auto-active" href="#/contributing">Contributing</a>
+      </nav>
     </div>
+  </header>
 
-    <div class="block-con page2">
-        <div class="logo-name">
-            <h2>Кастомизируйте цвета и фон</h2>
-        </div>
-        <div class="logo-description">
-            <p>
-                С помощью простых и интуитивно понятных настроек вы можете
-                полностью изменить внешний вид эмулятора
-            </p>
-        </div>
-        <div class="preview-img color-choose">
-            <img src="page/img/color-choose.PNG" alt="">
-        </div>
-        <div class="preview-img paint-img">
-            <img src="page/img/paint.jpg" alt="">
-        </div>
+
+    <div id="react-content"></div>
+
+
+  <footer class="mastfoot mt-auto">
+    <div class="inner">
+      <p>Author: <a href="https://github.com/AppLoidx">Arthur Kupriyanov</a>, source code: <a href="https://github.com/AppLoidx/bcomp-extended">GitHub Repository</a>.</p>
     </div>
+  </footer>
+</div>
+
+    <script type="text/javascript" src="page/compiled/Contributing.js"></script>    
+    <script type="text/javascript" src="page/compiled/FeaturesPage.js"></script>    
+    <script type="text/javascript" src="page/compiled/MainPage.js"></script>    
+    <script type="text/javascript" src="page/compiled/Script.js"></script>    
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function() {
+            $( ".header-auto-active" ).bind( "click", function(event) {
+                var clickedItem = $( this );
+                $( ".header-auto-active" ).each( function() {
+                    $( this ).removeClass( "active" );
+                });
+                clickedItem.addClass( "active" );
+            });
+        });
+</script>
 </body>
 </html>
