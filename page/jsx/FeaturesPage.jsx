@@ -1,4 +1,23 @@
 class FeaturesPage extends React.Component {
+
+	componentDidMount(){
+		$('#preview-img').fadeOut(0);
+		$('#preview-img').one("load", function(){
+			// 
+			// $('#preview-img').animate({
+			// 	top: "-=1000px";
+			// }, 10);
+
+			$('#preview-img').fadeIn(4000);
+
+
+		})
+		// $(document).ready(function(){
+		// 	$('#preview-img').slideDown();
+
+		// })
+	}
+
 	render() {
 		return (
 			<div >
@@ -7,7 +26,7 @@ class FeaturesPage extends React.Component {
 					<h1 className="cover-heading ">Новые возможности</h1>
 		    			<p className="lead">Раскройте для себя полный функционал</p>
 		    			<p className="lead"></p>
-		    			<img className="img-fluid rounded" src="https://github.com/AppLoidx/bcomp-extended/raw/master/report/res/basic-view.png"></img>
+		    			<img id="preview-img" className="img-fluid rounded" src="https://github.com/AppLoidx/bcomp-extended/raw/master/report/res/basic-view.png"></img>
 		    		</div>
 		    		</div>
 		    	<div className="features-cards">
