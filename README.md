@@ -20,7 +20,7 @@ java -jar -Dmode=encoder bcomp-extended-[version].jar
 ## Ключевые особенности
 
 ### Assembler с подсветкой синтаксиса
-![](https://github.com/AppLoidx/bcomp-extended/blob/master/report/res/assembler.png)
+![](https://github.com/AppLoidx/bcomp-extended/blob/master/page/img/assembler-example.png?raw=true)
 
 ### Новые вкладки 
 ![](https://github.com/AppLoidx/bcomp-extended/blob/master/report/res/basic-view.png)
@@ -29,7 +29,7 @@ java -jar -Dmode=encoder bcomp-extended-[version].jar
 ![](https://github.com/AppLoidx/bcomp-extended/blob/master/report/res/cheat-sheet.png)
 
 ### Прямой доступ к памяти без всяких регистров
-![](https://github.com/AppLoidx/bcomp-extended/blob/master/report/res/memory.png)
+![](https://github.com/AppLoidx/bcomp-extended/blob/master/page/img/tools-example.png?raw=true)
 
 Введите адрес памяти (в radix 16) и нажмите `Найти`, чтобы получить данные. Также вы можете изменить данные прямо в таблице и нажать `применить`, тогда введенны данные перезапишутся в память (за исключением тех значений, у которых неверный формат).
 
