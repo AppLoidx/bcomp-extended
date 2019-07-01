@@ -68,3 +68,5 @@ java -jar -Dmode=encoder bcomp-extended-[version].jar
 #### Since: 1.4.4.1+
 
 В настройках есть CheckBox где можно ставить автоготовность ВУ
+
+[Пример использования для трассировки в работе с ВУ-3](https://github.com/AppLoidx/bcomp-extended/wiki/Трассировка-с-ВУ-3)
