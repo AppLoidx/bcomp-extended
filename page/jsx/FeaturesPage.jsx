@@ -2,7 +2,7 @@ class FeaturesPage extends React.Component {
 	render() {
 		return (
 			<div >
-					<div className = "mt-5 mb-5 new-possibles">
+					<div className = "mt-5 new-possibles">
 					<div className = "new-possibles-inner">
 					<h1 className="cover-heading ">Новые возможности</h1>
 		    			<p className="lead">Раскройте для себя полный функционал</p>

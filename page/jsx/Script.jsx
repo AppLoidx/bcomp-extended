@@ -15,6 +15,7 @@ ReactDOM.render(
             <ReactRouterDOM.Route exact path="/" component={MainPage}/>
             <ReactRouterDOM.Route exact path="/features" component={FeaturesPage}/>
             <ReactRouterDOM.Route exact path="/contributing" component={Contributing} />
+            <ReactRouterDOM.Route exact path="/download" component={Download} />
           </div>
         </div>
       </ReactRouterDOM.HashRouter>
