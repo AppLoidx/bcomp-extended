@@ -38,6 +38,7 @@ java -jar -Dmode=encoder bcomp-extended-[version].jar
 ### Консольный режим интегрированный с GUI
 #### Since: 1.4+
 Новая вкладка для консоли, данные которые те же, что и GUI.
+![](https://github.com/AppLoidx/bcomp-extended/blob/master/page/img/code-example.gif?raw=true)
 
 Иными словами, вы можете вводить данные в память команды типа `DF89 w` и менять значение клавишного регистра через команду типа `AA12 a`
 
@@ -45,6 +46,7 @@ java -jar -Dmode=encoder bcomp-extended-[version].jar
 #### Since: 1.4+
 
 Установка фонового изображения и настройка цветов стрелок
+![](https://github.com/AppLoidx/bcomp-extended/blob/master/page/img/color-choose.PNG?raw=true)
 
 Также можно установить тактовую частоту, чтобы ускорить процесс выполнения команд
 
