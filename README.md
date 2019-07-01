@@ -20,7 +20,7 @@ java -jar -Dmode=encoder bcomp-extended-[version].jar
 ## Ключевые особенности
 
 ### Assembler с подсветкой синтаксиса
-![](https://github.com/AppLoidx/bcomp-extended/blob/master/report/res/assembler.png)
+![](https://github.com/AppLoidx/bcomp-extended/blob/master/page/img/assembler-example.png?raw=true)
 
 ### Новые вкладки 
 ![](https://github.com/AppLoidx/bcomp-extended/blob/master/report/res/basic-view.png)
@@ -29,7 +29,7 @@ java -jar -Dmode=encoder bcomp-extended-[version].jar
 ![](https://github.com/AppLoidx/bcomp-extended/blob/master/report/res/cheat-sheet.png)
 
 ### Прямой доступ к памяти без всяких регистров
-![](https://github.com/AppLoidx/bcomp-extended/blob/master/report/res/memory.png)
+![](https://github.com/AppLoidx/bcomp-extended/blob/master/page/img/tools-example.png?raw=true)
 
 Введите адрес памяти (в radix 16) и нажмите `Найти`, чтобы получить данные. Также вы можете изменить данные прямо в таблице и нажать `применить`, тогда введенны данные перезапишутся в память (за исключением тех значений, у которых неверный формат).
 
@@ -38,6 +38,7 @@ java -jar -Dmode=encoder bcomp-extended-[version].jar
 ### Консольный режим интегрированный с GUI
 #### Since: 1.4+
 Новая вкладка для консоли, данные которые те же, что и GUI.
+![](https://github.com/AppLoidx/bcomp-extended/blob/master/page/img/code-example.gif?raw=true)
 
 Иными словами, вы можете вводить данные в память команды типа `DF89 w` и менять значение клавишного регистра через команду типа `AA12 a`
 
@@ -45,6 +46,7 @@ java -jar -Dmode=encoder bcomp-extended-[version].jar
 #### Since: 1.4+
 
 Установка фонового изображения и настройка цветов стрелок
+![](https://github.com/AppLoidx/bcomp-extended/blob/master/page/img/color-choose.PNG?raw=true)
 
 Также можно установить тактовую частоту, чтобы ускорить процесс выполнения команд
 
@@ -59,4 +61,4 @@ java -jar -Dmode=encoder bcomp-extended-[version].jar
 ### ВУ всегда активно
 #### Since: 1.4.4.1+
 
-В настрйокай есть CheckBox где можно ставить автоготовность ВУ
+В настройках есть CheckBox где можно ставить автоготовность ВУ
