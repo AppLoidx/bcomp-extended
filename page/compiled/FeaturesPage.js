@@ -5,7 +5,7 @@ class FeaturesPage extends React.Component {
 									null,
 									React.createElement(
 												"div",
-												{ className: "mt-5 mb-5 new-possibles" },
+												{ className: "mt-5 new-possibles" },
 												React.createElement(
 															"div",
 															{ className: "new-possibles-inner" },
