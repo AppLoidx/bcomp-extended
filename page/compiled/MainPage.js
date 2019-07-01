@@ -20,8 +20,8 @@ class MainPage extends React.Component {
 				{ className: "lead" },
 				React.createElement(
 					"a",
-					{ href: "https://github.com/AppLoidx/bcomp-extended", "class": "btn btn-lg btn-secondary" },
-					"Learn more"
+					{ href: "https://github.com/AppLoidx/bcomp-extended", "class": "btn btn-lg btn-outline-light" },
+					"\u041E\u0437\u043D\u0430\u043A\u043E\u043C\u0438\u0442\u044C\u0441\u044F"
 				)
 			)
 		);

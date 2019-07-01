@@ -19,7 +19,7 @@ class FeaturesPage extends React.Component {
 			        <p class="lead">Теперь вам не надо запускать консоль отдельно от графической версии. Все соединено в одном моде</p>
 			      </div>
 			      <div class="col-md-5">
-			        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+			        <img src="page/img/code-example.gif"class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"></img>
 			      </div>
 			    </div>
 
@@ -31,7 +31,7 @@ class FeaturesPage extends React.Component {
 			        <p class="lead">Подсветка синтаксиса редактора ассемблера.</p>
 			      </div>
 			      <div class="col-md-5 order-md-1">
-			        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+			        <img src="page/img/assembler-example.png"class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-thumbnail img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"></img>
 			      </div>
 			    </div>
 
@@ -43,7 +43,7 @@ class FeaturesPage extends React.Component {
 			        <p class="lead">Теперь вы можете изменить внешний вид эмулятора на предпочитаемый вами</p>
 			      </div>
 			      <div class="col-md-5">
-			        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+			        <img src="page/img/theme-example.png"class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"></img>
 			      </div>
 			    </div>
 
@@ -55,7 +55,7 @@ class FeaturesPage extends React.Component {
 			        <p class="lead">Прямой доступ к памяти и дебаггер в вашем распоряжении</p>
 			      </div>
 			      <div class="col-md-5 order-md-1">
-			        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
+			        <img src="page/img/tools-example.png"class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"></img>
 			      </div>
 			    </div>
 
