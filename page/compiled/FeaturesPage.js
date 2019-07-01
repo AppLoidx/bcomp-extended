@@ -53,21 +53,7 @@ class FeaturesPage extends React.Component {
 															React.createElement(
 																		"div",
 																		{ "class": "col-md-5" },
-																		React.createElement(
-																					"svg",
-																					{ "class": "bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto", width: "500", height: "500", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: 500x500" },
-																					React.createElement(
-																								"title",
-																								null,
-																								"Placeholder"
-																					),
-																					React.createElement("rect", { width: "100%", height: "100%", fill: "#eee" }),
-																					React.createElement(
-																								"text",
-																								{ x: "50%", y: "50%", fill: "#aaa", dy: ".3em" },
-																								"500x500"
-																					)
-																		)
+																		React.createElement("img", { src: "page/img/code-example.gif", "class": "bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto", width: "500", height: "500", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: 500x500" })
 															)
 												),
 												React.createElement("hr", { "class": "featurette-divider" }),
@@ -96,21 +82,7 @@ class FeaturesPage extends React.Component {
 															React.createElement(
 																		"div",
 																		{ "class": "col-md-5 order-md-1" },
-																		React.createElement(
-																					"svg",
-																					{ "class": "bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto", width: "500", height: "500", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: 500x500" },
-																					React.createElement(
-																								"title",
-																								null,
-																								"Placeholder"
-																					),
-																					React.createElement("rect", { width: "100%", height: "100%", fill: "#eee" }),
-																					React.createElement(
-																								"text",
-																								{ x: "50%", y: "50%", fill: "#aaa", dy: ".3em" },
-																								"500x500"
-																					)
-																		)
+																		React.createElement("img", { src: "page/img/assembler-example.png", "class": "bd-placeholder-img bd-placeholder-img-lg featurette-image img-thumbnail img-fluid mx-auto", width: "500", height: "500", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: 500x500" })
 															)
 												),
 												React.createElement("hr", { "class": "featurette-divider" }),
@@ -139,21 +111,7 @@ class FeaturesPage extends React.Component {
 															React.createElement(
 																		"div",
 																		{ "class": "col-md-5" },
-																		React.createElement(
-																					"svg",
-																					{ "class": "bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto", width: "500", height: "500", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: 500x500" },
-																					React.createElement(
-																								"title",
-																								null,
-																								"Placeholder"
-																					),
-																					React.createElement("rect", { width: "100%", height: "100%", fill: "#eee" }),
-																					React.createElement(
-																								"text",
-																								{ x: "50%", y: "50%", fill: "#aaa", dy: ".3em" },
-																								"500x500"
-																					)
-																		)
+																		React.createElement("img", { src: "page/img/theme-example.png", "class": "bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto", width: "500", height: "500", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: 500x500" })
 															)
 												),
 												React.createElement("hr", { "class": "featurette-divider" }),
@@ -183,21 +141,7 @@ class FeaturesPage extends React.Component {
 															React.createElement(
 																		"div",
 																		{ "class": "col-md-5 order-md-1" },
-																		React.createElement(
-																					"svg",
-																					{ "class": "bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto", width: "500", height: "500", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: 500x500" },
-																					React.createElement(
-																								"title",
-																								null,
-																								"Placeholder"
-																					),
-																					React.createElement("rect", { width: "100%", height: "100%", fill: "#eee" }),
-																					React.createElement(
-																								"text",
-																								{ x: "50%", y: "50%", fill: "#aaa", dy: ".3em" },
-																								"500x500"
-																					)
-																		)
+																		React.createElement("img", { src: "page/img/tools-example.png", "class": "bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto", width: "500", height: "500", xmlns: "http://www.w3.org/2000/svg", preserveAspectRatio: "xMidYMid slice", focusable: "false", role: "img", "aria-label": "Placeholder: 500x500" })
 															)
 												),
 												React.createElement("hr", { "class": "featurette-divider" })
