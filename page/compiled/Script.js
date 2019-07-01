@@ -16,7 +16,8 @@ ReactDOM.render(React.createElement(
       null,
       React.createElement(ReactRouterDOM.Route, { exact: true, path: "/", component: MainPage }),
       React.createElement(ReactRouterDOM.Route, { exact: true, path: "/features", component: FeaturesPage }),
-      React.createElement(ReactRouterDOM.Route, { exact: true, path: "/contributing", component: Contributing })
+      React.createElement(ReactRouterDOM.Route, { exact: true, path: "/contributing", component: Contributing }),
+      React.createElement(ReactRouterDOM.Route, { exact: true, path: "/download", component: Download })
     )
   )
 ), document.getElementById('react-content'));
