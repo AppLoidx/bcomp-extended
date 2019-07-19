@@ -1,8 +1,5 @@
-Переходите на страницу:
 
 [![](https://github.com/AppLoidx/bcomp-extended/blob/master/page/img/web-page.png?raw=true)](https://apploidx.github.io/bcomp-extended/)
-
-<i>Если ссылка не работает жмякайте [сюда](https://apploidx.github.io/bcomp-extended/#/)</i>
 
 # Расширенный эмулятор БЭВМ
 
