@@ -1,7 +1,5 @@
 
-[![](https://github.com/AppLoidx/bcomp-extended/blob/master/page/img/web-page.png?raw=true)](https://apploidx.github.io/bcomp-extended/)
-
-# Расширенный эмулятор БЭВМ
+<h1 align=center>Расширенный эмулятор БЭВМ<h1>
 
 Приложение поддерживает также и [оригинальной эмулятор](https://se.ifmo.ru/bcomp/), который запускается командой:
 ```cmd
@@ -13,8 +11,7 @@ java -jar -Dmode=gui bcomp-extended-[version].jar
 java -jar -Dmode=encoder bcomp-extended-[version].jar
 ```
 
-### Скачать JAR: https://github.com/AppLoidx/bcomp-extended/releases/latest
-#### Все jar: https://github.com/AppLoidx/bcomp-extended/releases
+#### Веб страница : https://apploidx.github.io/bcomp-extended/
 #### Документация: [wiki](https://github.com/AppLoidx/bcomp-extended/wiki)
 
 <hr>
