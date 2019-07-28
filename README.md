@@ -17,7 +17,7 @@ java -jar -Dmode=encoder bcomp-extended-[version].jar
 <hr>
 <br><br>
 
-## Ключевые особенности
+<h2 align=center>Ключевые особенности</h2>
 
 ### Assembler с подсветкой синтаксиса
 ![](https://github.com/AppLoidx/bcomp-extended/blob/master/page/img/assembler-example.png?raw=true)
