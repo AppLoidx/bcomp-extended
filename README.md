@@ -1,4 +1,5 @@
-# Расширенный эмулятор БЭВМ
+
+<h1 align=center>Расширенный эмулятор БЭВМ</h1>
 
 Приложение поддерживает также и [оригинальной эмулятор](https://se.ifmo.ru/bcomp/), который запускается командой:
 ```cmd
@@ -10,14 +11,13 @@ java -jar -Dmode=gui bcomp-extended-[version].jar
 java -jar -Dmode=encoder bcomp-extended-[version].jar
 ```
 
-### Скачать JAR: https://github.com/AppLoidx/bcomp-extended/releases/latest
-#### Все jar: https://github.com/AppLoidx/bcomp-extended/releases
+#### Веб страница : https://apploidx.github.io/bcomp-extended/
 #### Документация: [wiki](https://github.com/AppLoidx/bcomp-extended/wiki)
 
 <hr>
 <br><br>
 
-## Ключевые особенности
+<h2 align=center>Ключевые особенности</h2>
 
 ### Assembler с подсветкой синтаксиса
 ![](https://github.com/AppLoidx/bcomp-extended/blob/master/page/img/assembler-example.png?raw=true)
@@ -62,3 +62,5 @@ java -jar -Dmode=encoder bcomp-extended-[version].jar
 #### Since: 1.4.4.1+
 
 В настройках есть CheckBox где можно ставить автоготовность ВУ
+
+[Пример использования для трассировки в работе с ВУ-3](https://github.com/AppLoidx/bcomp-extended/wiki/Трассировка-с-ВУ-3)
