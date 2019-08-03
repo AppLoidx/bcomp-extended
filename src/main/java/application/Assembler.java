@@ -61,6 +61,11 @@ public class Assembler {
 
                             if (col != line.length) {
                                 String labelname;
+
+                                if (line[col].matches("(ACOM|BRCOM)")){
+                                    line = compileUserCustomCommand(line);
+                                }
+
                                 if (line[col].equals("WORD")) {
                                     if (col++ == line.length - 1) {
                                         throw new Exception("Директива WORD должна иметь как минимум один аргумент");
@@ -266,6 +271,22 @@ public class Assembler {
 
     public int getBeginAddr() throws Exception {
         return this.getLabelAddr("BEGIN");
+    }
+
+    private String[] compileUserCustomCommand(String[] line){
+        int addr;
+        try {
+            addr = Integer.parseInt(line[1], 16);
+        } catch (NumberFormatException e){
+            return line;
+        }
+        if (line[0].toUpperCase().equals("ACOM")){
+            return ("WORD " + Integer.toString(Integer.parseInt("7000", 16) + addr, 16)).split(" ");
+        } else if (line[0].toUpperCase().equals("BRCOM")) {
+            return ("WORD " + Integer.toString(Integer.parseInt("D000", 16) + addr, 16)).split(" ");
+        } else {
+            return line;
+        }
     }
 
     protected class Command {
