@@ -1,20 +1,18 @@
 package application;
 
 
-import application.views.*;
 import application.views.MemoryView;
+import application.views.*;
 import ru.ifmo.cs.bcomp.*;
 import ru.ifmo.cs.bcomp.ui.components.ActivateblePanel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 
 
 /**
@@ -224,6 +222,9 @@ public class GUI extends JApplet {
         cpu.setTickFinishListener(() -> {
             if (IOAlwaysReady) for (IOCtrl ctrl : this.ioView.getIoctrls()) ctrl.setFlag();
             if (onTickFinishAction!=null) onTickFinishAction.run();
+
+
+
             BCompPanel panel  = cmanager.getActivePanel();
             if (panel!=null) panel.stepFinish();
             try {
