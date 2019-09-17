@@ -1,97 +1,217 @@
 <!DOCTYPE html>
-<html lang="en"
-xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:fb="http://ogp.me/ns/fb#">
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta property="og:image" content="https://i.ibb.co/nQzyPyG/assembler-example.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Эмулятор БЭВМ">
-    <meta name="author" content="Arthur Kupriyanov">
-    <meta name="generator" content="Jekyll v3.8.5">
-    <title>Эмулятор БЭВМ</title>
+  <title>Приложение AniLibria.TV</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/cover/">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="css/aos.css">
 
-    <!-- Bootstrap core CSS -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script type="text/javascript" src="page/react.js"></script>
-    <script type="text/javascript" src="page/react-dom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-router-dom/4.3.1/react-router-dom.min.js"></script>
+  <link rel="stylesheet" href="css/style.min.css">
+</head>
+<body>
 
 
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
+<div class="site-wrap">
 
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-    <!-- Custom styles for this template -->
-    <link href="./page/style.css" rel="stylesheet">
-  </head>
+  <div class="site-mobile-menu">
+    <div class="site-mobile-menu-header">
+      <div class="site-mobile-menu-close mt-3">
+        <span class="icon-close2 js-menu-toggle"></span>
+      </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+  </div>
 
-  <body class="text-center">
-
-    
-
-    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-  <header class="masthead mb-auto">
-    <div class="inner">
-      <h3 class="masthead-brand">Эмулятор БЭВМ</h3>
-      <nav class="nav nav-masthead justify-content-center">
-        <a class="nav-link header-auto-active active " href="#/">Main</a>
-        <a class="nav-link header-auto-active" href="#/features">Features</a>
-        <a class="nav-link header-auto-active" href="#/contributing">Contributing</a>
-        <a class="nav-link header-auto-active d-none d-sm-block " href="#/download">Download</a>
-      </nav>
+  <header class="site-navbar py-3" role="banner">
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col-11 col-xl-2">
+          <h1 class="mb-0"><a href="https://vk.com/apploidxxx" class="text-white h2 mb-0"><span class="text-primary">Arthur Kupriyanov</span> </a></h1>
+        </div>
+        <div class="col-12 col-md-10 d-none d-xl-block">
+          <nav class="site-navigation position-relative text-right" role="navigation">
+            <ul class="site-menu js-clone-nav mx-auto d-none d-lg-block">
+              <li class="active"><a href="index.html">Home</a></li>
+              <li><a data-scroll href="#features">Возможности</a></li>
+              <li><a href="#contributing">Contributing</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
+      </div>
     </div>
   </header>
-
-
-    <div id="react-content"></div>
-
-
-  <footer class="mastfoot mt-auto">
-    <div class="inner">
-      <p>Author: <a href="https://github.com/AppLoidx">Arthur Kupriyanov</a><br/> Source code: <a href="https://github.com/AppLoidx/bcomp-extended">GitHub Repository</a>.</p>
-    </div>
-  </footer>
 </div>
-    <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="page/compiled/Contributing.js"></script>    
-    <script type="text/javascript" src="page/compiled/FeaturesPage.js"></script>    
-    <script type="text/javascript" src="page/compiled/MainPage.js"></script>    
-    <script type="text/javascript" src="page/compiled/Download.js"></script>    
-    <script type="text/javascript" src="page/compiled/Script.js"></script>    
+<a id="download"></a>
+<div class="site-section site-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-10">
+        <span class="d-block mb-3 caption" data-aos="fade-up" data-aos-delay="100">Расширенный</span>
+        <h1 class="d-block mb-4" data-aos="fade-up" data-aos-delay="200">Эмулятор БЭВМ</h1>
+        <span class="d-block mb-5 caption" data-aos="fade-up" data-aos-delay="300">for student by student</span>
+        <a href="https://github.com/AppLoidx/bcomp-extended/releases" class="btn-custom" data-aos="fade-up" data-aos-delay="400"><span>Скачать</span></a>
+      </div>
+    </div>
+  </div>
+</div>
 
 
-    
 
-    <script>
-        $(document).ready(function() {
-            $( ".header-auto-active" ).bind( "click", function(event) {
-                var clickedItem = $( this );
-                $( ".header-auto-active" ).each( function() {
-                    $( this ).removeClass( "active" );
-                });
-                clickedItem.addClass( "active" );
-            });
-        });
+
+<div class="site-section">
+  <div class="container">
+    <a id="features"></a>
+    <div class="row mb-5">
+      <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+        <div class="site-section-heading">
+          <h2>Первый неофициальный</h2>
+        </div>
+      </div>
+      <div class="col-lg-5 mt-5 pl-lg-5" data-aos="fade-up" data-aos-delay="200">
+        <p>Данное расширение является неофициальным расширением для эмулятора БЭВМ, поэтому сборный jar имеет также и официальную версию, которая запускается специальной командой</p>
+      </div>
+    </div>
+
+    <div class="row align-items-center speaker">
+      <div class="col-lg-5 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="300">
+        <img src="res/assembler-example.png" alt="Image" class="img-fluid">
+      </div>
+
+      <div class="col-lg-6 ml-auto">
+        <h2 class="text-white mb-4 name" data-aos="fade-left" data-aos-delay="200">Подсветка</h2>
+        <div class="bio pr-lg-5">
+          <span class="text-uppercase text-primary d-block mb-3" data-aos="fade-left" data-aos-delay="300">Внесите краски в свою страдательную жизнь</span>
+          <p class="mb-4" data-aos="fade-left" data-aos-delay="400">Подстветка основных команд входящих в стандартный ассемблер. Оставшиеся команды разрабатываются<br><br><span class="text-secondary">Жалкая пародия нормальных IDE</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row align-items-center speaker">
+
+      <div class="col-lg-6 mb-5 mb-lg-0 order-lg-2" data-aos="fade-up" data-aos-delay="300">
+        <img src="res/code-example.gif" alt="Image" class="img-fluid">
+      </div>
+
+
+      <div class="col-lg-6 ml-auto order-lg-1">
+        <h2 class="text-white mb-4 name" data-aos="fade-left" data-aos-delay="200">CLI</h2>
+        <div class="bio pr-lg-5">
+          <span class="text-uppercase text-primary d-block mb-3" data-aos="fade-left" data-aos-delay="300">Встроенная консоль</span>
+          <p class="mb-4" data-aos="fade-left" data-aos-delay="400">Теперь вам не надо запускать консоль отдельно от графической версии. Все соединено в одном моде <br><br><span class="text-secondary">Для "продвинутых" пользователей</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row align-items-center speaker">
+      <div class="col-lg-5 mb-5 mb-lg-0"  data-aos="fade-up" data-aos-delay="300">
+        <img src="res/pr2.png" alt="Image" class="img-fluid">
+      </div>
+
+      <div class="col-lg-6 ml-auto">
+        <h2 class="text-white mb-4 name" data-aos="fade-left" data-aos-delay="200">Внешний вид</h2>
+        <div class="bio pr-lg-5">
+          <span class="text-uppercase text-primary d-block mb-3" data-aos="fade-left" data-aos-delay="300">Настройка стиля</span>
+          <p class="mb-4" data-aos="fade-left" data-aos-delay="400">Теперь вы можете изменить внешний вид эмулятора на предпочитаемый вами. <br><br><span class="text-secondary">Надо ведь как-то выделиться на фоне остальных</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row align-items-center speaker">
+
+      <div class="col-lg-6 mb-5 mb-lg-0 order-lg-2" data-aos="fade-up" data-aos-delay="300">
+        <img src="res/tools-example.png" alt="Image" class="img-fluid">
+      </div>
+
+
+      <div class="col-lg-6 ml-auto order-lg-1">
+        <h2 class="text-white mb-4 name" data-aos="fade-left" data-aos-delay="200">Инструменты</h2>
+        <div class="bio pr-lg-5">
+          <span class="text-uppercase text-primary d-block mb-3" data-aos="fade-left" data-aos-delay="300">Полезные надстройки</span>
+          <p class="mb-4" data-aos="fade-left" data-aos-delay="400">Прямой доступ к памяти и дебаггер в вашем распоряжении<br><br><span class="text-secondary">Это вам не DMA</span></p>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+  <div class="site-section">
+    <div class="container">
+      <a id="contributing"></a>
+      <div class="row mb-5">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="site-section-heading">
+            <h2>Open Source</h2>
+          </div>
+        </div>
+        <div class="col-lg-5 mt-5 pl-lg-5" data-aos="fade-up" data-aos-delay="200">
+          <p>Все исходные коды выложены в гитхаб <a href="https://github.com/AppLoidx/bcomp-extended">репозитории</a>. Принимаются pull-реквесты</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="site-section" style="padding-bottom: 0">
+    <div class="container">
+
+      <div class="row align-items-center speaker">
+
+        <div class="col-lg-6 mb-5 mb-lg-0 order-lg-2" data-aos="fade-up" data-aos-delay="300">
+          <img src="res/akari.png" alt="Image" class="img-fluid">
+        </div>
+
+
+        <div class="col-lg-6 ml-auto order-lg-1">
+          <h2 class="text-white mb-4 name" data-aos="fade-left" data-aos-delay="200">About Me</h2>
+          <div class="bio pr-lg-5">
+            <span class="text-uppercase text-primary d-block mb-3" data-aos="fade-left" data-aos-delay="300"><a href="https://vk.com/apploidxxx">Arthur Kupriyanov</a></span>
+            <p class="mb-4" data-aos="fade-left" data-aos-delay="400">Выживший после ОПД в 2018-19</p>
+            <p class="mb-4" data-aos="fade-left" data-aos-delay="400">vk: https://vk.com/apploidxxx</p>
+            <p class="mb-4" data-aos="fade-left" data-aos-delay="400">GitHub: https://github.com/AppLoidx</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-12 text-center">
+        <div class="border-top pt-5">
+          <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy; <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-primary" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</div>
+<script src="https://cdn.jsdelivr.net/gh/cferdinandi/smooth-scroll@15/dist/smooth-scroll.polyfills.min.js"></script>
+<script>
+  var scroll = new SmoothScroll('a[href*="#"]');
+
 </script>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/main.js"></script>
+
 </body>
 </html>
