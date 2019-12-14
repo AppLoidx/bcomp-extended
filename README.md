@@ -1,6 +1,9 @@
 
 <h1 align=center>Расширенный эмулятор БЭВМ</h1>
 
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/AppLoidx/bcomp-extended.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/AppLoidx/bcomp-extended/alerts/)
+
+
 Приложение поддерживает также и [оригинальной эмулятор](https://se.ifmo.ru/bcomp/), который запускается командой:
 ```cmd
 java -jar -Dmode=gui bcomp-extended-[version].jar
