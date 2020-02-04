@@ -4,10 +4,6 @@
 [![Total alerts](https://img.shields.io/lgtm/alerts/g/AppLoidx/bcomp-extended.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/AppLoidx/bcomp-extended/alerts/)
 [![Language grade: Python](https://img.shields.io/lgtm/grade/python/g/AppLoidx/ML.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/AppLoidx/ML/context:python)
 
-Приложение поддерживает также и [оригинальной эмулятор](https://se.ifmo.ru/bcomp/), который запускается командой:
-```cmd
-java -jar -Dmode=gui bcomp-extended-[version].jar
-```
 
 Для вызова HEXConverter для представления строковых значений в различных кодировках:
 ```
